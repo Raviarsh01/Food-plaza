@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  /* background-color: #931b29; */
+  background-color: #333;
+  color: #fff;
+  position: sticky;
+  top: 0;
+}
+.header > img {
+  width: 100px;
+  height: 50px;
+  border-radius: 50%;
+}
+.logo {
+  font-size: 24px;
+}
+.menu li {
+  margin-right: 20px;
+}
+.menu a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cart-login {
+  display: flex;
+}
+
+.cart,
+.login {
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+}

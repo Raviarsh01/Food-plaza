@@ -1,0 +1,35 @@
+.home-section{
+    display: flex;
+    justify-content:space-evenly;
+    margin-top: 60px;
+}
+.home-section div{
+    width: 40%;
+}
+.home-section div img{
+    width:90%;
+    height:90%;
+}
+.info-para{
+    font-size: 35px;
+    text-align: center;
+    padding-top: 2.5rem;
+}
+.info-para span{
+    color:#333;
+}
+.read-more{
+    text-decoration: none;
+    color:#333;
+    font-size: 20px;
+    font-weight: 600;
+    padding:5px;
+}
+.read-more:hover{
+    border:1px solid #333;
+    
+}
+.center{
+    text-align: center;
+    line-height: 1.7rem;
+}
