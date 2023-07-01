@@ -1,52 +1,78 @@
 .menu {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .section {
-    margin-bottom: 20px;
-  }
-  .heading {
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 10px;
-  }
-  .row {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .menu-flex {
-    display: flex;
-    justify-content: space-around;
-  }
-  .button-1{
-      width:170px;
-      height: 35px;
-      background-color: white;
-      border:1px solid #555;
-      font-size: 15px;
-  }
-  .button-1:hover{
-      background-color:#555 ;
-      color: white;
-      cursor: pointer;
-  }
-  .item {
-    margin: 20px;
-    text-align: center;
-  }
-  .item img {
-    width: 350px;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .item h3 {
-    margin: 10px 0;
-  }
-  
-  .item p {
-    font-weight: bold;
-    margin: 10px 0;
-  }
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+.heading {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.menu-flex {
+  display: flex;
+  justify-content: space-around;
+}
+.button-1 {
+  width: 170px;
+  height: 35px;
+  background-color: white;
+  border: 1px solid #555;
+  font-size: 15px;
+}
+.button-1:hover {
+  background-color: #555;
+  color: white;
+  cursor: pointer;
+}
+.item {
+  margin: 20px;
+  text-align: center;
+}
+.item img {
+  width: 350px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.item h3 {
+  margin: 10px 0;
+}
+
+.item p {
+  font-weight: bold;
+  margin: 10px 0;
+}
+/* menu page code end here  */
+
+/* detail page code start here  */
+.detail-container {
+  display: flex;
+  width: 70%;
+  background-color: #dbdada;
+  margin: auto;
+}
+.detail-container > div > img {
+  width: 600px;
+  height: 350px;
+}
+.detail-flex2 {
+  padding:20px;
+}
+.detail-heading  {
+  font-size: 26px;
+  line-height: 1.5rem;
+  margin: 10px 0;
+}
+.detail-flex2 > p {
+  font-size: 17px;
+}
+
+/* detail page code end here  */

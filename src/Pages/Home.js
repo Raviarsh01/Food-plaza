@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div className="home">
     <section className="hero">
-      <h1>Welcome to Our Restaurant</h1>
+      <h1>Welcome to Fresh Box</h1>
       <p>Experience the Best Flavors in Town</p>
       <Link to='/menu'><button className="btn">Explore Our Menu</button></Link>
     </section>

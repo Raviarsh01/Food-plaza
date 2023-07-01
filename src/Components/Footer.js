@@ -8,7 +8,7 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 
-import '../Styles/Footer.css'
+import '../Styles/NavbarFooter.css'
 const Footer = () => {
   return (
     <>
@@ -36,7 +36,6 @@ const Footer = () => {
     </footer>
    
     <footer className="footer-2">
-      
       <div className="footer-bottom">© 2023 Restaurant. All rights reserved.</div>
     </footer>
     </>

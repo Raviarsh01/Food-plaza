@@ -1,36 +1,10 @@
-// export const increment = () => ({
-//   type: "INCREMENT",
-//   payload:1
-// });
+import axios, { Axios} from 'axios';
 
-// export const decrement = () => ({
-//   type: "DECREMENT",
-//   payload:1
-// });
+const url='http://localhost:3006/'
 
-// export const inc = () => ({
-//   type: "INC",
-//   payload:5
-// });
-
-// export const dec = () => ({
-//   type: "DEC",
-//   payload:3
-// });
-
-// export const addToCart = (id) => ({
-//     type:'ADD_TO_CART',
-//     payload:id
-// });
-export const addToCart = (id) => ({
-    type: 'ADD_TO_CART',
-    payload: id
-});
-export const removeToCart = (id) => ({
-    type: 'REMOVE_TO_CART',
-    payload: id
-});
-export const clearCart = (id) => ({
-    type: 'CLEAR_CART',
-    payload: id
-});
+export const getPizzadata = () =>{
+    axios.get(url/'pizza')
+    .then(response=> console.log('Data is..',response.data))
+    .catch(error => console.log('Error is..',error))
+    
+}

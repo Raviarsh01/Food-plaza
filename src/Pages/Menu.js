@@ -1,23 +1,34 @@
-import React from "react";
-import Pizza from "../Data/Pizza.json";
-import Burger from "../Data/Burger.json";
-import { useDispatch } from 'react-redux';
-import { addToCart } from "../Redux/Actions/CartAction";
-
-import '../Styles/Menu.css'
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getPizzadata} from "../Redux/Actions/CartAction";
+import "../Styles/Menu.css";
 
 const Menu = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    // dispatch(getBurgerdata())
+    dispatch(getPizzadata())
+  }, []);
 
-  const  handleAdd = (id) =>{
-    dispatch(addToCart(id))
-  }
+  const handleAdd = (id) => {
+    // dispatch(addToCart(id))
+  };
   return (
     <div className="menu">
       <div className="section">
-        <h2  className="heading">Pizzas</h2>
+        <h2 className="heading">Pizzas</h2>
         <div className="row">
-          {Pizza.map((item) => (
+        <div className="item">
+              <img src={''} alt="pizza" />
+              <div className="menu-flex">
+                <h3>{}</h3>
+                <p>Rs.{}</p>
+              </div>
+              <button className="button-1" onClick={() => handleAdd()}>
+                Select
+              </button>
+            </div>
+          {/* {Pizza.map((item) => (
             <div className="item">
               <img src={item.image} alt="pizza" />
               <div className="menu-flex">
@@ -26,13 +37,13 @@ const Menu = () => {
               </div>
               <button className="button-1"  onClick={()=>handleAdd(item.id)}>Select</button>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
       <div className="section">
         <h2 className="heading">Burger</h2>
         <div className="row">
-        {Burger.map(item=> (
+          {/* {Burger.map(item=> (
             <div className="item">
               <img src={item.image} alt="burger" />
               <div className="menu-flex">
@@ -41,7 +52,7 @@ const Menu = () => {
               </div>
               <button className="button-1"  onClick={()=>handleAdd(item.id)}>Select</button>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>
