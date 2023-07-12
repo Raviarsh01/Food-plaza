@@ -4,6 +4,15 @@
   box-sizing: border-box;
 }
 
+@import url("./Styles/NavbarFooter.css");
+@import url("./Styles/Home.css");
+@import url("./Styles/About.css");
+@import url("./Styles/Menu.css");
+@import url("./Styles/Cart.css");
+@import url("./Styles/Login.css");
+
+
+
 
 
 

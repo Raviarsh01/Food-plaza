@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import {FaShoppingCart } from "react-icons/fa";
 
-import '../Styles/NavbarFooter.css'
-
 const Navbar = () => {
   const item = useSelector((state) => state.rem);
   return (

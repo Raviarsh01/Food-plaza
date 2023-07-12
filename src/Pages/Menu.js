@@ -1,33 +1,32 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getPizzadata} from "../Redux/Actions/CartAction";
-import "../Styles/Menu.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "../Redux/Actions/CartAction";
 
 const Menu = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(getBurgerdata())
-    dispatch(getPizzadata())
+    window.scroll(0,0)
+    dispatch(fetchUser());
   }, []);
-
-  const handleAdd = (id) => {
-    // dispatch(addToCart(id))
-  };
+  const { loading, user, error } = useSelector((state) => state.root1);
+  console.log("loading...", loading, "user", user, "error", error);
+  const handleAdd = (id) => {};
   return (
     <div className="menu">
       <div className="section">
         <h2 className="heading">Pizzas</h2>
-        <div className="row">
-        <div className="item">
-              <img src={''} alt="pizza" />
-              <div className="menu-flex">
-                <h3>{}</h3>
-                <p>Rs.{}</p>
-              </div>
-              <button className="button-1" onClick={() => handleAdd()}>
-                Select
-              </button>
-            </div>
+       {user ? <div className="row">
+       {user.map((item) => (
+         <div className="item"  style={{width:'30%',border:'1px solid black',padding:'0px 30px'}}>
+           <p>{item.userId}</p>
+           <p>{item.id}</p>
+           <p>{item.title}</p>
+           <p>{item.body}</p>
+         </div>
+       ))}
+       </div> : <div>Loading...</div>}
+       
+          <div>
           {/* {Pizza.map((item) => (
             <div className="item">
               <img src={item.image} alt="pizza" />
@@ -58,5 +57,4 @@ const Menu = () => {
     </div>
   );
 };
-
 export default Menu;

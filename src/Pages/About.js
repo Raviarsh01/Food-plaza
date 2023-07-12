@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from "react-router-dom";
-import '../Styles/About.css'
 const About = () => {
+  useEffect(()=>{
+    window.scroll(0,0)
+  })
   return (
     <section className="home-section">
           <div>

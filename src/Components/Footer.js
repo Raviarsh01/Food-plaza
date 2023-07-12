@@ -8,7 +8,6 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 
-import '../Styles/NavbarFooter.css'
 const Footer = () => {
   return (
     <>

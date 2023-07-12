@@ -1,11 +1,13 @@
-// import React, { useState,useRef,useEffect  } from "react";
+import React, { useState,useRef,useEffect  } from "react";
 // import { useSelector,useDispatch } from "react-redux";
 // import { Link } from "react-router-dom";
 // import { removeToCart } from "../Redux/Actions/CartAction";
-// import '../Styles/Cart.css'
 
-// const Cart = () => {
-//   const item = useSelector((state) => state.add.data);
+const Cart = () => {
+    useEffect(()=>{
+        window.scroll(0,0)
+      })
+//   const item = useSelector((state) => state);
 //   const dispatch = useDispatch();
  
 //   const [quantity, setQuantity] = useState(1);
@@ -75,6 +77,6 @@
 //       )}
 //     </div>
 //   );
-// };
+};
 
-// export default Cart;
+export default Cart;

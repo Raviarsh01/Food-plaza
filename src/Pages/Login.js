@@ -1,6 +1,9 @@
-import React from 'react'
-import '../Styles/Login.css'
+import React , { useEffect }from 'react'
+
 const Login = () => {
+  useEffect(()=>{
+    window.scroll(0,0)
+  })
   return (
     <div className="login-container">
       <h2>Login</h2>
