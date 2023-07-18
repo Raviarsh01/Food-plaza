@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import {FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
-  const item = useSelector((state) => state.rem);
+  const data = useSelector((state) => state.root3);
+  let number=data.length;
   return (
     <header className="header">
      <img className='logo' src="/Images/Fresh box-logos_white.png" alt="Logo" />
@@ -16,7 +17,7 @@ const Navbar = () => {
       </ul>
     </nav>
     <div className="cart-login">
-    <Link to="/cart" className="cart"><FaShoppingCart/><span class="cart-numbers">{item}</span></Link>
+    <Link to="/cart" className="cart"><FaShoppingCart/><span class="cart-numbers">{number}</span></Link>
     <Link to="/login" className="login">Login</Link>
     </div>
   </header>

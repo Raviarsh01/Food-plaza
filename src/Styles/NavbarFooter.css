@@ -64,7 +64,7 @@ footer{
   height:50px;
   color:#333;
   background-color:white;
-  border-radius: 20%;
+  border-radius: 3px;
   padding:12px;
 }
 .flex3-img{
@@ -72,7 +72,7 @@ footer{
   height: 50px;
   color: #333;
   background-color: white;
-  border-radius:20%;
+  border-radius:3px;
   padding:13px;
   margin: 0 10px;
 
@@ -84,9 +84,9 @@ footer{
 .footer-2 {
   background-color: #333;
   color: #fff;
-  padding: 20px;
-  padding-bottom: 20px;
 }
 .footer-bottom {
   text-align: center;
+  font-weight: 600;
+  font-size: 17px;
 }
