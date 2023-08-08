@@ -54,13 +54,14 @@ const SelectItem = () => {
               <div className="detail-flex2">
                 <h2 className="detail-heading">{item.name}</h2>
                 <p>{item.price}</p>
-                <p>Item detail</p>
+                <p>{item.toping}</p>
+                <p>{item.description}</p>
                 <div style={{display:'flex'}}>Quantity: 
-                  <button onClick={(event)=>handleDec(event,item.id,quantity)}> - </button>
+                  <button className="button-4" onClick={(event)=>handleDec(event,item.id,quantity)}> - </button>
                   <p> {quantity} </p>
-                  <button onClick={(event)=>handleInc(event,item.id)}> + </button>
+                  <button className="button-4" onClick={(event)=>handleInc(event,item.id)}> + </button>
                 </div>
-                <button className="button-1" onClick={()=>handleadd(item)}>Add to cart</button>
+                <button className="button-1 btn-margin" onClick={()=>handleadd(item)}>Add to cart</button>
               </div>
             </>
           ))

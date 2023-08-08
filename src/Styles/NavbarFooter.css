@@ -1,9 +1,9 @@
-.header {
+/* .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  /* background-color: #931b29; */
+  background-color: #931b29;
   background-color: #333;
   color: #fff;
   position: sticky;
@@ -34,55 +34,94 @@
 .cart-login {
   display: flex;
 }
-
-.cart,
-.login {
-  margin-left: 10px;
-  color: white;
+*/
+.navbar-section3 {
+  display: flex;
+  align-items: center;
+}
+.cart {
+  color: rgb(225 29 72);
   text-decoration: none;
+  font-size: 20px;
+  position: relative;
+  margin-right: 7px;
+}
+.cart-numbers {
+  position: absolute;
+  top: -10px;
+  right: -11px;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 8px 30px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 3;
+}
+.navbar-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.navbar-sec2 {
+  display: flex;
+}
+.navbar-sec2-Link {
+  text-decoration: none;
+  color: #515462;
+  padding: 9px 36px;
+  transition: 0.5s ease;
+}
+.nav-sec2Color{
+  background-color: rgb(225 29 72);
+  color: white;
 }
 
 /* footer code start here  */
-footer{
-  background-color: #333;
-  color:white;
+footer {
+  position: relative;
+  background-color: rgb(225 29 72);;
+  color: white;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding:15px;
+  padding: 15px;
   padding-top: 40px;
 }
-.footer-child{
-  width:30%;
+.footer-child {
+  width: 30%;
 }
-.flex{
+.flex {
   display: flex;
 }
-.footer-img{
-  width:50px;
-  height:50px;
-  color:#333;
-  background-color:white;
-  border-radius: 3px;
-  padding:12px;
-}
-.flex3-img{
+.footer-img {
   width: 50px;
   height: 50px;
-  color: #333;
+  color: rgb(225 29 72);;
   background-color: white;
-  border-radius:3px;
-  padding:13px;
-  margin: 0 10px;
-
+  border-radius: 3px;
+  padding: 12px;
 }
-.space-left{
+.flex3-img {
+  width: 50px;
+  height: 50px;
+  color:  rgb(225 29 72);
+  background-color: white;
+  border-radius: 3px;
+  padding: 13px;
+  margin: 0 10px;
+}
+.space-left {
   padding-top: 6px;
   padding-left: 10px;
 }
 .footer-2 {
-  background-color: #333;
+  background-color: rgb(225 29 72);
   color: #fff;
 }
 .footer-bottom {

@@ -1,8 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
 * {
-  margin: 0;
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
+  font-family: "Roboto Mono", monospace;
+  letter-spacing: 1px;
 }
+
 
 @import url("./Styles/NavbarFooter.css");
 @import url("./Styles/Home.css");
@@ -10,7 +15,6 @@
 @import url("./Styles/Menu.css");
 @import url("./Styles/Cart.css");
 @import url("./Styles/Login.css");
-
 
 
 
