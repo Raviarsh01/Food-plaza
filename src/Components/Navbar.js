@@ -12,25 +12,12 @@ const Navbar = () => {
   }
 
   return (
-    //   <header className="header">
-    //    <img className='logo' src="/Images/Fresh box-logos_white.png" alt="Logo" />
-    //   <nav className="menu">
-    //     <ul>
-    //       <li><Link to="/">Home</Link></li>
-    //       <li><Link to="/menu">Menu</Link></li>
-    //       <li><Link to="/about">About </Link></li>
-    //     </ul>
-    //   </nav>
-    //   <div className="cart-login">
-    //   <Link to="/cart" className="cart"><FaShoppingCart/><span class="cart-numbers">{number}</span></Link>
-    //   <Link to="/login" className="login">Login</Link>
-    //   </div>
-    // </header>
     <div className="navbar">
       <div>
         <img
           className="navbar-logo"
-          src="https://images.pexels.com/photos/1162361/pexels-photo-1162361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          // src="https://images.pexels.com/photos/1162361/pexels-photo-1162361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src="Images\logo.png"
           alt="logo image"
         />
       </div>
@@ -72,7 +59,7 @@ const Navbar = () => {
         <Link className="home-button" to="/login">
           Log In
         </Link>
-        <Link className="home-button home-button-white" to="/">
+        <Link className="home-button home-button-white" to="/signup">
           Sign Up
         </Link>
       </div>

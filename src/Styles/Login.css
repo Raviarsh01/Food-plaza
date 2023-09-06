@@ -26,7 +26,7 @@
   label {
     font-weight: bold;
   }
-  
+  input[type="text"],
   input[type="email"],
   input[type="password"] {
     padding: 10px;
@@ -46,3 +46,14 @@
   .btn-login:hover {
     background-color: rgb(225 29 72);
   }
+  .line-er45{
+    border-top: 1px solid #333;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .forget{
+    text-align: right;
+    margin-top: 15px;
+  }
+
+/* signup code start here  */

@@ -1,4 +1,6 @@
 import axios from "axios";
+import burger from "../../json Data/burger.json";
+import pizza from "../../json Data/pizza.json";
 export const fetchUserRequest = () => ({
   type: "FETCH_USER_REQUEST",
 });
@@ -15,15 +17,21 @@ export const fetchUserFailure = (error) => ({
 
 export const fetchdata = () => {
   return (dispatch) => {
-    dispatch(fetchUserRequest());
-    axios
-      .get("http://localhost:3006/pizza")
-      .then((response) => {
-        dispatch(fetchUserSuccess(response.data));
-      })
-      .catch((error) => {
-        dispatch(fetchUserFailure(error.message));
-      });
+    // dispatch(fetchUserRequest());
+    // axios
+    //   .get("http://localhost:3006/pizza")
+    //   .then((response) => {
+    //     dispatch(fetchUserSuccess(response.data));
+    //   })
+    //   .catch((error) => {
+    //     dispatch(fetchUserFailure(error.message));
+    //   });
+    if(pizza){
+      dispatch(fetchUserSuccess(pizza));
+    }
+    else{
+      dispatch(fetchUserRequest());
+    }
   };
 };
 export const fetchUserRequest2 = () => ({
@@ -42,15 +50,11 @@ export const fetchUserFailure2 = (error) => ({
 
 export const fetchdata2 = () => {
   return (dispatch) => {
-    dispatch(fetchUserRequest2());
-    axios
-      .get("http://localhost:3006/burger")
-      .then((response) => {
-        dispatch(fetchUserSuccess2(response.data));
-      })
-      .catch((error) => {
-        dispatch(fetchUserFailure2(error.message));
-      });
+    if (burger) {
+      dispatch(fetchUserSuccess2(burger));
+    } else {
+      dispatch(fetchUserRequest2());
+    }
   };
 };
 

@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {Link} from 'react-router-dom';
 import { fetchdata,fetchdata2,addCart} from "../Redux/Actions/CartAction";
+import burger from "../json Data/burger.json";
+
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -9,18 +11,20 @@ const Menu = () => {
     dispatch(fetchdata())
     dispatch(fetchdata2())
     window.scroll(0, 0);
+    console.log("burger data", burger);
   }, []);
   const { loading, user, error } = useSelector((state) => state.root1);
   const { user2} = useSelector((state) => state.root2);
   const handleadd = (item) =>{
     dispatch(addCart(item))
   }
+
   return (
     <div className="menu">
       <div className="section">
-        <h2 className="heading">Pizzas</h2>
+        <h2 className="heading">Pizza</h2>
         <div className="row">
-          {user?user.map((item) => (
+          {user ? user.map((item) => (
             <div className="item">
               <img src={item.image} alt="pizza" />
               <div className="menu-flex">

@@ -8,6 +8,7 @@ const Home = () => {
   useEffect(() => {
     window.scroll(0, 0);
   });
+
   return (
     <>
       <div className="home-topsec">
@@ -19,7 +20,7 @@ const Home = () => {
               Buy Now
             </Link>
             <Link className="home-button home-button-white" to="">
-             View Demo
+              View Demo
             </Link>
           </div>
         </div>

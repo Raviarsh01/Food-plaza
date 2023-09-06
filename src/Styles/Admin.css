@@ -1,0 +1,23 @@
+h3{
+    margin-top: 20px;
+    margin-bottom: 7px;
+    text-align: center;
+}
+table{
+    width:90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+table td{
+    padding:10px;
+    text-align: center;
+    border: 1px solid black;
+}
+table th{
+    border: 1px solid black;
+}
+table img{
+    width:150px;
+    height:90px;
+}

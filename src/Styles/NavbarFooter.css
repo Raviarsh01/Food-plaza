@@ -44,7 +44,7 @@
   text-decoration: none;
   font-size: 20px;
   position: relative;
-  margin-right: 7px;
+  margin-right: 10px;
 }
 .cart-numbers {
   position: absolute;
@@ -56,16 +56,15 @@
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 8px 30px;
+  padding: 0px 30px;
   width: 100%;
   position: absolute;
   top: 0;
   z-index: 3;
 }
 .navbar-logo {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+  width: 90px;
+  height: 75px;
 }
 .navbar-sec2 {
   display: flex;
@@ -73,12 +72,11 @@
 .navbar-sec2-Link {
   text-decoration: none;
   color: #515462;
-  padding: 9px 36px;
-  transition: 0.5s ease;
+  padding: 9px 30px;
+  padding-bottom: 5px;
 }
 .nav-sec2Color{
-  background-color: rgb(225 29 72);
-  color: white;
+  border-bottom:1.5px solid rgb(225 29 72);
 }
 
 /* footer code start here  */

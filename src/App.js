@@ -6,6 +6,9 @@ import Menu from "./Pages/Menu";
 import About from "./Pages/About";
 import Cart from "./Pages/Cart";
 import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
+import PageNotFound from "./Pages/PageNotFound";
+import Admin from "./Pages/Admin";
 
 import "./App.css";
 
@@ -31,9 +34,11 @@ function App() {
           <Route path="/menu/item/:id" element={<SelectItem />} />
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
-          {/* <Route path="*" element={<NoPage />} /> */}
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );

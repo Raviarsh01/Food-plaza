@@ -1,0 +1,14 @@
+[
+    {
+        "name":"Admin Hai",
+        "city":"amritsar",
+        "email":"admin@gmail.com",
+        "password":"12345"
+    },
+      {
+        "name":"Abhi Kumar",
+        "city":"Tarn taran",
+        "email":"abhi@gmail.com",
+        "password":"12345"
+    }
+]

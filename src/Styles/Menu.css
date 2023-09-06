@@ -1,6 +1,7 @@
 .menu {
   display: flex;
   flex-direction: column;
+  margin-top: 60px;
 }
 .section {
   margin-bottom: 20px;
@@ -63,7 +64,7 @@
   width: 70%;
   justify-content: center;
   margin: auto;
-  padding:50px 0;
+  padding:110px 0;
 }
 .detail-container > div > img {
   width: 600px;
