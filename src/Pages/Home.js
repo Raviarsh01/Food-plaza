@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHotjar, FaSquarespace } from "react-icons/fa";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { TbFriends } from "react-icons/tb";
 
+
 const Home = () => {
+ 
   useEffect(() => {
     window.scroll(0, 0);
   });
