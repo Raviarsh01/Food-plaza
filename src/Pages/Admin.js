@@ -8,7 +8,7 @@ const Admin = () => {
   return (
     <div>
       <h3>Users</h3>
-      <table>
+      <table className="geewe">
         <tr>
           <th>Name</th>
           <th>City</th>
@@ -26,7 +26,7 @@ const Admin = () => {
       </table>
 
       <h3>Burger</h3>
-      <table>
+      <table className="geewe">
         <tr>
           <th>Id</th>
           <th>Image</th>
@@ -50,7 +50,7 @@ const Admin = () => {
       </table>
 
       <h3>Pizza</h3>
-      <table>
+      <table className="geewe">
         <tr>
           <th>Id</th>
           <th>Image</th>

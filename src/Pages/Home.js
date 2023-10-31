@@ -48,9 +48,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="cards-4">
-          <div>4 cards </div>
-        </div>
         <section className="section-2">
           <div className="section-2-1">
             <FaHotjar className="img121" />

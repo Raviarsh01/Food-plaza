@@ -4,7 +4,7 @@ const initialState = {
   error: null,
 };
 
-export const user1Reducer = (state = initialState, action) => {
+export const pizzaReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_USER_REQUEST":
       return {
@@ -34,7 +34,7 @@ const initialState2 = {
   error: null,
 };
 
-export const user2Reducer = (state = initialState2, action) => {
+export const BurgerReducer = (state = initialState2, action) => {
   switch (action.type) {
     case "FETCH_USER_REQUEST2":
       return {
@@ -64,8 +64,6 @@ export const cartReducer = (state = cart, action) => {
   switch (action.type) {
 
     case "ADD_TO_CART":
-      // const { id, name, price } = action.payload;
-      // return [...state, { id, name, price, quantity: 1 }];
       const { id, name, price } = action.payload;
       const existingItem = state.find(item => item.id === id);
       if (existingItem) {

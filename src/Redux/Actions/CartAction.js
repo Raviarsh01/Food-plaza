@@ -1,6 +1,6 @@
-import axios from "axios";
 import burger from "../../json Data/burger.json";
 import pizza from "../../json Data/pizza.json";
+
 export const fetchUserRequest = () => ({
   type: "FETCH_USER_REQUEST",
 });
@@ -17,15 +17,6 @@ export const fetchUserFailure = (error) => ({
 
 export const fetchdata = () => {
   return (dispatch) => {
-    // dispatch(fetchUserRequest());
-    // axios
-    //   .get("http://localhost:3006/pizza")
-    //   .then((response) => {
-    //     dispatch(fetchUserSuccess(response.data));
-    //   })
-    //   .catch((error) => {
-    //     dispatch(fetchUserFailure(error.message));
-    //   });
     if(pizza){
       dispatch(fetchUserSuccess(pizza));
     }

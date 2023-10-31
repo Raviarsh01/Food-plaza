@@ -3,21 +3,21 @@ h3{
     margin-bottom: 7px;
     text-align: center;
 }
-table{
+.geewe{
     width:90%;
     margin: 0 auto;
     border-collapse: collapse;
     margin-bottom: 40px;
 }
-table td{
+.geewe td{
     padding:10px;
     text-align: center;
     border: 1px solid black;
 }
-table th{
+.geewe th{
     border: 1px solid black;
 }
-table img{
+.geewe img{
     width:150px;
     height:90px;
 }

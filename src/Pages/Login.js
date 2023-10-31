@@ -13,7 +13,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  
+
   useEffect(() => {
     window.scroll(0, 0);
     const userDataJSON = localStorage.getItem("userData");
@@ -70,18 +70,18 @@ const Login = () => {
         </button>
       </form>
       <p className="forget">Forget Password?</p>
-      <hr class="line-er45" />
+      <hr className="line-er45" />
       <p>
         Donot have account?{" "}
         <Link style={{ color: " rgb(225 29 72)" }} to="/signup">
           Sign Up
         </Link>
-        <div>
-          <button className="btn-34347" onClick={() => navigate(-1)}>
-            Back
-          </button>
-        </div>
       </p>
+      <div>
+        <button className="btn-34347" onClick={() => navigate(-1)}>
+          Back
+        </button>
+      </div>
     </div>
   );
 };

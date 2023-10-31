@@ -98,7 +98,7 @@ const Signup = () => {
           Sign Up
         </button>
       </form>
-      <hr class="line-er45" />
+      <hr className="line-er45" />
       <div>
         <button className="btn-34347" onClick={() => navigate(-1)}>
           Back
