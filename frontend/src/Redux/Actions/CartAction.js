@@ -1,52 +1,27 @@
-import burger from "../../json Data/burger.json";
-import pizza from "../../json Data/pizza.json";
+import axios from "axios";
+import * as variable from "../Constants";
 
-export const fetchUserRequest = () => ({
-  type: "FETCH_USER_REQUEST",
-});
+export const MenuDataAction = (params) => async (dispatch) => {
+  try {
+    dispatch({
+      type: variable.MENU_GETDATA_LOADING,
+    });
 
-export const fetchUserSuccess = (user) => ({
-  type: "FETCH_USER_SUCCESS",
-  payload: user,
-});
+    const { data } = await axios.get(
+      "http://127.0.0.1:5000/menu/all-items",
+      params
+    );
 
-export const fetchUserFailure = (error) => ({
-  type: "FETCH_USER_FAILURE",
-  payload: error,
-});
-
-export const fetchdata = () => {
-  return (dispatch) => {
-    if(pizza){
-      dispatch(fetchUserSuccess(pizza));
-    }
-    else{
-      dispatch(fetchUserRequest());
-    }
-  };
-};
-export const fetchUserRequest2 = () => ({
-  type: "FETCH_USER_REQUEST2",
-});
-
-export const fetchUserSuccess2 = (user) => ({
-  type: "FETCH_USER_SUCCESS2",
-  payload: user,
-});
-
-export const fetchUserFailure2 = (error) => ({
-  type: "FETCH_USER_FAILURE2",
-  payload: error,
-});
-
-export const fetchdata2 = () => {
-  return (dispatch) => {
-    if (burger) {
-      dispatch(fetchUserSuccess2(burger));
-    } else {
-      dispatch(fetchUserRequest2());
-    }
-  };
+    dispatch({
+      type: variable.MENU_GETDATA_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: variable.MENU_GETDATA_ERROR,
+      payload: error,
+    });
+  }
 };
 
 export const addCart = (data) => ({
@@ -59,9 +34,9 @@ export const removeCart = (id) => ({
 });
 export const quantityInc = (id) => ({
   type: "INCREASE_QUANTITY",
-  payload:id
-  });
+  payload: id,
+});
 export const quantityDec = (id) => ({
   type: "DECREASE_QUANTITY",
-  payload:id,
+  payload: id,
 });

@@ -12,12 +12,12 @@
 }
 ::-webkit-scrollbar-track {
   background: rgb(225 29 72);
-  background:#d3d4d6;
+  background: #d3d4d6;
 }
 
 ::-webkit-scrollbar-thumb {
-  background:#515462;
-   background: rgb(225 29 72);
+  background: #515462;
+  background: rgb(225 29 72);
 }
 
 @import url("./Styles/NavbarFooter.css");
@@ -27,8 +27,6 @@
 @import url("./Styles/Cart.css");
 @import url("./Styles/Login.css");
 
-
-
-
-
-
+.margintop {
+  margin-top: 70px;
+}

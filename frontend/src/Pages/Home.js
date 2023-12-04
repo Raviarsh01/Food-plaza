@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { FaHotjar, FaSquarespace } from "react-icons/fa";
 import { IoFastFoodOutline } from "react-icons/io5";
 import { TbFriends } from "react-icons/tb";
-
+import { useSelector } from "react-redux";
 
 const Home = () => {
- 
+  const data = useSelector((state) => state.LoginReducer);
+
   useEffect(() => {
     window.scroll(0, 0);
-  });
+    localStorage.setItem("Token", data?.userData?.authToken);
+  }, [data]);
 
   return (
     <>
@@ -22,7 +24,7 @@ const Home = () => {
               Buy Now
             </Link>
             <Link className="home-button home-button-white" to="">
-              View Demo
+              Best offers
             </Link>
           </div>
         </div>
@@ -31,20 +33,21 @@ const Home = () => {
       <div className="homee-section">
         <div className="home-sec1">
           <h2>
-            Creative Agency, Corporate and Portfolio React JS Template + RTL
+            "Explore delicious dishes, add your favorites to the cart, and enjoy
+            a seamless ordering experience!"
           </h2>
           <div className="home-sec1-flex">
             <div className="home-sec1-flex-child">
-              <p style={{ color: "#515462" }}>Demo Website (More Coming)</p>
-              <p className="sec1-para">15+</p>
+              <p style={{ color: "#515462" }}>Happy Cutomers </p>
+              <p className="sec1-para">1500+</p>
             </div>
             <div className="home-sec1-flex-child">
-              <p style={{ color: "#515462" }}>Inner Page</p>
-              <p className="sec1-para">30+</p>
-            </div>
-            <div className="home-sec1-flex-child">
-              <p style={{ color: "#515462" }}>Elements</p>
+              <p style={{ color: "#515462" }}>Our outlets</p>
               <p className="sec1-para">10+</p>
+            </div>
+            <div className="home-sec1-flex-child">
+              <p style={{ color: "#515462" }}>Countries</p>
+              <p className="sec1-para">3</p>
             </div>
           </div>
         </div>

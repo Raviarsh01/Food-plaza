@@ -22,7 +22,7 @@
 .div-backg h2 {
   font-size: 40px;
   font-weight: 800;
-  color: rgb(225 29 72);
+  color: #e11d48;
 }
 .div-backg p {
   margin: 25px 0;
@@ -32,23 +32,23 @@
 }
 /* .home-button {
   border: none;
-  background: rgb(225 29 72);
+  background: #E11D48;
   margin: 5px;
   padding: 12px 30px;
   border-radius: 5px;
 } */
 .home-button {
-  background: rgb(225 29 72);
+  background: #e11d48;
   margin: 5px;
   padding: 8px 20px;
   border-radius: 5px;
   color: white;
   text-decoration: none;
 }
-.home-button-white{
-  border: 1px solid rgb(225 29 72);
+.home-button-white {
+  border: 1px solid #e11d48;
   background-color: white;
-  color: rgb(225 29 72);
+  color: #e11d48;
 }
 .empty-div {
   pointer-events: none;
@@ -68,12 +68,12 @@
   background-color: white;
 }
 .home-sec1 {
-  padding: 70px;
   text-align: center;
+  margin: 35px 20px;
 }
 .home-sec1 h2 {
-  color: rgb(225 29 72);
-  font-size: 50px;
+  color: #e11d48;
+  font-size: 40px;
 }
 .home-sec1-flex {
   display: flex;
@@ -85,8 +85,8 @@
   margin: 40px 0;
 }
 .sec1-para {
-  color: rgb(225 29 72);
-  font-size: 60px;
+  color: #e11d48;
+  font-size: 40px;
 }
 
 /* .hero {
@@ -123,7 +123,7 @@
   justify-content: space-evenly;
   text-align: center;
   padding: 15px;
-  box-shadow: 0 0 5px -1px rgb(225 29 72);
+  box-shadow: 0 0 5px -1px #e11d48;
   margin: 0 15px;
 }
 .section-2-1 {
@@ -131,24 +131,24 @@
 }
 .section-2-1 > h2 {
   padding: 20px 0px;
-  color: rgb(225 29 72);
+  color: #e11d48;
 }
 .section-2-1 > p {
   line-height: 1.8rem;
 }
 .img121 {
   font-size: 65px;
-  background-color:  rgb(225 29 72);
+  background-color: #e11d48;
   color: white;
   padding: 10px;
   border-radius: 50%;
 }
 .section-3 {
-  margin: 30px 150px;
+  margin: 4rem 150px;
 }
 .section-3 > h2 {
   text-align: center;
-  color:rgb(225 29 72);
+  color: #e11d48;
 }
 .section-3 > p {
   text-align: center;
@@ -161,7 +161,7 @@
 }
 .menu-1 {
   width: 40%;
-  box-shadow: 0 0 3px 0.5px rgb(225 29 72);
+  box-shadow: 0 0 3px 0.5px #e11d48;
   margin: 0 15px;
 }
 .menu-1 > img {
@@ -177,16 +177,16 @@
   padding-bottom: 10px;
 }
 .pizza > h2 {
-  color:rgb(225 29 72);
+  color: #e11d48;
 }
 .explore {
   background-color: white;
-  border:rgb(225 29 72) 1px solid;
-  color: rgb(225 29 72);
+  border: #e11d48 1px solid;
+  color: #e11d48;
   padding: 6px 16px;
 }
 .explore:hover {
-  background-color:rgb(225 29 72);
+  background-color: #e11d48;
   color: white;
   cursor: pointer;
 }

@@ -1,17 +1,13 @@
-import { createStore,combineReducers ,applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
-import {
-  pizzaReducer,
-  BurgerReducer,
-  cartReducer,
-} from "./Reducer/CartReducer";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import { MenuReducer, cartReducer } from "./Reducer/CartReducer";
+import { RegisterReducer, LoginReducer } from "./Reducer/AuthReducer";
 
 const rootReducer = combineReducers({
-  root1: pizzaReducer,
-  root2: BurgerReducer,
-  root3: cartReducer,
+  RegisterReducer,
+  LoginReducer,
+  MenuReducer,
+  cartReducer,
 });
-export const Store = createStore(rootReducer , applyMiddleware(thunk));
 
-
-
+export const Store = createStore(rootReducer, applyMiddleware(thunk));

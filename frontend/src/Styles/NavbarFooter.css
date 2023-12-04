@@ -24,6 +24,7 @@
   position: fixed;
   top: 0;
   z-index: 3;
+  box-shadow: 0 0 6px -4px #333;
 }
 .navbar-logo {
   width: 75px;
@@ -38,14 +39,14 @@
   padding: 9px 30px;
   padding-bottom: 5px;
 }
-.nav-sec2Color{
-  border-bottom:1.5px solid rgb(225 29 72);
+.nav-sec2Color {
+  border-bottom: 1.5px solid rgb(225 29 72);
 }
 
 /* footer code start here  */
 footer {
   position: relative;
-  background-color: rgb(225 29 72);;
+  background-color: rgb(225 29 72);
   color: white;
   display: flex;
   flex-wrap: wrap;
@@ -63,7 +64,7 @@ footer {
 .footer-img {
   width: 50px;
   height: 50px;
-  color: rgb(225 29 72);;
+  color: rgb(225 29 72);
   background-color: white;
   border-radius: 3px;
   padding: 12px;
@@ -71,7 +72,7 @@ footer {
 .flex3-img {
   width: 50px;
   height: 50px;
-  color:  rgb(225 29 72);
+  color: rgb(225 29 72);
   background-color: white;
   border-radius: 3px;
   padding: 13px;

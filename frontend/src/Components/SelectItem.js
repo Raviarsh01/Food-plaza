@@ -1,47 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addCart , quantityInc, quantityDec } from "../Redux/Actions/CartAction";
+import { addCart, quantityInc, quantityDec } from "../Redux/Actions/CartAction";
 
 const SelectItem = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { user } = useSelector((state) => state.root1);
-  const { user2 } = useSelector((state) => state.root2);
-  const cartData = useSelector((state) =>state.root3);
+  const { MenuData } = useSelector((state) => state.MenuReducer);
+  const cartData = useSelector((state) => state.cartReducer);
 
   const [userData, setUserData] = useState([]);
-  const [quantity ,setquantity] = useState(0);
-  useEffect(() => {
-    if (id < 10) {
-      let data = user.filter((item) => item.id === parseInt(id));
-      setUserData(data);
-    } else {
-      let data = user2.filter((item) => item.id === parseInt(id));
-      setUserData(data);
-    }
-  }, []);
+  const [quantity, setquantity] = useState(0);
 
-  const handleadd = (item) =>{
-    dispatch(addCart(item))
-  }
-  const handleInc = (event,id) =>{
+  useEffect(() => {
+    window.scroll(0, 0);
+    const SelectItem = MenuData.filter((item) => item.itemId == id);
+    setUserData(SelectItem);
+
+    return () => {
+      setUserData([]);
+    };
+  }, [MenuData]);
+
+  const handleadd = (item) => {
+    dispatch(addCart(item));
+  };
+  const handleInc = (event, id) => {
     event.preventDefault();
-    dispatch(quantityInc(id))
-  }
-  const handleDec = (event,id,quantity) =>{
+    dispatch(quantityInc(id));
+  };
+  const handleDec = (event, id, quantity) => {
     event.preventDefault();
-    console.log(quantity)
-    if(quantity>1){
-      dispatch(quantityDec(id))
+    console.log(quantity);
+    if (quantity > 1) {
+      dispatch(quantityDec(id));
     }
-  }
-  useEffect(()=>{
-    const quan=cartData.find(item => item.id === parseInt(id))
-    if(quan){
-      setquantity(quan.quantity)
-    }    
-  },[handleInc,handleInc])
+  };
+  useEffect(() => {
+    const quan = cartData.find((item) => item.id === parseInt(id));
+    if (quan) {
+      setquantity(quan.quantity);
+    }
+  }, [handleInc, handleInc]);
 
   return (
     <div className="detail-container">
@@ -56,12 +56,30 @@ const SelectItem = () => {
                 <p>{item.price}</p>
                 <p>{item.toping}</p>
                 <p>{item.description}</p>
-                <div style={{display:'flex'}}>Quantity: 
-                  <button className="button-4" onClick={(event)=>handleDec(event,item.id,quantity)}> - </button>
+                <div style={{ display: "flex" }}>
+                  Quantity:
+                  <button
+                    className="button-4"
+                    onClick={(event) => handleDec(event, item.id, quantity)}
+                  >
+                    {" "}
+                    -{" "}
+                  </button>
                   <p> {quantity} </p>
-                  <button className="button-4" onClick={(event)=>handleInc(event,item.id)}> + </button>
+                  <button
+                    className="button-4"
+                    onClick={(event) => handleInc(event, item.id)}
+                  >
+                    {" "}
+                    +{" "}
+                  </button>
                 </div>
-                <button className="button-1 btn-margin" onClick={()=>handleadd(item)}>Add to cart</button>
+                <button
+                  className="button-1 btn-margin"
+                  onClick={() => handleadd(item)}
+                >
+                  Add to cart
+                </button>
               </div>
             </>
           ))

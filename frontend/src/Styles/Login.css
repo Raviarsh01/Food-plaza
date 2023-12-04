@@ -37,14 +37,10 @@ input[type="password"] {
 
 .btn-login {
   padding: 10px;
-  background-color: rgb(235, 108, 135);
+  background-color: #e11d48;
   color: #fff;
   border: none;
   cursor: pointer;
-}
-
-.btn-login:hover {
-  background-color: rgb(225 29 72);
 }
 .line-er45 {
   border-top: 1px solid #333;
@@ -53,20 +49,19 @@ input[type="password"] {
 }
 .forget {
   text-align: right;
-  margin-top: 15px;
-}
-.btn-34347 {
-  padding: 10px;
-  background-color: rgb(225 29 72);
-  color: #fff;
-  border: none;
+  font-size: 14px;
+  margin-bottom: 15px;
   cursor: pointer;
-  width: 100px;
-  margin-top: 20px;
 }
-.error-msg{
+.error-msg {
   float: right;
   color: red;
   font-size: 14px;
+}
+.arrowleft333 {
+  position: absolute;
+  top: 10px;
+  cursor: pointer;
+  font-size: 16px;
 }
 /* signup code start here  */

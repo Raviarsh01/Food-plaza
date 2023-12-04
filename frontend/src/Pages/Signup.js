@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RegisterAction } from "../Redux/Actions/AuthActions";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const data = useSelector((state) => console.log("states..", state));
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [email, setEmail] = useState("");
@@ -15,22 +19,15 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (name && city && email && password && confirmpassword) {
       if (password === confirmpassword) {
-
-        const userData = [];
-        userData.push({
-          name: name,
-          city: city,
-          email: email,
-          password: password,
-        });
-
-        const userDataJSON = JSON.stringify(userData);
-
-        localStorage.setItem("userData", userDataJSON);
-
+        let data = {
+          name,
+          city,
+          email,
+          password,
+        };
+        dispatch(RegisterAction(data));
         navigate("/login");
       } else {
         setConfirmPassword("Password not match");
@@ -41,7 +38,12 @@ const Signup = () => {
   };
   return (
     <div className="login-container">
-      <h2>Sign Up</h2>
+      <div style={{ position: "relative" }}>
+        <h2>Sign Up</h2>
+        <button className="btn-34347" onClick={() => navigate(-1)}>
+          <i class="fa-solid fa-arrow-left arrowleft333"></i>
+        </button>
+      </div>
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Name</label>
@@ -85,8 +87,9 @@ const Signup = () => {
         </div>
         <div className="form-group">
           <label htmlFor="cpassword">Confirm Password</label>
-          {errors && !confirmpassword &&
-            <span className="error-msg">*Required</span>}
+          {errors && !confirmpassword && (
+            <span className="error-msg">*Required</span>
+          )}
           <input
             type="password"
             id="cpassword"
@@ -98,12 +101,6 @@ const Signup = () => {
           Sign Up
         </button>
       </form>
-      <hr className="line-er45" />
-      <div>
-        <button className="btn-34347" onClick={() => navigate(-1)}>
-          Back
-        </button>
-      </div>
     </div>
   );
 };
