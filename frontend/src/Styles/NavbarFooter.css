@@ -5,21 +5,22 @@
 .cart {
   color: rgb(225 29 72);
   text-decoration: none;
-  font-size: 20px;
+  font-size: 22px;
   position: relative;
-  margin-right: 10px;
+  margin-right: 1rem;
 }
 .cart-numbers {
   position: absolute;
-  top: -10px;
-  right: -11px;
+  top: -9px;
+  right: -12px;
+  font-size: 17px;
 }
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 0px 30px;
+  padding: 6px 30px;
   width: 100%;
   position: fixed;
   top: 0;

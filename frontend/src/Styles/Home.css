@@ -73,7 +73,9 @@
 }
 .home-sec1 h2 {
   color: #e11d48;
-  font-size: 40px;
+  font-size: 32px;
+  width: 80%;
+  margin: 0 auto;
 }
 .home-sec1-flex {
   display: flex;
@@ -157,24 +159,25 @@
 }
 .section-menu {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 2rem;
 }
 .menu-1 {
-  width: 40%;
-  box-shadow: 0 0 3px 0.5px #e11d48;
-  margin: 0 15px;
+  width: 330px;
+  height: 330px;
+  box-shadow: 0 0 7px -2px #e11d48;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .menu-1 > img {
   width: 100%;
-  height: 300px;
+  height: 240px;
 }
 .pizza {
   display: flex;
   justify-content: space-between;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 35px;
-  padding-bottom: 10px;
+  padding: 15px;
 }
 .pizza > h2 {
   color: #e11d48;

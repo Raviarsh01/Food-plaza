@@ -6,7 +6,6 @@ import { RegisterAction } from "../Redux/Actions/AuthActions";
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const data = useSelector((state) => console.log("states..", state));
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [email, setEmail] = useState("");

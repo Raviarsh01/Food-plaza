@@ -17,9 +17,13 @@ const Login = () => {
   useEffect(() => {
     if (data?.userData?.authToken) {
       if (data?.userData?.user.role === 1) {
+        localStorage.setItem("Token", data?.userData?.authToken);
+        localStorage.setItem("Role", data?.userData?.user.role);
         navigate("/");
         return;
       }
+      localStorage.setItem("Token", data?.userData?.authToken);
+      localStorage.setItem("Role", data?.userData?.user.role);
       navigate("/admin");
     }
   }, [data]);

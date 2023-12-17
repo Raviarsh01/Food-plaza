@@ -9,25 +9,30 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const data = useSelector((state) => state.cartReducer);
+  const { cartData } = useSelector((state) => state.cartReducer);
   const { userData } = useSelector((state) => state.LoginReducer);
-  let number = data?.length;
+  const number = cartData?.length;
   const [login, setlogin] = useState(false);
   const [role, setRole] = useState(1);
-  // const user = localStorage.getItem("Token");
+
   useEffect(() => {
-    if (userData?.user?.email) {
+    const token = localStorage.getItem("Token");
+    if (token) {
       setlogin(true);
     }
-    if (userData?.user?.role === 0) {
+    const role = localStorage.getItem("Role");
+    if (role == 0) {
       setRole(0);
+    } else if (role == 1) {
+      setRole(1);
     }
-  }, [userData]);
-  const handleLogout = () => {
-    dispatch(LogoutAction);
+  }, []);
+
+  const handleLogout = async () => {
+    await dispatch(LogoutAction());
     localStorage.clear();
     setlogin(false);
-    navigate("/login");
+    navigate("/");
   };
   return (
     <div className="navbar">

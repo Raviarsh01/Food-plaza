@@ -1,39 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { removeCart ,quantityInc, quantityDec } from "../Redux/Actions/CartAction";
+import {
+  removeCart,
+  quantityInc,
+  quantityDec,
+} from "../Redux/Actions/CartAction";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const cartData = useSelector((state) =>state.root3);
+  const { cartData } = useSelector((state) => state.cartReducer);
   const [grandTotal, setGrandTotal] = useState(0);
   useEffect(() => {
     window.scroll(0, 0);
-  },[]);
+  }, []);
 
   const handleRemove = (id) => {
     dispatch(removeCart(id));
   };
-  const handleInc = (event,id) =>{
+  const handleInc = (event, id) => {
     event.preventDefault();
-    dispatch(quantityInc(id))
-  }
-  const handleDec = (event,id,quantity) =>{
+    dispatch(quantityInc(id));
+  };
+  const handleDec = (event, id, quantity) => {
     event.preventDefault();
-    if(quantity>1){
-      dispatch(quantityDec(id))
+    if (quantity > 1) {
+      dispatch(quantityDec(id));
     }
-  }
+  };
   useEffect(() => {
-    const total = cartData.reduce((accumulator, currentItem) => {
+    const total = cartData?.reduce((accumulator, currentItem) => {
       return accumulator + currentItem.price * currentItem.quantity;
     }, 0);
     setGrandTotal(total);
-  }, [handleInc,handleDec]);
+  }, [handleInc, handleDec]);
   return (
     <div className="cart-page">
       <h2>Your Cart</h2>
-      {cartData.length === 0 ? (
+      {cartData?.length === 0 ? (
         <div className="empty-cart">
           <p>Your cart is empty.</p>
           <Link to="/menu">
@@ -52,19 +56,38 @@ const Cart = () => {
                 <th>Action</th>
               </tr>
             </thead>
-            {cartData.map((i) => (
+            {cartData?.map((i) => (
               <tbody>
                 <tr>
                   <td>{i.name}</td>
                   <td>{i.price}</td>
-                  <td><div style={{display:'flex'}}>Quantity: 
-                  <button className="button-4" onClick={(event)=>handleDec(event,i.id,i.quantity)}> - </button>
-                  <p> {i.quantity} </p>
-                  <button className="button-4" onClick={(event)=>handleInc(event,i.id)}> + </button>
-                </div></td>
-                  <td>{i.price*i.quantity}</td>
                   <td>
-                    <button onClick={() => handleRemove(i.id)}>Remove</button>
+                    <div style={{ display: "flex" }}>
+                      Quantity:
+                      <button
+                        className="button-4"
+                        onClick={(event) =>
+                          handleDec(event, i.itemId, i.quantity)
+                        }
+                      >
+                        {" "}
+                        -{" "}
+                      </button>
+                      <p className="text333"> {i.quantity} </p>
+                      <button
+                        className="button-4"
+                        onClick={(event) => handleInc(event, i.itemId)}
+                      >
+                        {" "}
+                        +{" "}
+                      </button>
+                    </div>
+                  </td>
+                  <td>{i.price * i.quantity}</td>
+                  <td>
+                    <button onClick={() => handleRemove(i.itemId)}>
+                      Remove
+                    </button>
                   </td>
                 </tr>
               </tbody>

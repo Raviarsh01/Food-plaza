@@ -7,14 +7,14 @@ const SelectItem = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { MenuData } = useSelector((state) => state.MenuReducer);
-  const cartData = useSelector((state) => state.cartReducer);
+  const { cartData } = useSelector((state) => state.cartReducer);
 
   const [userData, setUserData] = useState([]);
   const [quantity, setquantity] = useState(0);
 
   useEffect(() => {
     window.scroll(0, 0);
-    const SelectItem = MenuData.filter((item) => item.itemId == id);
+    const SelectItem = MenuData?.filter((item) => item.itemId == id);
     setUserData(SelectItem);
 
     return () => {
@@ -31,13 +31,12 @@ const SelectItem = () => {
   };
   const handleDec = (event, id, quantity) => {
     event.preventDefault();
-    console.log(quantity);
     if (quantity > 1) {
       dispatch(quantityDec(id));
     }
   };
   useEffect(() => {
-    const quan = cartData.find((item) => item.id === parseInt(id));
+    const quan = cartData.find((item) => item.itemId === parseInt(id));
     if (quan) {
       setquantity(quan.quantity);
     }
@@ -60,15 +59,15 @@ const SelectItem = () => {
                   Quantity:
                   <button
                     className="button-4"
-                    onClick={(event) => handleDec(event, item.id, quantity)}
+                    onClick={(event) => handleDec(event, item.itemId, quantity)}
                   >
                     {" "}
                     -{" "}
                   </button>
-                  <p> {quantity} </p>
+                  <p className="text333"> {quantity} </p>
                   <button
                     className="button-4"
-                    onClick={(event) => handleInc(event, item.id)}
+                    onClick={(event) => handleInc(event, item.itemId)}
                   >
                     {" "}
                     +{" "}

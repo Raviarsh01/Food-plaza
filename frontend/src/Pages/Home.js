@@ -6,13 +6,6 @@ import { TbFriends } from "react-icons/tb";
 import { useSelector } from "react-redux";
 
 const Home = () => {
-  const data = useSelector((state) => state.LoginReducer);
-
-  useEffect(() => {
-    window.scroll(0, 0);
-    localStorage.setItem("Token", data?.userData?.authToken);
-  }, [data]);
-
   return (
     <>
       <div className="home-topsec">
