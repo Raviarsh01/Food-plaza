@@ -47,10 +47,10 @@ const SelectItem = () => {
       {userData
         ? userData.map((item) => (
             <>
-              <div>
+              <div className="w-[60%]">
                 <img src={item.image} alt="img"></img>
               </div>
-              <div className="detail-flex2">
+              <div className="detail-flex2 w-[40%]">
                 <h2 className="detail-heading">{item.name}</h2>
                 <p>{item.price}</p>
                 <p>{item.toping}</p>

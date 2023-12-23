@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { LogoutAction } from "../Redux/Actions/AuthActions";
 
@@ -10,7 +9,6 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { cartData } = useSelector((state) => state.cartReducer);
-  const { userData } = useSelector((state) => state.LoginReducer);
   const number = cartData?.length;
   const [login, setlogin] = useState(false);
   const [role, setRole] = useState(1);
@@ -37,7 +35,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div>
-        <img className="navbar-logo" src="Images\logo.png" alt="logo image" />
+        <img className="navbar-logo" src="/Images/logo.png" alt="logo image" />
       </div>
       <div className="navbar-sec2">
         <Link
@@ -73,8 +71,8 @@ const Navbar = () => {
       </div>
       <div className="navbar-section3">
         <Link to="/cart" className="cart">
-          <FaShoppingCart />
-          <span class="cart-numbers">{number}</span>
+          <i className="fa-light fa-cart-shopping cart-img"></i>
+          <span className="cart-numbers">{number}</span>
         </Link>
         {login ? (
           <>

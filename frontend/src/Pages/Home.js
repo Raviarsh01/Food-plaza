@@ -1,11 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaHotjar, FaSquarespace } from "react-icons/fa";
-import { IoFastFoodOutline } from "react-icons/io5";
-import { TbFriends } from "react-icons/tb";
 import { useSelector } from "react-redux";
 
 const Home = () => {
+  const data = [
+    {
+      img: <i class="fa-light fa-fire img121"></i>,
+      heading: "Quality Cuisine",
+      desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Reprehenderit eaque magni, velit suscipit obcaecati tempore  asperiores. Iusto nisi expedita",
+    },
+    {
+      img: <i class="fa-light fa-plate-utensils img121"></i>,
+      heading: "Fresh Food",
+      desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Reprehenderit eaque magni, velit suscipit obcaecati tempore  asperiores. Iusto nisi expedita",
+    },
+    {
+      img: <i className="fa-light fa-people-group img121"></i>,
+      heading: "Friendly Staff",
+      desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Reprehenderit eaque magni, velit suscipit obcaecati tempore  asperiores. Iusto nisi expedita",
+    },
+    {
+      img: <i className="fa-light fa-truck-utensils img121"></i>,
+      heading: "Doorstep Delivery",
+      desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Reprehenderit eaque magni, velit suscipit obcaecati tempore  asperiores. Iusto nisi expedita",
+    },
+  ];
+  const Testimontial = [
+    {
+      review:
+        "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary Internet tend to repeat predefined",
+      img: "/Images/dummy.jpg",
+      name: "Ravi",
+    },
+    {
+      review:
+        "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary Internet tend to repeat predefined",
+      img: "/Images/dummy.jpg",
+      name: "Akash",
+    },
+    {
+      review:
+        "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary Internet tend to repeat predefined",
+      img: "/Images/dummy.jpg",
+      name: "Amit",
+    },
+    {
+      review:
+        "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary Internet tend to repeat predefined",
+      img: "/Images/dummy.jpg",
+      name: "Tarun",
+    },
+  ];
   return (
     <>
       <div className="home-topsec">
@@ -23,7 +68,7 @@ const Home = () => {
         </div>
       </div>
       <div className="empty-div"></div>
-      <div className="homee-section">
+      <div className="homee-section paddingLeftRight">
         <div className="home-sec1">
           <h2>
             "Explore delicious dishes, add your favorites to the cart, and enjoy
@@ -45,45 +90,16 @@ const Home = () => {
           </div>
         </div>
         <section className="section-2">
-          <div className="section-2-1">
-            <FaHotjar className="img121" />
-            <h2>Quality Cuisine</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Reprehenderit eaque magni, velit suscipit obcaecati tempore
-              asperiores. Iusto nisi expedita ut.
-            </p>
-          </div>
-          <div className="section-2-1">
-            <IoFastFoodOutline className="img121" />
-            <h2>Fresh Food</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-              dolorem nisi delectus eveniet! Voluptatem nostrum corporis ea
-              voluptatibus adipisci iure!
-            </p>
-          </div>
-          <div className="section-2-1">
-            <TbFriends className="img121" />
-            <h2>Friendly Staff</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-              cupiditate tempore voluptates sequi, laudantium ratione omnis
-              quaerat natus autem sint?
-            </p>
-          </div>
-          <div className="section-2-1">
-            <FaSquarespace className="img121" />
-            <h2>Easy Reservation</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-              nisi. Quidem, voluptate dignissimos officia laudantium fuga iusto
-              nemo iste vitae!
-            </p>
-          </div>
+          {data?.map((item, i) => (
+            <div className="section-2-1" key={i}>
+              {item.img}
+              <h2 className="text-xl font-semibold"> {item.heading}</h2>
+              <p> {item.desc}</p>
+            </div>
+          ))}
         </section>
         <section className="section-3">
-          <h2>What kind of Services we offer</h2>
+          <h2 className="text-2xl font-semibold">All Time Favourites</h2>
           <p>Who are in extremely love with eco friendly system</p>
           <div className="section-menu">
             <div className="menu-1">
@@ -92,7 +108,7 @@ const Home = () => {
                 alt="Pizza photo"
               />
               <div className="pizza">
-                <h2>Pizza</h2>
+                <h2 className="pcolor text-xl">Pizza</h2>
                 <Link to="/menu">
                   <button className="explore">Explore..</button>
                 </Link>
@@ -104,7 +120,7 @@ const Home = () => {
                 alt="burger photo"
               />
               <div className="pizza">
-                <h2>Burger</h2>
+                <h2 className="pcolor text-xl">Burger</h2>
                 <Link to="/menu">
                   <button className="explore">Explore..</button>
                 </Link>
@@ -116,12 +132,31 @@ const Home = () => {
                 alt="Shakes photo"
               />
               <div className="pizza">
-                <h2>Shakes</h2>
+                <h2 className="pcolor text-xl">Shakes</h2>
                 <Link to="/menu">
                   <button className="explore">Explore..</button>
                 </Link>
               </div>
             </div>
+          </div>
+        </section>
+        <section>
+          <h2 className="pcolor text-center text-2xl font-semibold">
+            Our Testimontial
+          </h2>
+          <div className="flex justify-center gap-10">
+            {Testimontial?.map((item, i) => (
+              <div className="testimonDivflexchild my-8">
+                <p>{item.review}</p>
+                <div className="flex items-center mt-8">
+                  <i class="fa-light fa-user img555"></i>
+                  <div className="ms-4">
+                    <p className="font-semibold">{item.name}</p>
+                    <p>Customer</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       </div>

@@ -10,6 +10,7 @@ const Menu = () => {
     dispatch(MenuDataAction());
     window.scroll(0, 0);
   }, []);
+
   const handleadd = (item) => {
     dispatch(addCart(item));
   };
@@ -17,7 +18,7 @@ const Menu = () => {
   return (
     <div className="menu">
       <div className="section">
-        <h2 className="heading">Pizza</h2>
+        <h2 className="text-center scolor font-semibold text-2xl">Pizza</h2>
         <div className="row">
           {MenuData?.map(
             (item, i) =>
@@ -45,7 +46,7 @@ const Menu = () => {
         </div>
       </div>
       <div className="section">
-        <h2 className="heading">Burger</h2>
+        <h2 className="text-center scolor font-semibold text-2xl">Burger</h2>
         <div className="row">
           {MenuData?.map(
             (item, i) =>

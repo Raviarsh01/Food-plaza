@@ -38,7 +38,7 @@ const Signup = () => {
   return (
     <div className="login-container">
       <div style={{ position: "relative" }}>
-        <h2>Sign Up</h2>
+        <h2 className="text-center  font-semibold text-2xl">Sign Up</h2>
         <button className="btn-34347" onClick={() => navigate(-1)}>
           <i class="fa-solid fa-arrow-left arrowleft333"></i>
         </button>

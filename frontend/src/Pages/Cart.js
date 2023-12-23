@@ -95,7 +95,6 @@ const Cart = () => {
           </table>
 
           <div className="cart-total">
-            <p>Your Bill : {grandTotal} </p>
             <div>
               <Link to="/menu">
                 <button className="button-232">Return to Menu</button>
@@ -104,6 +103,7 @@ const Cart = () => {
                 <button className="button-232">Proceed to Checkout</button>
               </Link>
             </div>
+            <p>Your Bill : {grandTotal} </p>
           </div>
         </div>
       )}
