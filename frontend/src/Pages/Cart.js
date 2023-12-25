@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   removeCart,
   quantityInc,
@@ -8,6 +8,7 @@ import {
 } from "../Redux/Actions/CartAction";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { cartData } = useSelector((state) => state.cartReducer);
   const [grandTotal, setGrandTotal] = useState(0);
@@ -34,6 +35,15 @@ const Cart = () => {
     }, 0);
     setGrandTotal(total);
   }, [handleInc, handleDec]);
+
+  const handleProceed = () => {
+    const token = localStorage.getItem("Token");
+    if (token) {
+      navigate("/payment-page");
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <div className="cart-page">
       <h2>Your Cart</h2>
@@ -99,9 +109,9 @@ const Cart = () => {
               <Link to="/menu">
                 <button className="button-232">Return to Menu</button>
               </Link>
-              <Link to="">
-                <button className="button-232">Proceed to Checkout</button>
-              </Link>
+              <button className="button-232" onClick={handleProceed}>
+                Proceed to Checkout
+              </button>
             </div>
             <p>Your Bill : {grandTotal} </p>
           </div>

@@ -51,12 +51,24 @@ const SelectItem = () => {
                 <img src={item.image} alt="img"></img>
               </div>
               <div className="detail-flex2 w-[40%]">
-                <h2 className="detail-heading">{item.name}</h2>
-                <p>{item.price}</p>
-                <p>{item.toping}</p>
-                <p>{item.description}</p>
+                <h2 className="detail-heading">
+                  <span className="font-semibold">Name: </span>
+                  {item.name}
+                </h2>
+                <p>
+                  <span className="font-semibold">Price: </span>
+                  {item.price}
+                </p>
+                <p>
+                  <span className="font-semibold">Toping: </span>
+                  {item.toping}
+                </p>
+                <p>
+                  <span className="font-semibold">Description: </span>
+                  {item.description}
+                </p>
                 <div style={{ display: "flex" }}>
-                  Quantity:
+                  <span className="font-semibold">Quantity: </span>
                   <button
                     className="button-4"
                     onClick={(event) => handleDec(event, item.itemId, quantity)}

@@ -128,7 +128,7 @@ const Home = () => {
             </div>
             <div className="menu-1">
               <img
-                src="https://images.unsplash.com/photo-1591192038778-64bac0ba7531?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                src="https://images.pexels.com/photos/8743863/pexels-photo-8743863.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt="Shakes photo"
               />
               <div className="pizza">

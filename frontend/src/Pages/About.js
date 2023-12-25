@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     window.scroll(0, 0);
   });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="about-container">
       <section className="aboutSec-section">
@@ -38,7 +43,7 @@ const About = () => {
         <h2 className="scolor text-3xl font-semibold text-center">
           Get in Touch
         </h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="my-5">
             <label>Name</label>
             <input type="text" />

@@ -9,6 +9,7 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import Admin from "./Pages/Admin";
 import Profile from "./Pages/Profile";
+import PaymentPage from "./Pages/PaymentPage";
 import ForgetPassword from "./Pages/ForgetPassword";
 import PageNotFound from "./Pages/PageNotFound";
 import "./App.css";
@@ -25,6 +26,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/payment-page" element={<PaymentPage />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
