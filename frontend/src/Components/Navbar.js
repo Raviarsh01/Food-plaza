@@ -11,17 +11,18 @@ const Navbar = () => {
   const { cartData } = useSelector((state) => state.cartReducer);
   const number = cartData?.length;
   const [login, setlogin] = useState(false);
-  const [role, setRole] = useState(1);
+  const [role, setRole] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem("Token");
     if (token) {
       setlogin(true);
     }
-    const role = localStorage.getItem("Role");
-    if (role == 0) {
+    const data = JSON.parse(localStorage.getItem("UserData"));
+    console.log(data?.Role);
+    if (data?.Role == 0) {
       setRole(0);
-    } else if (role == 1) {
+    } else if (data?.Role == 1) {
       setRole(1);
     }
   }, []);
@@ -30,7 +31,7 @@ const Navbar = () => {
     await dispatch(LogoutAction());
     localStorage.clear();
     setlogin(false);
-    navigate("/");
+    navigate("/login");
   };
   return (
     <div className="navbar">
@@ -76,12 +77,12 @@ const Navbar = () => {
         </Link>
         {login ? (
           <>
-            {role === 0 && (
+            {role == 0 && (
               <Link className="home-button" to="/admin">
                 Admin
               </Link>
             )}
-            {role === 1 && (
+            {role == 1 && (
               <Link className="home-button" to="/profile">
                 Profile
               </Link>

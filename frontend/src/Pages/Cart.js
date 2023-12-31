@@ -73,7 +73,6 @@ const Cart = () => {
                   <td>{i.price}</td>
                   <td>
                     <div style={{ display: "flex" }}>
-                      Quantity:
                       <button
                         className="button-4"
                         onClick={(event) =>

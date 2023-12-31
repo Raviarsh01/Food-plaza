@@ -1,10 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Roboto Mono", monospace;
   letter-spacing: 1px;
 }
 ::-webkit-scrollbar {
@@ -27,14 +24,20 @@
 }
 /* login code  */
 .login-container {
-  max-width: 400px;
+  width: 540px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 50px;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 5px;
-  margin-top: 100px;
-  margin-bottom: 158px;
+}
+.signup-container {
+  width: 60%;
+  margin: 0 auto;
+  padding: 50px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .login-container h2 {
@@ -52,7 +55,7 @@
 }
 
 label {
-  font-weight: bold;
+  font-weight: 500;
 }
 input[type="text"],
 input[type="email"],
@@ -61,6 +64,7 @@ input[type="password"] {
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 3px;
+  font-size: 14px;
 }
 
 .btn-login {
@@ -116,11 +120,10 @@ input[type="password"] {
 }
 .div-backg h2 {
   font-size: 40px;
-  font-weight: 800;
+  font-weight: 600;
   color: #e11d48;
 }
 .div-backg p {
-  margin: 25px 0;
   color: #515462;
   line-height: 24px;
   word-spacing: 3px;
@@ -148,7 +151,7 @@ input[type="password"] {
 .homee-section {
   background-color: white;
   position: relative;
-  padding: 10px 100px;
+  padding: 10px 0;
 }
 
 .home {
@@ -157,7 +160,7 @@ input[type="password"] {
 }
 .home-sec1 {
   text-align: center;
-  margin: 35px 20px;
+  margin: 35px 40px;
 }
 .home-sec1 h2 {
   color: #e11d48;
@@ -180,8 +183,8 @@ input[type="password"] {
   display: flex;
   justify-content: space-evenly;
   text-align: center;
-  padding: 15px;
-  box-shadow: 0 0 5px -1px #e11d48;
+  gap: 2rem;
+  margin: 100px 40px;
 }
 .section-2-1 > h2 {
   padding: 20px 0px;
@@ -196,9 +199,6 @@ input[type="password"] {
   color: white;
   padding: 14px;
   border-radius: 50%;
-}
-.section-3 {
-  margin: 4rem 0px;
 }
 .section-3 > h2 {
   text-align: center;
@@ -247,9 +247,11 @@ input[type="password"] {
 .margintop {
   margin-top: 70px;
 }
-
+.img12 {
+  width: 50%;
+  height: 470px;
+}
 .testimonDivflexchild {
-  /* width: 260px; */
   min-height: 300px;
   border: 1px solid #e11d48;
   padding: 15px;
@@ -260,7 +262,19 @@ input[type="password"] {
   border: 1px solid black;
   padding: 10px;
 }
-
+.div33 {
+  background: linear-gradient(
+    90deg,
+    rgba(203, 49, 65, 1) 40%,
+    rgba(5, 233, 255, 1) 100%
+  );
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: wheat;
+}
 /* menu cart  */
 .menu {
   display: flex;
@@ -269,12 +283,14 @@ input[type="password"] {
   min-height: 90vh;
 }
 .section {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
-.row {
+.row22 {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-top: 20px;
 }
 .menu-flex {
   display: flex;
@@ -282,7 +298,6 @@ input[type="password"] {
   padding: 0 15px;
 }
 .item {
-  margin: 20px;
   text-align: center;
 }
 .item img {
@@ -355,7 +370,7 @@ input[type="password"] {
 }
 .img6767 {
   width: 100%;
-  height: 560px;
+  height: 470px;
 }
 .div6565y {
   padding-right: 80px;
@@ -409,7 +424,7 @@ input[type="password"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 130px 0 0;
+  margin: 20px 20px 0 0;
 }
 .cart-total p {
   font-weight: bold;
@@ -511,11 +526,18 @@ input[type="password"] {
   width: 33%;
   padding: 25px 0;
 }
+.footerdiv66 {
+  background-color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .flex3-img {
-  font-size: 24px;
-  background: white;
+  font-size: 20px;
   color: #e11d48;
-  padding: 7px;
 }
 .btn766 {
   width: 100%;

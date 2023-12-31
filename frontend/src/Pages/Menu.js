@@ -27,7 +27,7 @@ const Menu = () => {
     <div className="menu">
       <div className="section">
         <h2 className="text-center scolor font-semibold text-2xl">Pizza</h2>
-        <div className="row">
+        <div className="row22">
           {Items?.length == 0 && <p>No Items in section</p>}
           {Items?.map(
             (item, i) =>
@@ -56,7 +56,7 @@ const Menu = () => {
       </div>
       <div className="section">
         <h2 className="text-center scolor font-semibold text-2xl">Burger</h2>
-        <div className="row">
+        <div className="row22">
           {Items?.length == 0 && <p>No Items in section</p>}
           {Items?.map(
             (item, i) =>
@@ -85,7 +85,7 @@ const Menu = () => {
       </div>
       <div className="section">
         <h2 className="text-center scolor font-semibold text-2xl">Shakes</h2>
-        <div className="row">
+        <div className="row22">
           {Items?.length == 0 && <p>No Items in section</p>}
           {Items?.map(
             (item, i) =>

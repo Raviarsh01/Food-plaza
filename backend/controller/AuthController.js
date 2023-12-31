@@ -1,50 +1,68 @@
 const userRegister = require("../models/AuthModel");
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "ravihfgdhfgdfhdgfh";
 
-const signup = async (req, res) => {
-  let body = Object.entries(req.body).length > 0;
-  if (!body) {
-    return res.status(400).json({ error: "Enter details" });
-  }
-  const user = await userRegister({
-    name: req.body.name,
-    city: req.body.city,
-    phone: req.body.phone,
-    email: req.body.email,
-    password: req.body.password,
-    role: 1,
-  });
-  user.save();
-  obj = {
-    message: "User register successfully",
-    data: user,
-  };
-  res.json(obj);
-};
-
-const login = async (req, res) => {
-  const { email, password } = req.body;
+const UserSignup = async (req, res) => {
+  const user = req.body;
   try {
-    let user = await userRegister.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ error: "Enter correct detail" });
+    const isemail = await userRegister.find({ email: user.email });
+    if (isemail.length === 0) {
+      const register = new userRegister(user);
+      await register.save();
+      return res.status(201).json({ message: "User Registered" });
+    } else {
+      return res.status(400).json({ message: "Email already exists" });
     }
-    if (password !== user.password) {
-      return res.status(400).json({ error: "Enter correct detail" });
-    }
-    const userID = {
-      id: user.id,
-    };
-    const authToken = jwt.sign(userID, JWT_SECRET);
-    const userData = {
-      user,
-      authToken,
-    };
-    res.json(userData);
   } catch (error) {
-    return res.status(500).send("Internal server error");
+    console.error("error....", error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
-module.exports = { signup, login };
+const UserLogin = async (req, res) => {
+  const user = req.body;
+  try {
+    const isemail = await userRegister.findOne({ email: user.email });
+    if (!isemail) {
+      return res.status(400).json({ message: "Enter valid credential" });
+    }
+    if (isemail.password != user.password) {
+      return res.status(400).json({ message: "Enter valid credential" });
+    }
+
+    const tokenData = {
+      userId: isemail._id,
+      email: isemail.email,
+    };
+    const token = jwt.sign(tokenData, process.env.SECRET_KEY);
+
+    const apiData = {
+      message: "Login success",
+      customerData: {
+        UserId: isemail._id,
+        Email: isemail.email,
+        FirstName: isemail.firstName,
+        LastName: isemail.lastName,
+        Role: isemail.role,
+      },
+      token,
+    };
+    return res.status(200).json(apiData);
+  } catch (error) {
+    console.log("error....", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+const UserProfile = async (req, res) => {
+  try {
+    const UserData = await userRegister
+      .findById(req.user.userId)
+      .select("-password");
+    return res.status(200).json(UserData);
+  } catch (error) {
+    console.log("error....", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+module.exports = { UserSignup, UserLogin, UserProfile };

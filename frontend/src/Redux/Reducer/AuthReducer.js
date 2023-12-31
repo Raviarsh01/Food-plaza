@@ -43,3 +43,23 @@ export const LoginReducer = (state = {}, action) => {
       return { userData: {} };
   }
 };
+
+export const ProfileGetData = (state = {}, action) => {
+  switch (action.type) {
+    case variable.PROFILE_GETDATA_LOADING:
+      return {
+        loading: true,
+      };
+    case variable.PROFILE_GETDATA_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        data: action.payload,
+        message: action.payload.message,
+      };
+    case variable.PROFILE_GETDATA_ERROR:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};

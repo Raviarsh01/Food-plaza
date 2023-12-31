@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { HomepageGetData } from "../Redux/Actions/CartAction";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const { data: homeData } = useSelector((state) => state.HomePageGetReducer);
+  console.log(homeData?.sectionFourimgs?.img1?.url);
+  useEffect(() => {
+    window.scroll(0, 0);
+    dispatch(HomepageGetData());
+  }, []);
   const data = [
     {
       img: <i class="fa-light fa-fire img121"></i>,
@@ -57,7 +65,7 @@ const Home = () => {
         <div className="div-backg">
           <h2>TryDo's online ordering</h2>
           <p>Yummy fresh food delivered fast</p>
-          <div>
+          <div className="mt-6">
             <Link className="home-button" to="">
               Buy Now
             </Link>
@@ -68,7 +76,7 @@ const Home = () => {
         </div>
       </div>
       <div className="empty-div"></div>
-      <div className="homee-section paddingLeftRight">
+      <div className="homee-section">
         <div className="home-sec1">
           <h2>
             "Explore delicious dishes, add your favorites to the cart, and enjoy
@@ -77,18 +85,44 @@ const Home = () => {
           <div className="home-sec1-flex">
             <div className="home-sec1-flex-child">
               <p style={{ color: "#515462" }}>Happy Cutomers </p>
-              <p className="sec1-para">1500+</p>
+              <p className="sec1-para">{homeData?.happycutomers}+</p>
             </div>
             <div className="home-sec1-flex-child">
               <p style={{ color: "#515462" }}>Our outlets</p>
-              <p className="sec1-para">10+</p>
+              <p className="sec1-para">{homeData?.outlets}+</p>
             </div>
             <div className="home-sec1-flex-child">
               <p style={{ color: "#515462" }}>Countries</p>
-              <p className="sec1-para">3</p>
+              <p className="sec1-para">{homeData?.countries}</p>
             </div>
           </div>
         </div>
+        <section>
+          <div className="flex">
+            <img
+              className="img12"
+              src={homeData?.sectionFourimgs?.img1?.url}
+              alt="image"
+            />
+            <img
+              className="img12"
+              src={homeData?.sectionFourimgs?.img2?.url}
+              alt="image"
+            />
+          </div>
+          <div className="flex">
+            <img
+              className="img12"
+              src={homeData?.sectionFourimgs?.img3?.url}
+              alt="image"
+            />
+            <img
+              className="img12"
+              src={homeData?.sectionFourimgs?.img4?.url}
+              alt="image"
+            />
+          </div>
+        </section>
         <section className="section-2">
           {data?.map((item, i) => (
             <div className="section-2-1" key={i}>
@@ -99,48 +133,12 @@ const Home = () => {
           ))}
         </section>
         <section className="section-3">
-          <h2 className="text-2xl font-semibold">All Time Favourites</h2>
-          <p>Who are in extremely love with eco friendly system</p>
-          <div className="section-menu">
-            <div className="menu-1">
-              <img
-                src="https://images.pexels.com/photos/13814644/pexels-photo-13814644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Pizza photo"
-              />
-              <div className="pizza">
-                <h2 className="pcolor text-xl">Pizza</h2>
-                <Link to="/menu">
-                  <button className="explore">Explore..</button>
-                </Link>
-              </div>
-            </div>
-            <div className="menu-1">
-              <img
-                src="https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="burger photo"
-              />
-              <div className="pizza">
-                <h2 className="pcolor text-xl">Burger</h2>
-                <Link to="/menu">
-                  <button className="explore">Explore..</button>
-                </Link>
-              </div>
-            </div>
-            <div className="menu-1">
-              <img
-                src="https://images.pexels.com/photos/8743863/pexels-photo-8743863.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt="Shakes photo"
-              />
-              <div className="pizza">
-                <h2 className="pcolor text-xl">Shakes</h2>
-                <Link to="/menu">
-                  <button className="explore">Explore..</button>
-                </Link>
-              </div>
-            </div>
+          <div className="div33">Everyday Brunch</div>
+          <div>
+            <img src={homeData?.section2Menu?.url} alt="img" />
           </div>
         </section>
-        <section>
+        <section className="mt-[80px] mx-[40px]">
           <h2 className="pcolor text-center text-2xl font-semibold">
             Our Testimontial
           </h2>

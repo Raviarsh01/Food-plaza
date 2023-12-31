@@ -1,12 +1,24 @@
 const mongoose = require("mongoose");
 
 const userRegister = new mongoose.Schema({
-  name: {
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
     type: String,
     required: true,
   },
   city: {
     type: String,
+    required: true,
+  },
+  dob: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: Number,
     required: true,
   },
   email: {
@@ -21,8 +33,9 @@ const userRegister = new mongoose.Schema({
   role: {
     type: Number,
     required: true,
+    default: 1,
   },
-  date: {
+  dateCreated: {
     type: Date,
     default: Date.now,
   },
