@@ -2,47 +2,84 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RegisterAction } from "../Redux/Actions/AuthActions";
+import { toast } from "react-toastify";
+import {
+  firstNameVal,
+  lastNameVal,
+  emailVal,
+  phoneVal,
+  passwordVal,
+  confirmPasswordVal,
+} from "../Extra/validations";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.RegisterReducer);
-
+  const { userData, error } = useSelector((state) => state.RegisterReducer);
   const [fname, setfName] = useState("");
   const [lname, setlName] = useState("");
-  const [city, setCity] = useState("");
-  const [dob, setdob] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setphone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState(false);
   const [render, setrender] = useState(false);
 
   useEffect(() => {
     window.scroll(0, 0);
-    if (data?.message && render) {
+    if (userData && render) {
       setrender(false);
-      navigate("/login");
+      toast.success(userData?.message, {
+        autoClose: 1500,
+      });
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
+      setPassword("");
+      setConfirmPassword("");
+      setfName("");
+      setlName("");
+      setEmail("");
+      setphone("");
     }
-  }, [data]);
+    if (error && render) {
+      setrender(false);
+      toast.error(error?.response?.data?.message);
+    }
+  }, [userData, error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (fname && lname && city && dob && email && phone && password) {
-      const data = new FormData();
-      data.append("firstName", fname);
-      data.append("lastName", lname);
-      data.append("city", city);
-      data.append("dob", dob);
-      data.append("email", email);
-      data.append("phoneNumber", phone);
-      data.append("password", password);
-      setrender(true);
-      dispatch(RegisterAction(data));
-    } else {
-      setErrors(true);
+
+    toast.error(firstNameVal(fname));
+    toast.error(lastNameVal(lname));
+    toast.error(emailVal(email));
+    toast.error(phoneVal(phone));
+    toast.error(passwordVal(password));
+    password && toast.error(confirmPasswordVal(password, confirmpassword));
+
+    const tempErrors = {
+      fnameErr: firstNameVal(fname),
+      lnameErr: lastNameVal(lname),
+      emailErr: emailVal(email),
+      phoneErr: phoneVal(phone),
+      passErr: passwordVal(password),
+      cpassErr: confirmPasswordVal(password, confirmpassword),
+    };
+
+    if (Object.values(tempErrors).filter((value) => value).length) {
+      return;
     }
+
+    const data = new FormData();
+    data.append("firstName", fname);
+    data.append("lastName", lname);
+    data.append("email", email);
+    data.append("phoneNumber", phone);
+    data.append("password", password);
+    setrender(true);
+    dispatch(RegisterAction(data));
   };
   return (
     <div className="w-[100vw] h-[100vh] flex justify-between items-center">
@@ -57,7 +94,6 @@ const Signup = () => {
           <div className="flex gap-6">
             <div className="form-group w-[50%]">
               <label htmlFor="email">First Name</label>
-              {errors && !fname && <span className="error-msg">*Required</span>}
               <input
                 type="text"
                 id="email"
@@ -68,7 +104,6 @@ const Signup = () => {
             </div>
             <div className="form-group w-[50%]">
               <label htmlFor="email">Last Name</label>
-              {/* {errors && !name && <span className="error-msg">*Required</span>} */}
               <input
                 type="text"
                 id="email"
@@ -81,32 +116,7 @@ const Signup = () => {
 
           <div className="flex gap-6">
             <div className="form-group w-[50%]">
-              <label htmlFor="city">City</label>
-              {errors && !city && <span className="error-msg">*Required</span>}
-              <input
-                type="text"
-                id="city"
-                placeholder="Enter city"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-              />
-            </div>
-            <div className="form-group w-[50%]">
-              <label htmlFor="city">Date of Birth</label>
-              {/* {errors && !city && <span className="error-msg">*Required</span>} */}
-              <input
-                type="text"
-                id="city"
-                placeholder="Enter date of birth"
-                value={dob}
-                onChange={(e) => setdob(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="flex gap-6">
-            <div className="form-group w-[50%]">
               <label htmlFor="email">Email</label>
-              {errors && !email && <span className="error-msg">*Required</span>}
               <input
                 type="email"
                 id="email"
@@ -117,7 +127,6 @@ const Signup = () => {
             </div>
             <div className="form-group w-[50%]">
               <label htmlFor="email">Phone Number</label>
-              {/* {errors && !email && <span className="error-msg">*Required</span>} */}
               <input
                 type="text"
                 id="email"
@@ -130,30 +139,26 @@ const Signup = () => {
           <div className="flex gap-6">
             <div className="form-group w-[50%]">
               <label htmlFor="password">Password</label>
-              {errors && !password && (
-                <span className="error-msg">*Required</span>
-              )}
               <input
                 type="password"
                 id="password"
                 placeholder="Enter password"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="form-group w-[50%]">
               <label htmlFor="cpassword">Confirm Password</label>
-              {errors && !confirmpassword && (
-                <span className="error-msg">*Required</span>
-              )}
               <input
                 type="password"
                 id="cpassword"
                 placeholder="Enter confirm password"
+                value={confirmpassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
           </div>
-          <button type="submit" className="btn-login">
+          <button type="submit" className="btn-login mt-6">
             Sign Up
           </button>
         </form>

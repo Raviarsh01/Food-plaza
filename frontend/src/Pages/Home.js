@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { HomepageGetData } from "../Redux/Actions/CartAction";
+import image1 from "../Assets/Images/GIFT-CARDS2.jpg";
+import image2 from "../Assets/Images/BARRA-TO-GO-2.jpg";
+import image3 from "../Assets/Images/FOTO-Aguachile.jpg";
+import image4 from "../Assets/Images/FOTO-barra.jpg";
+import image5 from "../Assets/Images/check-menu.jpg";
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const { data: homeData } = useSelector((state) => state.HomePageGetReducer);
-  console.log(homeData?.sectionFourimgs?.img1?.url);
   useEffect(() => {
     window.scroll(0, 0);
-    dispatch(HomepageGetData());
   }, []);
   const data = [
     {
@@ -85,42 +84,26 @@ const Home = () => {
           <div className="home-sec1-flex">
             <div className="home-sec1-flex-child">
               <p style={{ color: "#515462" }}>Happy Cutomers </p>
-              <p className="sec1-para">{homeData?.happycutomers}+</p>
+              <p className="sec1-para">800+</p>
             </div>
             <div className="home-sec1-flex-child">
               <p style={{ color: "#515462" }}>Our outlets</p>
-              <p className="sec1-para">{homeData?.outlets}+</p>
+              <p className="sec1-para">16+</p>
             </div>
             <div className="home-sec1-flex-child">
               <p style={{ color: "#515462" }}>Countries</p>
-              <p className="sec1-para">{homeData?.countries}</p>
+              <p className="sec1-para">4</p>
             </div>
           </div>
         </div>
         <section>
           <div className="flex">
-            <img
-              className="img12"
-              src={homeData?.sectionFourimgs?.img1?.url}
-              alt="image"
-            />
-            <img
-              className="img12"
-              src={homeData?.sectionFourimgs?.img2?.url}
-              alt="image"
-            />
+            <img className="img12" src={image1} alt="image" />
+            <img className="img12" src={image2} alt="image" />
           </div>
           <div className="flex">
-            <img
-              className="img12"
-              src={homeData?.sectionFourimgs?.img3?.url}
-              alt="image"
-            />
-            <img
-              className="img12"
-              src={homeData?.sectionFourimgs?.img4?.url}
-              alt="image"
-            />
+            <img className="img12" src={image3} alt="image" />
+            <img className="img12" src={image4} alt="image" />
           </div>
         </section>
         <section className="section-2">
@@ -135,7 +118,7 @@ const Home = () => {
         <section className="section-3">
           <div className="div33">Everyday Brunch</div>
           <div>
-            <img src={homeData?.section2Menu?.url} alt="img" />
+            <img src={image5} alt="img" />
           </div>
         </section>
         <section className="mt-[80px] mx-[40px]">

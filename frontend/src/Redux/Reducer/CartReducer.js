@@ -77,23 +77,3 @@ export const cartReducer = (state = { cartData: [] }, action) => {
       return state;
   }
 };
-
-export const HomePageGetReducer = (state = {}, action) => {
-  switch (action.type) {
-    case variable.HOMEPAGE_GETDATA_LOADING:
-      return {
-        loading: true,
-      };
-    case variable.HOMEPAGE_GETDATA_SUCCESS:
-      return {
-        loading: false,
-        success: true,
-        data: action.payload,
-        message: action.payload.message,
-      };
-    case variable.HOMEPAGE_GETDATA_ERROR:
-      return { loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};

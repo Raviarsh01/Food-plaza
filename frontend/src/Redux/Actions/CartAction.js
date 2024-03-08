@@ -40,23 +40,3 @@ export const quantityDec = (id) => ({
   type: "DECREASE_QUANTITY",
   payload: id,
 });
-
-export const HomepageGetData = (params) => async (dispatch) => {
-  try {
-    dispatch({
-      type: variable.HOMEPAGE_GETDATA_LOADING,
-    });
-
-    const { data } = await axios.get("http://127.0.0.1:5000/home/");
-
-    dispatch({
-      type: variable.HOMEPAGE_GETDATA_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: variable.HOMEPAGE_GETDATA_ERROR,
-      payload: error,
-    });
-  }
-};

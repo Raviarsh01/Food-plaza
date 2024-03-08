@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   letter-spacing: 1px;
+  font-family: Work Sans, sans-serif;
 }
 ::-webkit-scrollbar {
   width: 4px;
@@ -24,7 +25,7 @@
 }
 /* login code  */
 .login-container {
-  width: 540px;
+  width: 30%;
   margin: 0 auto;
   padding: 50px;
   background-color: #f9f9f9;
@@ -32,7 +33,7 @@
   border-radius: 5px;
 }
 .signup-container {
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
   padding: 50px;
   background-color: #f9f9f9;
@@ -151,7 +152,6 @@ input[type="password"] {
 .homee-section {
   background-color: white;
   position: relative;
-  padding: 10px 0;
 }
 
 .home {

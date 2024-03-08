@@ -2,18 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { LoginAction } from "../Redux/Actions/AuthActions";
+import { emailVal, passwordVal } from "../Extra/validations";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { userData } = useSelector((state) => state.LoginReducer);
+  const { userData, error } = useSelector((state) => state.LoginReducer);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState(false);
   const [render, setrender] = useState(false);
+
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
+
   useEffect(() => {
     if (userData?.customerData && render) {
       if (userData?.customerData?.Role === 1) {
@@ -23,29 +26,56 @@ const Login = () => {
           JSON.stringify(userData?.customerData)
         );
         setrender(false);
-        navigate("/");
+        toast.success(userData?.message, {
+          autoClose: 2000,
+        });
+        setEmail("");
+        setPassword("");
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
         return;
       }
+
       localStorage.setItem("Token", userData?.token);
       localStorage.setItem("UserData", JSON.stringify(userData?.customerData));
       setrender(false);
-      navigate("/admin");
+      toast.success(userData?.message, {
+        autoClose: 1500,
+      });
+      setEmail("");
+      setPassword("");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
     }
-  }, [userData]);
+
+    if (error && render) {
+      setrender(false);
+      toast.error(error?.response?.data?.message);
+    }
+  }, [userData, error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    toast.error(emailVal(email));
+    toast.error(passwordVal(password));
 
-    if (email && password) {
-      const data = {
-        email,
-        password,
-      };
-      setrender(true);
-      dispatch(LoginAction(data));
-    } else {
-      setErrors(true);
+    const tempErrors = {
+      emailErr: emailVal(email),
+      passErr: passwordVal(password),
+    };
+
+    if (Object.values(tempErrors).filter((value) => value).length) {
+      return;
     }
+
+    const data = new FormData();
+    data.append("email", email);
+    data.append("password", password);
+    setrender(true);
+    console.log("dataa333", data);
+    dispatch(LoginAction(data));
   };
   return (
     <div className="w-[100vw] h-[100vh] flex justify-between items-center">
@@ -60,7 +90,7 @@ const Login = () => {
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            {errors && !email && <span className="error-msg">*Required</span>}
+
             <input
               type="email"
               id="email"
@@ -71,9 +101,7 @@ const Login = () => {
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            {errors && !password && (
-              <span className="error-msg">*Required</span>
-            )}
+
             <input
               type="password"
               id="password"

@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
 import Layout from "./Components/Layout";
 import SelectItem from "./Components/SelectItem";
 import Home from "./Pages/Home";
@@ -8,7 +10,6 @@ import Cart from "./Pages/Cart";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import Admin from "./Pages/Admin";
-import Profile from "./Pages/Profile";
 import PaymentPage from "./Pages/PaymentPage";
 import ForgetPassword from "./Pages/ForgetPassword";
 import PageNotFound from "./Pages/PageNotFound";
@@ -17,6 +18,7 @@ import "./App.css";
 function App() {
   return (
     <Router>
+      <ToastContainer />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
@@ -25,7 +27,6 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/payment-page" element={<PaymentPage />} />
         </Route>
         <Route path="/login" element={<Login />} />

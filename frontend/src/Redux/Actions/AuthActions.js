@@ -37,7 +37,13 @@ export const LoginAction = (params) => async (dispatch) => {
 
     const { data } = await axios.post(
       "http://127.0.0.1:5000/auth/login",
-      params
+      params,
+      {
+        headers: {
+          // "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
+        },
+      }
     );
 
     dispatch({
