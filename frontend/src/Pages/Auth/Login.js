@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { LoginAction } from "../Redux/Actions/AuthActions";
-import { emailVal, passwordVal } from "../Extra/validations";
+import { LoginAction } from "../../Redux/Actions/AuthActions";
+import { emailVal, passwordVal } from "../../Extra/validations";
 import { toast } from "react-toastify";
+import Loader from "../../Extra/Loader";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -77,7 +78,9 @@ const Login = () => {
     console.log("dataa333", data);
     dispatch(LoginAction(data));
   };
-  return (
+  return render ? (
+    <Loader />
+  ) : (
     <div className="w-[100vw] h-[100vh] flex justify-between items-center">
       <div className="login-container">
         <div style={{ position: "relative" }}>

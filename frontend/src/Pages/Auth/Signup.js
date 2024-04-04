@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RegisterAction } from "../Redux/Actions/AuthActions";
+import { RegisterAction } from "../../Redux/Actions/AuthActions";
 import { toast } from "react-toastify";
+import Loader from "../../Extra/Loader";
 import {
   firstNameVal,
   lastNameVal,
@@ -10,8 +11,7 @@ import {
   phoneVal,
   passwordVal,
   confirmPasswordVal,
-} from "../Extra/validations";
-import "react-toastify/dist/ReactToastify.css";
+} from "../../Extra/validations";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -81,7 +81,9 @@ const Signup = () => {
     setrender(true);
     dispatch(RegisterAction(data));
   };
-  return (
+  return render ? (
+    <Loader />
+  ) : (
     <div className="w-[100vw] h-[100vh] flex justify-between items-center">
       <div className="signup-container">
         <div style={{ position: "relative" }}>

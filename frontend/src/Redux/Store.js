@@ -6,6 +6,7 @@ import {
   LoginReducer,
   ProfileGetData,
 } from "./Reducer/AuthReducer";
+import { AboutPostReducer } from "./Reducer/PublicReducer";
 
 const rootReducer = combineReducers({
   RegisterReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   MenuReducer,
   cartReducer,
   ProfileGetData,
+  AboutPostReducer,
 });
 
 export const Store = createStore(rootReducer, applyMiddleware(thunk));

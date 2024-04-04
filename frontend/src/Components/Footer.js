@@ -64,7 +64,7 @@ const Footer = () => {
             <p className="my-5">
               New subscribers get new offer your next order
             </p>
-            <input type="email" placeholder="Email" />
+            <input type="email" className="text-black" placeholder="Email" />
             <button className="btn766">Subscribe</button>
           </div>
         </div>

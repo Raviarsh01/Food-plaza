@@ -1,10 +1,21 @@
 import axios from "axios";
-import * as variable from "../Constants";
+import {
+  SIGNUP_USER_LOADING,
+  SIGNUP_USER_SUCCESS,
+  SIGNUP_USER_ERROR,
+  LOGIN_USER_LOADING,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_ERROR,
+  LOGOUT_USER,
+  PROFILE_GETDATA_LOADING,
+  PROFILE_GETDATA_SUCCESS,
+  PROFILE_GETDATA_ERROR,
+} from "../Constants";
 
 export const RegisterAction = (params) => async (dispatch) => {
   try {
     dispatch({
-      type: variable.SIGNUP_USER_LOADING,
+      type: SIGNUP_USER_LOADING,
     });
 
     const { data } = await axios.post(
@@ -18,12 +29,12 @@ export const RegisterAction = (params) => async (dispatch) => {
     );
 
     dispatch({
-      type: variable.SIGNUP_USER_SUCCESS,
+      type: SIGNUP_USER_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: variable.SIGNUP_USER_ERROR,
+      type: SIGNUP_USER_ERROR,
       payload: error,
     });
   }
@@ -32,7 +43,7 @@ export const RegisterAction = (params) => async (dispatch) => {
 export const LoginAction = (params) => async (dispatch) => {
   try {
     dispatch({
-      type: variable.LOGIN_USER_LOADING,
+      type: LOGIN_USER_LOADING,
     });
 
     const { data } = await axios.post(
@@ -47,12 +58,12 @@ export const LoginAction = (params) => async (dispatch) => {
     );
 
     dispatch({
-      type: variable.LOGIN_USER_SUCCESS,
+      type: LOGIN_USER_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: variable.LOGIN_USER_ERROR,
+      type: LOGIN_USER_ERROR,
       payload: error,
     });
   }
@@ -70,7 +81,7 @@ export const LogoutAction = (params) => async (dispatch) => {
     // );
 
     dispatch({
-      type: variable.LOGOUT_USER,
+      type: LOGOUT_USER,
     });
   } catch (error) {
     // dispatch({
@@ -83,7 +94,7 @@ export const LogoutAction = (params) => async (dispatch) => {
 export const GetProfileData = (params) => async (dispatch) => {
   try {
     dispatch({
-      type: variable.PROFILE_GETDATA_LOADING,
+      type: PROFILE_GETDATA_LOADING,
     });
     const token = localStorage.getItem("Token");
     const { data } = await axios.get(
@@ -97,12 +108,12 @@ export const GetProfileData = (params) => async (dispatch) => {
     );
 
     dispatch({
-      type: variable.PROFILE_GETDATA_SUCCESS,
+      type: PROFILE_GETDATA_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: variable.PROFILE_GETDATA_ERROR,
+      type: PROFILE_GETDATA_ERROR,
       payload: error,
     });
   }

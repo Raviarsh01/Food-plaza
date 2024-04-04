@@ -54,3 +54,18 @@ export const confirmPasswordVal = (password, confirmPassword) => {
 
   return null;
 };
+
+export const fullNameVal = (value) => {
+  if (!value) return "First name is required";
+
+  if (!value.match(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g))
+    return "First name only contain alphabets";
+
+  return null;
+};
+
+export const feedbackVal = (value) => {
+  if (!value) return "Feedback is required";
+
+  return null;
+};

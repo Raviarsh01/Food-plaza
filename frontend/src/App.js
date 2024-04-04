@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "./App.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 import Layout from "./Components/Layout";
 import SelectItem from "./Components/SelectItem";
@@ -7,13 +9,12 @@ import Home from "./Pages/Home";
 import Menu from "./Pages/Menu";
 import About from "./Pages/About";
 import Cart from "./Pages/Cart";
-import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
+import Login from "./Pages/Auth/Login";
+import Signup from "./Pages/Auth/Signup";
 import Admin from "./Pages/Admin";
 import PaymentPage from "./Pages/PaymentPage";
-import ForgetPassword from "./Pages/ForgetPassword";
+import ForgetPassword from "./Pages/Auth/ForgetPassword";
 import PageNotFound from "./Pages/PageNotFound";
-import "./App.css";
 
 function App() {
   return (

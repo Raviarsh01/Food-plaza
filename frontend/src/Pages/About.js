@@ -1,13 +1,66 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { useSelector, useDispatch } from "react-redux";
+import { aboutPostAction } from "../Redux/Actions/PublicActions";
+import {
+  fullNameVal,
+  emailVal,
+  phoneVal,
+  feedbackVal,
+} from "../Extra/validations";
 
 const About = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [name, setname] = useState("");
+  const [email, setemail] = useState("");
+  const [phone, setphone] = useState("");
+  const [feedback, setfeedback] = useState("");
+  const [render, setrender] = useState(false);
+
+  const { data, error } = useSelector((state) => state.AboutPostReducer);
+
   useEffect(() => {
-    window.scroll(0, 0);
-  });
+    if (data && render) {
+      setrender(false);
+      toast.success(data?.message, {
+        autoClose: 1500,
+      });
+      setname("");
+      setemail("");
+      setphone("");
+      setfeedback("");
+    }
+    if (error && render) {
+      setrender(false);
+      toast.error(error?.response?.data?.message);
+    }
+  }, [data, error]);
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    toast.error(fullNameVal(name));
+    toast.error(emailVal(email));
+    toast.error(phoneVal(phone));
+    toast.error(feedbackVal(feedback));
+
+    const tempErrors = {
+      nameErr: fullNameVal(name),
+      emailErr: emailVal(email),
+      phoneErr: phoneVal(phone),
+      passErr: feedbackVal(feedback),
+    };
+
+    if (Object.values(tempErrors).filter((value) => value).length) {
+      return;
+    }
+
+    const data = new FormData();
+    data.append("name", name);
+    data.append("lastName", email);
+    data.append("email", phone);
+    data.append("phoneNumber", feedback);
+    setrender(true);
+    //  dispatch(RegisterAction(data));
   };
   return (
     <div className="about-container">
@@ -40,27 +93,49 @@ const About = () => {
         </div>
       </section>
       <section className="my-10">
-        <h2 className="scolor text-3xl font-semibold text-center">
+        <h2 className="second-color text-3xl font-semibold text-center">
           Get in Touch
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="my-5">
             <label>Name</label>
-            <input type="text" />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setname(e.target.value)}
+            />
           </div>
           <div className="my-5">
             <label>Email</label>
-            <input type="email" />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
+            />
           </div>
           <div className="my-5">
             <label>Phone Number</label>
-            <input type="text" />
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setphone(e.target.value)}
+            />
           </div>
           <div className="my-5">
-            <label>Message</label>
-            <input type="text" />
+            <label>Your Feedback</label>
+            <textarea
+              className="textarea11"
+              rows={7}
+              value={feedback}
+              onChange={(e) => setfeedback(e.target.value)}
+            ></textarea>
           </div>
-          <button className="border p-2">Submit</button>
+          <button
+            type="submit"
+            className="border py-2 px-6 bg-[#e11d48] text-white"
+          >
+            Submit
+          </button>
         </form>
       </section>
     </div>

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   padding: 0;
   margin: 0;
@@ -5,24 +9,29 @@
   letter-spacing: 1px;
   font-family: Work Sans, sans-serif;
 }
+
+$first-color: #e11d48;
+$second-color: #515462;
+
+.first-color {
+  color: $first-color;
+}
+.second-color {
+  color: $second-color;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #e11d48;
+  background: $first-color;
   background: #d3d4d6;
 }
 ::-webkit-scrollbar-thumb {
-  background: #515462;
-  background: #e11d48;
+  background: $second-color;
+  background: $first-color;
 }
 
-.pcolor {
-  color: #e11d48;
-}
-.scolor {
-  color: #515462;
-}
 /* login code  */
 .login-container {
   width: 30%;
@@ -60,7 +69,8 @@ label {
 }
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+.textarea11 {
   padding: 10px;
   width: 100%;
   border: 1px solid #ddd;
@@ -70,7 +80,7 @@ input[type="password"] {
 
 .btn-login {
   padding: 10px;
-  background-color: #e11d48;
+  background-color: $first-color;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -105,7 +115,7 @@ input[type="password"] {
 .home-topsec {
   width: 100%;
   height: 100vh;
-  background-image: url("https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-image: url("./Assets/Images/home-bgImage.jpeg");
   background-size: 100% 100%;
   background-attachment: fixed;
   position: fixed;
@@ -122,15 +132,15 @@ input[type="password"] {
 .div-backg h2 {
   font-size: 40px;
   font-weight: 600;
-  color: #e11d48;
+  color: $first-color;
 }
 .div-backg p {
-  color: #515462;
+  color: $second-color;
   line-height: 24px;
   word-spacing: 3px;
 }
 .home-button {
-  background: #e11d48;
+  background: $first-color;
   margin: 5px;
   padding: 8px 20px;
   border-radius: 5px;
@@ -138,9 +148,9 @@ input[type="password"] {
   text-decoration: none;
 }
 .home-button-white {
-  border: 1px solid #e11d48;
+  border: 1px solid $first-color;
   background-color: white;
-  color: #e11d48;
+  color: $first-color;
 }
 .empty-div {
   pointer-events: none;
@@ -163,7 +173,7 @@ input[type="password"] {
   margin: 35px 40px;
 }
 .home-sec1 h2 {
-  color: #e11d48;
+  color: $first-color;
   font-size: 32px;
 }
 .home-sec1-flex {
@@ -176,7 +186,7 @@ input[type="password"] {
   margin: 40px 0;
 }
 .sec1-para {
-  color: #e11d48;
+  color: $first-color;
   font-size: 40px;
 }
 .section-2 {
@@ -188,21 +198,21 @@ input[type="password"] {
 }
 .section-2-1 > h2 {
   padding: 20px 0px;
-  color: #e11d48;
+  color: $first-color;
 }
 .section-2-1 > p {
   line-height: 1.8rem;
 }
 .img121 {
   font-size: 25px;
-  background-color: #e11d48;
+  background-color: $first-color;
   color: white;
   padding: 14px;
   border-radius: 50%;
 }
 .section-3 > h2 {
   text-align: center;
-  color: #e11d48;
+  color: $first-color;
 }
 .section-3 > p {
   text-align: center;
@@ -218,7 +228,7 @@ input[type="password"] {
 .menu-1 {
   width: 33%;
   min-height: 320px;
-  border: 1px solid #e11d48;
+  border: 1px solid $first-color;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -235,12 +245,12 @@ input[type="password"] {
 }
 .explore {
   background-color: white;
-  border: #e11d48 1px solid;
-  color: #e11d48;
+  border: $first-color 1px solid;
+  color: $first-color;
   padding: 6px 16px;
 }
 .explore:hover {
-  background-color: #e11d48;
+  background-color: $first-color;
   color: white;
   cursor: pointer;
 }
@@ -253,7 +263,7 @@ input[type="password"] {
 }
 .testimonDivflexchild {
   min-height: 300px;
-  border: 1px solid #e11d48;
+  border: 1px solid $first-color;
   padding: 15px;
 }
 .img555 {
@@ -265,7 +275,7 @@ input[type="password"] {
 .div33 {
   background: linear-gradient(
     90deg,
-    rgba(203, 49, 65, 1) 40%,
+    rgba(203, 49, 65, 1) 30%,
     rgba(5, 233, 255, 1) 100%
   );
   height: 140px;
@@ -307,26 +317,25 @@ input[type="password"] {
 }
 .item h3 {
   margin: 10px 0;
-  color: #515462;
+  color: $second-color;
 }
 .item p {
-  font-weight: bold;
   margin: 10px 0;
-  color: #515462;
+  color: $second-color;
 }
 .button-1 {
   width: 150px;
   height: 35px;
   background-color: white;
-  border: 1px solid rgb(225 29 72);
+  border: 1px solid $first-color;
   font-size: 15px;
-  color: rgb(225 29 72);
+  color: $first-color;
 }
 .btn-margin {
   margin-top: 8px;
 }
 .button-1:hover {
-  background-color: rgb(225 29 72);
+  background-color: $first-color;
   color: white;
   cursor: pointer;
 }
@@ -381,7 +390,7 @@ input[type="password"] {
   padding-top: 2.5rem;
 }
 .info-para span {
-  color: #e11d48;
+  color: $first-color;
 }
 .center {
   text-align: center;
@@ -438,7 +447,7 @@ input[type="password"] {
   gap: 2rem;
 }
 .button-232 {
-  background-color: rgb(225 29 72);
+  background-color: $first-color;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -447,9 +456,9 @@ input[type="password"] {
   margin: 0 10px;
 }
 .button-4 {
-  border: 1px solid rgb(225 29 72);
+  border: 1px solid $first-color;
   background-color: white;
-  color: rgb(225 29 72);
+  color: $first-color;
   padding: 0px 10px;
   border-radius: 6px;
   cursor: pointer;
@@ -466,7 +475,7 @@ input[type="password"] {
   align-items: center;
 }
 .cart {
-  color: rgb(225 29 72);
+  color: $first-color;
   text-decoration: none;
   position: relative;
   margin-right: 1rem;
@@ -502,18 +511,18 @@ input[type="password"] {
 }
 .navbar-sec2-Link {
   text-decoration: none;
-  color: #515462;
+  color: $second-color;
   padding: 9px 30px;
   padding-bottom: 5px;
 }
 .nav-sec2Color {
-  border-bottom: 1.5px solid rgb(225 29 72);
+  border-bottom: 1.5px solid $first-color;
 }
 
 /* footer code start here  */
 .footer-section {
   position: relative;
-  background-color: #e11d48;
+  background-color: $first-color;
   color: white;
   padding: 0 100px;
 }
@@ -537,7 +546,7 @@ input[type="password"] {
 }
 .flex3-img {
   font-size: 20px;
-  color: #e11d48;
+  color: $first-color;
 }
 .btn766 {
   width: 100%;

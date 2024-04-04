@@ -122,7 +122,7 @@ const Home = () => {
           </div>
         </section>
         <section className="mt-[80px] mx-[40px]">
-          <h2 className="pcolor text-center text-2xl font-semibold">
+          <h2 className="first-color text-center text-2xl font-semibold">
             Our Testimontial
           </h2>
           <div className="flex justify-center gap-10">

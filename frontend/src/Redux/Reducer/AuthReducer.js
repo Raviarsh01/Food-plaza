@@ -1,19 +1,30 @@
-import * as variable from "../Constants";
+import {
+  SIGNUP_USER_LOADING,
+  SIGNUP_USER_SUCCESS,
+  SIGNUP_USER_ERROR,
+  LOGIN_USER_LOADING,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_ERROR,
+  LOGOUT_USER,
+  PROFILE_GETDATA_LOADING,
+  PROFILE_GETDATA_SUCCESS,
+  PROFILE_GETDATA_ERROR,
+} from "../Constants";
 
 export const RegisterReducer = (state = {}, action) => {
   switch (action.type) {
-    case variable.SIGNUP_USER_LOADING:
+    case SIGNUP_USER_LOADING:
       return {
         loading: true,
       };
-    case variable.SIGNUP_USER_SUCCESS:
+    case SIGNUP_USER_SUCCESS:
       return {
         loading: false,
         success: true,
         userData: action.payload,
         message: action.payload.message,
       };
-    case variable.SIGNUP_USER_ERROR:
+    case SIGNUP_USER_ERROR:
       return { loading: false, error: action.payload };
     default:
       return state;
@@ -22,10 +33,10 @@ export const RegisterReducer = (state = {}, action) => {
 
 export const LoginReducer = (state = {}, action) => {
   switch (action.type) {
-    case variable.LOGIN_USER_LOADING:
+    case LOGIN_USER_LOADING:
       return { loading: true };
 
-    case variable.LOGIN_USER_SUCCESS:
+    case LOGIN_USER_SUCCESS:
       return {
         loading: false,
         success: true,
@@ -33,10 +44,10 @@ export const LoginReducer = (state = {}, action) => {
         message: action.payload.message,
       };
 
-    case variable.LOGIN_USER_ERROR:
+    case LOGIN_USER_ERROR:
       return { loading: false, error: action.payload };
 
-    case variable.LOGOUT_USER:
+    case LOGOUT_USER:
       return { userData: {} };
 
     default:
@@ -46,18 +57,18 @@ export const LoginReducer = (state = {}, action) => {
 
 export const ProfileGetData = (state = {}, action) => {
   switch (action.type) {
-    case variable.PROFILE_GETDATA_LOADING:
+    case PROFILE_GETDATA_LOADING:
       return {
         loading: true,
       };
-    case variable.PROFILE_GETDATA_SUCCESS:
+    case PROFILE_GETDATA_SUCCESS:
       return {
         loading: false,
         success: true,
         data: action.payload,
         message: action.payload.message,
       };
-    case variable.PROFILE_GETDATA_ERROR:
+    case PROFILE_GETDATA_ERROR:
       return { loading: false, error: action.payload };
     default:
       return state;
