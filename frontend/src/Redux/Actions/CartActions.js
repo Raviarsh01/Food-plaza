@@ -7,6 +7,9 @@ import {
   REMOVE_FROM_CART,
   INCREASE_QUANTITY,
   DECREASE_QUANTITY,
+  SINGLE_ITEM_GET_LOADING,
+  SINGLE_ITEM_GET_SUCCESS,
+  SINGLE_ITEM_GET_ERROR,
 } from "../Constants";
 
 export const MenuDataAction = (params) => async (dispatch) => {
@@ -27,6 +30,28 @@ export const MenuDataAction = (params) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: MENU_GETDATA_ERROR,
+      payload: error,
+    });
+  }
+};
+
+export const GetSingleItemAction = (params) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SINGLE_ITEM_GET_LOADING,
+    });
+
+    const { data } = await axios.get(
+      `http://127.0.0.1:5000/menu/single-item/${params}`
+    );
+
+    dispatch({
+      type: SINGLE_ITEM_GET_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: SINGLE_ITEM_GET_ERROR,
       payload: error,
     });
   }

@@ -40,7 +40,7 @@ export const LoginReducer = (state = {}, action) => {
       return {
         loading: false,
         success: true,
-        userData: action.payload,
+        user: action.payload,
         message: action.payload.message,
       };
 
@@ -48,10 +48,11 @@ export const LoginReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
 
     case LOGOUT_USER:
-      return { userData: {} };
+      localStorage.clear();
+      return { user: {} };
 
     default:
-      return { userData: {} };
+      return state;
   }
 };
 

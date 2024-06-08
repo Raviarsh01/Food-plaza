@@ -4,11 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { LoginAction } from "../../Redux/Actions/AuthActions";
 import { emailVal, passwordVal } from "../../Extra/validations";
 import { toast } from "react-toastify";
-import Loader from "../../Extra/Loader";
+import Loader from "../../Components/Loader/Loader";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { userData, error } = useSelector((state) => state.LoginReducer);
+  const { user, error } = useSelector((state) => state.LoginReducer);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,45 +18,24 @@ const Login = () => {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
-
   useEffect(() => {
-    if (userData?.customerData && render) {
-      if (userData?.customerData?.Role === 1) {
-        localStorage.setItem("Token", userData?.token);
-        localStorage.setItem(
-          "UserData",
-          JSON.stringify(userData?.customerData)
-        );
-        setrender(false);
-        toast.success(userData?.message, {
-          autoClose: 2000,
-        });
-        setEmail("");
-        setPassword("");
-        setTimeout(() => {
-          navigate("/");
-        }, 1500);
-        return;
-      }
-
-      localStorage.setItem("Token", userData?.token);
-      localStorage.setItem("UserData", JSON.stringify(userData?.customerData));
-      setrender(false);
-      toast.success(userData?.message, {
-        autoClose: 1500,
+    if (user?.userData && render) {
+      localStorage.setItem("Token", user?.token);
+      localStorage.setItem("UserData", JSON.stringify(user?.userData));
+      toast.success(user?.message, {
+        autoClose: 2000,
       });
       setEmail("");
       setPassword("");
-      setTimeout(() => {
-        navigate("/admin");
-      }, 1500);
+      setrender(false);
+      navigate("/");
     }
 
     if (error && render) {
       setrender(false);
       toast.error(error?.response?.data?.message);
     }
-  }, [userData, error]);
+  }, [user, error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,12 +50,10 @@ const Login = () => {
     if (Object.values(tempErrors).filter((value) => value).length) {
       return;
     }
-
     const data = new FormData();
     data.append("email", email);
     data.append("password", password);
     setrender(true);
-    console.log("dataa333", data);
     dispatch(LoginAction(data));
   };
   return render ? (
@@ -86,7 +64,7 @@ const Login = () => {
         <div style={{ position: "relative" }}>
           <h2 className="text-center font-semibold text-2xl">Login</h2>
           <button className="btn-34347" onClick={() => navigate(-1)}>
-            <i class="fa-solid fa-arrow-left arrowleft333"></i>
+            <FaArrowLeft className="arrowleft333" />
           </button>
         </div>
 

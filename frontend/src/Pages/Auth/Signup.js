@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RegisterAction } from "../../Redux/Actions/AuthActions";
 import { toast } from "react-toastify";
-import Loader from "../../Extra/Loader";
+import Loader from "../../Components/Loader/Loader";
 import {
   firstNameVal,
   lastNameVal,
@@ -12,6 +12,7 @@ import {
   passwordVal,
   confirmPasswordVal,
 } from "../../Extra/validations";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -33,9 +34,7 @@ const Signup = () => {
         autoClose: 1500,
       });
 
-      setTimeout(() => {
-        navigate("/login");
-      }, 1500);
+      navigate("/login");
       setPassword("");
       setConfirmPassword("");
       setfName("");
@@ -89,7 +88,7 @@ const Signup = () => {
         <div style={{ position: "relative" }}>
           <h2 className="text-center  font-semibold text-2xl">Sign Up</h2>
           <button className="btn-34347" onClick={() => navigate(-1)}>
-            <i class="fa-solid fa-arrow-left arrowleft333"></i>
+            <FaArrowLeft className="arrowleft333" />
           </button>
         </div>
         <form className="login-form" onSubmit={handleSubmit}>

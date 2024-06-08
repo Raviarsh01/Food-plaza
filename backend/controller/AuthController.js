@@ -37,7 +37,7 @@ const UserLogin = async (req, res) => {
 
     const apiData = {
       message: "Login success",
-      customerData: {
+      userData: {
         UserId: isemail._id,
         Email: isemail.email,
         FirstName: isemail.firstName,
@@ -54,15 +54,24 @@ const UserLogin = async (req, res) => {
 };
 
 const UserProfile = async (req, res) => {
+  console.log("profile api hti");
   try {
     const UserData = await userRegister
       .findById(req.user.userId)
       .select("-password");
-    return res.status(200).json(UserData);
+
+    const data = {
+      UserData: {
+        ...UserData.toObject(),
+        fullName: `${UserData.firstName} ${UserData.lastName}`,
+        // dateCreatedModified: "sdhsjd",
+      },
+      message: "Success data fetch",
+    };
+    return res.status(200).json(data);
   } catch (error) {
     console.log("error....", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
 module.exports = { UserSignup, UserLogin, UserProfile };

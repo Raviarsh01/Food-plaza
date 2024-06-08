@@ -10,4 +10,15 @@ const GetItems = async (req, res) => {
   }
 };
 
-module.exports = { GetItems };
+const GetSingleItem = async (req, res) => {
+  const { itemId } = req.params;
+  try {
+    const data = await ItemsMenu.find({ itemId });
+    res.json(data);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+module.exports = { GetItems, GetSingleItem };

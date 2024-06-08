@@ -4,6 +4,8 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
+  /* position: absolute; */
+  /* background: #fff; */
 }
 .loading-wave {
   width: 100px;
@@ -14,7 +16,7 @@
 }
 
 .loading-bar {
-  width: 9px;
+  width: 8px;
   height: 10px;
   margin: 0 5px;
   background-color: #e11d48;
@@ -40,7 +42,7 @@
   }
 
   50% {
-    height: 60px;
+    height: 50px;
   }
 
   100% {

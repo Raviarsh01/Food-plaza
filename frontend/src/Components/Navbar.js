@@ -4,37 +4,44 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { LogoutAction } from "../Redux/Actions/AuthActions";
 import { toast } from "react-toastify";
+import { FaCartShopping } from "react-icons/fa6";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const { cartData } = useSelector((state) => state.cartReducer);
+  const { user } = useSelector((state) => state.LoginReducer);
   const number = cartData?.length;
   const [login, setlogin] = useState(false);
+  console.log("loginlogin", login);
 
   useEffect(() => {
-    const token = localStorage.getItem("Token");
-    if (token) {
+    if (user?.userData) {
       setlogin(true);
     }
-  }, []);
+  }, [user]);
 
   const handleLogout = async () => {
     await dispatch(LogoutAction());
-    localStorage.clear();
     setlogin(false);
     toast.success("Logout success", {
       autoClose: 1500,
     });
-    setTimeout(() => {
-      navigate("/login");
-    }, 1500);
+    navigate("/login");
   };
+
   return (
     <div className="navbar">
       <div>
-        <img className="navbar-logo" src="/Images/logo.png" alt="logo image" />
+        <Link to="/">
+          {" "}
+          <img
+            className="navbar-logo"
+            src="/Images/logo.png"
+            alt="logo image"
+          />
+        </Link>
       </div>
       <div className="navbar-sec2">
         <Link
@@ -57,6 +64,7 @@ const Navbar = () => {
         >
           Menu
         </Link>
+
         <Link
           to="/about"
           className={
@@ -70,14 +78,12 @@ const Navbar = () => {
       </div>
       <div className="navbar-section3">
         <Link to="/cart" className="cart">
-          <i className="fa-light fa-cart-shopping cart-img"></i>
+          <FaCartShopping className="cart-img" />
           <span className="cart-numbers">{number}</span>
         </Link>
         {login ? (
           <>
-            <Link className="home-button" to="">
-              My Orders
-            </Link>
+            {/* <img src="#" alt="profile" /> */}
             <button
               className="home-button home-button-white"
               onClick={handleLogout}
@@ -87,14 +93,9 @@ const Navbar = () => {
             </button>
           </>
         ) : (
-          <>
-            <Link className="home-button" to="/login">
-              Log In
-            </Link>
-            <Link className="home-button home-button-white" to="/signup">
-              Sign Up
-            </Link>
-          </>
+          <Link className="home-button" to="/login">
+            Log In
+          </Link>
         )}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import { aboutPostAction } from "../Redux/Actions/PublicActions";
+import { aboutPostAction } from "../Redux/Actions/OtherActions";
 import {
   fullNameVal,
   emailVal,
@@ -69,7 +69,7 @@ const About = () => {
           <p className="info-para">
             Welcome To<span> Fresh Box Restaurant</span>{" "}
           </p>
-          <p className="center">Little Story</p>
+          <p className="text-center mb-2">Little Story</p>
           <p className="center">
             Lorem placeat a soluta nemo debitis repellat possimus minima nulla,
             sunt quaerat quibusdam! Quos ipsa quam dignissimos, quaerat expedita
@@ -98,7 +98,7 @@ const About = () => {
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="my-5">
-            <label>Name</label>
+            <label className="second-color">Name</label>
             <input
               type="text"
               value={name}
@@ -106,7 +106,7 @@ const About = () => {
             />
           </div>
           <div className="my-5">
-            <label>Email</label>
+            <label className="second-color">Email</label>
             <input
               type="email"
               value={email}
@@ -114,7 +114,7 @@ const About = () => {
             />
           </div>
           <div className="my-5">
-            <label>Phone Number</label>
+            <label className="second-color">Phone Number</label>
             <input
               type="text"
               value={phone}
@@ -122,7 +122,7 @@ const About = () => {
             />
           </div>
           <div className="my-5">
-            <label>Your Feedback</label>
+            <label className="second-color">Your Feedback</label>
             <textarea
               className="textarea11"
               rows={7}
@@ -132,7 +132,7 @@ const About = () => {
           </div>
           <button
             type="submit"
-            className="border py-2 px-6 bg-[#e11d48] text-white"
+            className="border py-2 px-6 bg-[#e11d48] rounded text-white"
           >
             Submit
           </button>

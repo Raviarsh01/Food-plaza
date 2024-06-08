@@ -6,6 +6,9 @@ import {
   REMOVE_FROM_CART,
   INCREASE_QUANTITY,
   DECREASE_QUANTITY,
+  SINGLE_ITEM_GET_LOADING,
+  SINGLE_ITEM_GET_SUCCESS,
+  SINGLE_ITEM_GET_ERROR,
 } from "../Constants";
 
 export const MenuReducer = (state = {}, action) => {
@@ -28,29 +31,28 @@ export const MenuReducer = (state = {}, action) => {
   }
 };
 
+export const SingleItemReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SINGLE_ITEM_GET_LOADING:
+      return {
+        loading: true,
+      };
+    case SINGLE_ITEM_GET_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        ItemData: action.payload,
+        message: action.payload.message,
+      };
+    case SINGLE_ITEM_GET_ERROR:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 export const cartReducer = (state = { cartData: [] }, action) => {
   switch (action.type) {
-    // case "ADD_TO_CART":
-    //   const { itemId, name, price } = action.payload;
-    //   const existingItem = state.cartData.find(
-    //     (item) => item.itemId === itemId
-    //   );
-    //   if (existingItem) {
-    //     return {
-    //       ...state,
-    //       cartData: state.cartData.map((item) =>
-    //         item.itemId === itemId
-    //           ? { ...item, quantity: item.quantity + 1 }
-    //           : item
-    //       ),
-    //     };
-    //   } else {
-    //     return {
-    //       ...state,
-    //       cartData: [...state.cartData, { itemId, name, price, quantity: 1 }],
-    //     };
-    //   }
-
     case ADD_TO_CART:
       const { itemId, name, price } = action.payload;
       const existingItem = state.cartData.find(

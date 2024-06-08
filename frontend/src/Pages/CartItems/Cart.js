@@ -5,7 +5,7 @@ import {
   removeCart,
   quantityInc,
   quantityDec,
-} from "../Redux/Actions/CartAction";
+} from "../../Redux/Actions/CartActions";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -36,14 +36,6 @@ const Cart = () => {
     setGrandTotal(total);
   }, [handleInc, handleDec]);
 
-  const handleProceed = () => {
-    const token = localStorage.getItem("Token");
-    if (token) {
-      navigate("/payment-page");
-    } else {
-      navigate("/login");
-    }
-  };
   return (
     <div className="cart-page">
       <h2>Your Cart</h2>
@@ -59,7 +51,7 @@ const Cart = () => {
           <table>
             <thead>
               <tr>
-                <th>Item</th>
+                <th>Items ({cartData?.length})</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
@@ -67,12 +59,12 @@ const Cart = () => {
               </tr>
             </thead>
             {cartData?.map((i) => (
-              <tbody>
+              <tbody className="second-color">
                 <tr>
                   <td>{i.name}</td>
                   <td>{i.price}</td>
                   <td>
-                    <div style={{ display: "flex" }}>
+                    <div className="flex items-center">
                       <button
                         className="button-4"
                         onClick={(event) =>
@@ -108,7 +100,10 @@ const Cart = () => {
               <Link to="/menu">
                 <button className="button-232">Return to Menu</button>
               </Link>
-              <button className="button-232" onClick={handleProceed}>
+              <button
+                className="button-232"
+                onClick={() => navigate("/checkout")}
+              >
                 Proceed to Checkout
               </button>
             </div>

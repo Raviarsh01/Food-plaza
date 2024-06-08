@@ -2,11 +2,10 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const AdminRoute = ({ children }) => {
+const ProtectedRoutes = ({ children }) => {
   const { user } = useSelector((state) => state.LoginReducer);
-  const role = user?.userData?.Role;
 
-  return role == 0 ? <>{children}</> : <Navigate to="/" />;
+  return user?.userData ? children : <Navigate to="/login" />;
 };
 
-export default AdminRoute;
+export default ProtectedRoutes;
