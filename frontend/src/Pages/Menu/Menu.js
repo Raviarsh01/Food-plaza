@@ -14,7 +14,7 @@ const Menu = () => {
 
   useEffect(() => {
     dispatch(MenuDataAction());
-    // window.scroll(0, 0);
+    window.scroll(0, 0);
   }, []);
 
   useEffect(() => {
@@ -48,7 +48,6 @@ const Menu = () => {
     "/Images/doordash.png",
     "/Images/uberEats.png",
     "/Images/grubhub.png",
-    "/Images/postmates.png",
   ];
   return (
     <>
@@ -87,6 +86,12 @@ const Menu = () => {
           ))}
         </div>
 
+        {Items.length == 0 && (
+          <p className="text-base text-center text-third leading-7">
+            No item available
+          </p>
+        )}
+
         <div className="grid gap-6 grid-cols-4">
           {Items?.map((item, i) => (
             <div key={i} className="rounded-t-xl overflow-hidden">
@@ -112,12 +117,12 @@ const Menu = () => {
         </div>
       </div>
       <div className="bg-[#e9e9e947]">
-        <div className="main-container py-[90px] flex">
+        <div className="main-container py-[90px] flex gap-10">
           <div className="w-[40%] flex flex-col justify-center">
             <h2 className="text-6xl font-bold text-secondary leading-tight">
               You can order through apps
             </h2>
-            <p className="max-w-[460px] text-base text-third leading-7 mt-[30px]">
+            <p className="text-base text-third leading-7 mt-[30px]">
               Lorem ipsum dolor sit amet consectetur adipiscing elit enim
               bibendum sed et aliquet aliquet risus tempor semper.
             </p>

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { LoginAction } from "../../Redux/Actions/AuthActions";
 import { emailVal, passwordVal } from "../../Extra/validations";
 import { toast } from "react-toastify";
-import Loader from "../../Components/Loader/Loader";
+import Loader from "../../Components/Loader";
 import { FaArrowLeft } from "react-icons/fa";
 
 const Login = () => {

@@ -9,13 +9,14 @@ import Signup from "./Pages/Auth/Signup";
 import ForgetPassword from "./Pages/Auth/ForgetPassword";
 
 import Layout from "./Components/Layout";
-import ViewItemDetail from "./Components/ViewItemDetail";
+import ViewItemDetail from "./Pages/Menu/ViewItemDetail";
 import Home from "./Pages/Home/Home";
-import Menu from "./Pages/CartItems/Menu";
-import About from "./Pages/About";
-import Cart from "./Pages/CartItems/Cart";
-import Checkout from "./Pages/CartItems/Checkout";
-import Payment from "./Pages/CartItems/Payment";
+import Menu from "./Pages/Menu/Menu";
+import About from "./Pages/Home/About";
+import Contact from "./Pages/Home/Contact";
+import Cart from "./Pages/Menu/Cart";
+import Checkout from "./Pages/Menu/Checkout";
+import Payment from "./Pages/Menu/Payment";
 import PageNotFound from "./Components/PageNotFound";
 
 function App() {
@@ -25,12 +26,14 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/menu" element={<Menu />} />
           <Route
             path="/menu/item-detail/:Itemid"
             element={<ViewItemDetail />}
           />
-          <Route path="/about" element={<About />} />
+
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route

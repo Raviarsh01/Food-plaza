@@ -6,8 +6,8 @@ import {
   quantityInc,
   quantityDec,
   GetSingleItemAction,
-} from "../Redux/Actions/CartActions";
-import Loader from "./Loader/Loader";
+} from "../../Redux/Actions/CartActions";
+import Loader from "../../Components/Loader";
 
 const ViewItemDetail = () => {
   const dispatch = useDispatch();

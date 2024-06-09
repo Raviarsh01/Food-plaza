@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RegisterAction } from "../../Redux/Actions/AuthActions";
 import { toast } from "react-toastify";
-import Loader from "../../Components/Loader/Loader";
+import Loader from "../../Components/Loader";
 import {
   firstNameVal,
   lastNameVal,

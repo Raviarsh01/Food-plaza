@@ -24,13 +24,6 @@
   font-family: var(--font-family-primary);
 }
 
-.first-color {
-  color: var(--primary-color);
-}
-.second-color {
-  color: var(--secondary-color);
-}
-
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -142,37 +135,6 @@ input[type="password"],
 }
 .detail-flex2 > p {
   font-size: 17px;
-}
-
-/* about us code  */
-.about-container {
-  margin: 0px 100px;
-  padding-top: 30px;
-}
-.aboutSec-section {
-  display: flex;
-  justify-content: space-evenly;
-}
-.img6767 {
-  width: 100%;
-  height: 470px;
-}
-.div6565y {
-  padding-right: 80px;
-}
-.info-para {
-  font-size: 35px;
-  text-align: center;
-  padding-top: 2.5rem;
-  color: var(--secondary-color);
-}
-.info-para span {
-  color: var(--primary-color);
-}
-.center {
-  text-align: justify;
-  line-height: 1.7rem;
-  color: var(--secondary-color);
 }
 
 /* cart code  */
