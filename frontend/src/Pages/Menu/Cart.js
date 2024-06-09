@@ -6,6 +6,9 @@ import {
   quantityInc,
   quantityDec,
 } from "../../Redux/Actions/CartActions";
+import Button from "../../Components/Button";
+import { FaMinus } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa6";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -37,50 +40,59 @@ const Cart = () => {
   }, [handleInc, handleDec]);
 
   return (
-    <div className="cart-page">
-      <h2>Your Cart</h2>
+    <div className="pt-[50px] py-[90px] main-container">
+      <h2 className="text-6xl font-bold text-center text-secondary leading-tight mb-8">
+        Your Cart
+      </h2>
       {cartData?.length === 0 ? (
-        <div className="empty-cart">
-          <p>Your cart is empty.</p>
-          <Link to="/menu">
-            <button className="button-232">Return to Menu</button>
-          </Link>
+        <div className="flex flex-col items-center gap-4">
+          <p className="text-secondary text-lg font-medium">
+            Your cart is empty.
+          </p>
+          <Button
+            href="/menu"
+            text="Return to Menu"
+            variant="outlined"
+            background="primary"
+          />
         </div>
       ) : (
-        <div className="cart-items">
-          <table>
+        <>
+          <table className="text-secondary w-full">
             <thead>
-              <tr>
-                <th>Items ({cartData?.length})</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
-                <th>Action</th>
+              <tr className="border-b-[1px] border-[#DBDFD0]">
+                <th className="py-[16px] text-left">
+                  Items ({cartData?.length})
+                </th>
+                <th className="py-[16px] text-left">Price</th>
+                <th className="py-[16px] text-left">Quantity</th>
+                <th className="py-[16px] text-left">Total</th>
+                <th className="py-[16px] text-left">Action</th>
               </tr>
             </thead>
             {cartData?.map((i) => (
               <tbody className="second-color">
-                <tr>
-                  <td>{i.name}</td>
+                <tr className="border-b-[1px] border-[#DBDFD0]">
+                  <td className="py-[16px]">{i.name}</td>
                   <td>{i.price}</td>
                   <td>
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-2">
                       <button
-                        className="button-4"
+                        className="rounded p-1 border border-primary text-primary"
                         onClick={(event) =>
                           handleDec(event, i.itemId, i.quantity)
                         }
                       >
-                        {" "}
-                        -{" "}
+                        <FaMinus />
                       </button>
-                      <p className="text333"> {i.quantity} </p>
+                      <p className="min-w-[20px] flex justify-center">
+                        {i.quantity}
+                      </p>
                       <button
-                        className="button-4"
+                        className="rounded p-1 border border-primary text-primary"
                         onClick={(event) => handleInc(event, i.itemId)}
                       >
-                        {" "}
-                        +{" "}
+                        <FaPlus />
                       </button>
                     </div>
                   </td>
@@ -95,21 +107,26 @@ const Cart = () => {
             ))}
           </table>
 
-          <div className="cart-total">
-            <div>
-              <Link to="/menu">
-                <button className="button-232">Return to Menu</button>
-              </Link>
-              <button
-                className="button-232"
-                onClick={() => navigate("/checkout")}
-              >
-                Proceed to Checkout
-              </button>
+          <div className="mt-8 flex justify-between items-center">
+            <div className="flex justify-between items-center gap-[20px]">
+              <Button
+                href="/menu"
+                text="Return to Menu"
+                variant="outlined"
+                background="primary"
+              />
+              <Button
+                href="/checkout"
+                text="Proceed to Checkout"
+                variant="outlined"
+                background="secondary"
+              />
             </div>
-            <p>Your Bill : {grandTotal} </p>
+            <p className="text-secondary text-lg font-semibold">
+              Your Bill: {grandTotal}{" "}
+            </p>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

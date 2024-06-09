@@ -70,7 +70,7 @@
 label {
   font-weight: 500;
 }
-input[type="text"],
+/* input[type="text"],
 input[type="email"],
 input[type="password"],
 .textarea11 {
@@ -79,7 +79,7 @@ input[type="password"],
   border: 1px solid #ddd;
   border-radius: 3px;
   font-size: 14px;
-}
+} */
 
 .btn-login {
   padding: 10px;
@@ -109,104 +109,6 @@ input[type="password"],
   top: 10px;
   cursor: pointer;
   font-size: 16px;
-}
-
-/* menu page code end here  */
-/* and */
-/*selectitem code start here  */
-.detail-container {
-  display: flex;
-  width: 70%;
-  min-height: 90vh;
-  justify-content: center;
-  margin: 0 auto;
-  padding-top: 30px;
-}
-.detail-container > div > img {
-  width: 100%;
-  height: 480px;
-}
-.detail-flex2 {
-  padding: 20px 0px 0px 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  color: var(--secondary-color);
-}
-.detail-flex2 > p {
-  font-size: 17px;
-}
-
-/* cart code  */
-.cart-page {
-  padding: 20px 20px 0;
-  min-height: 520px;
-}
-
-.cart-page h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.cart-items table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.cart-items th,
-.cart-items td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.cart-items th {
-  text-align: left;
-}
-
-.cart-items input {
-  width: 50px;
-  padding: 5px;
-}
-
-.cart-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 20px 20px 0 0;
-}
-.cart-total p {
-  font-weight: bold;
-}
-.empty-cart {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 250px;
-  margin: auto;
-  gap: 2rem;
-}
-.button-232 {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin: 0 10px;
-}
-.button-4 {
-  border: 1px solid var(--primary-color);
-  background-color: white;
-  color: var(--primary-color);
-  padding: 0px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 20px;
-}
-.text333 {
-  width: 32px;
-  text-align: center;
 }
 
 /* -----------NEW CSS---------  */
