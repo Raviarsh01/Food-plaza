@@ -5,24 +5,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 :root {
-  --primary-color: #e11d48;
-  /* --primary-color:#FEA116; */
-  --second-color: #515462;
+  /* --primary-color: #e11d48; */
+  /* --primary-color: #fea116; */
+  --primary-color: #ea6d27;
+  /* --secondary-color: #515462; */
+  /* --secondary-color: #241010; */
+  --secondary-color: #101a24;
+  --third-color: #5c6574;
+  --white-color: #ffffff;
+  --font-family-primary: "Montserrat", sans-serif;
+  --font-family-secondary: "Roboto", sans-serif;
 }
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  letter-spacing: 1px;
-  font-family: "Montserrat", sans-serif;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-family-primary);
 }
 
 .first-color {
   color: var(--primary-color);
 }
 .second-color {
-  color: var(--second-color);
+  color: var(--secondary-color);
 }
 
 ::-webkit-scrollbar {
@@ -33,7 +39,6 @@
   background: #d3d4d6;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--second-color);
   background: var(--primary-color);
 }
 
@@ -113,60 +118,6 @@ input[type="password"],
   font-size: 16px;
 }
 
-/* menu cart  */
-.menu {
-  display: flex;
-  flex-direction: column;
-  min-height: 90vh;
-  padding-top: 20px;
-}
-.section {
-  margin-bottom: 40px;
-}
-.row22 {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2.5rem;
-  margin-top: 20px;
-}
-.menu-flex {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 15px;
-}
-.item {
-  text-align: center;
-}
-.item img {
-  width: 400px;
-  height: 240px;
-  object-fit: cover;
-}
-.item h3 {
-  margin: 10px 0;
-  color: var(--second-color);
-}
-.item p {
-  margin: 10px 0;
-  color: var(--second-color);
-}
-.button-1 {
-  width: 150px;
-  height: 35px;
-  background-color: white;
-  border: 1px solid var(--primary-color);
-  font-size: 15px;
-  color: var(--primary-color);
-}
-.btn-margin {
-  margin-top: 8px;
-}
-.button-1:hover {
-  background-color: var(--primary-color);
-  color: white;
-  cursor: pointer;
-}
 /* menu page code end here  */
 /* and */
 /*selectitem code start here  */
@@ -187,7 +138,7 @@ input[type="password"],
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  color: var(--second-color);
+  color: var(--secondary-color);
 }
 .detail-flex2 > p {
   font-size: 17px;
@@ -213,7 +164,7 @@ input[type="password"],
   font-size: 35px;
   text-align: center;
   padding-top: 2.5rem;
-  color: var(--second-color);
+  color: var(--secondary-color);
 }
 .info-para span {
   color: var(--primary-color);
@@ -221,7 +172,7 @@ input[type="password"],
 .center {
   text-align: justify;
   line-height: 1.7rem;
-  color: var(--second-color);
+  color: var(--secondary-color);
 }
 
 /* cart code  */
@@ -296,108 +247,19 @@ input[type="password"],
   text-align: center;
 }
 
-/* navbarfooter code  */
-.navbar-section3 {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-}
-.cart {
-  color: var(--primary-color);
-  text-decoration: none;
-  position: relative;
-}
-.cart-img {
-  font-size: 28px;
-  font-weight: 500;
-}
-.cart-numbers {
-  position: absolute;
-  top: -12px;
-  right: -11px;
-  font-size: 14px;
-  border: 1px solid #e11d48;
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-}
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  padding: 6px 30px;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 3;
-  box-shadow: 0 0 6px -4px #333;
-}
-.navbar-logo {
-  width: 80px;
-  height: 74px;
-}
-.navbar-sec2 {
-  display: flex;
-}
-.navbar-sec2-Link {
-  text-decoration: none;
-  color: var(--second-color);
-  padding: 9px 30px;
-  font-size: 16px;
-  font-weight: 500;
-  padding-bottom: 5px;
-}
-.nav-sec2Color {
-  border-bottom: 1.5px solid var(--primary-color);
-}
-
-/* footer code start here  */
-.footer-section {
-  position: relative;
-  background-color: var(--primary-color);
-  color: white;
-  padding: 0 100px;
-}
-.img65t {
-  width: 84px;
-  height: 90px;
-  margin: 0 auto;
-}
-.footerflex56y {
-  width: 33%;
-  padding: 25px 0;
-}
-.footerdiv66 {
-  background-color: white;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.flex3-img {
-  font-size: 20px;
-  color: var(--primary-color);
-}
-.btn766 {
-  width: 100%;
-  border: 1px solid white;
-  padding: 8px 0;
-  margin-top: 1rem;
-}
-
 /* -----------NEW CSS---------  */
 
 .main-container {
-  max-width: 1300px;
+  max-width: 1432px;
+  padding-inline: 1rem;
   margin: 0 auto;
 }
-.home-container {
-  color: red;
+.curved-twoSides {
+  border-radius: 5rem 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 5rem;
+  grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
 }

@@ -2,120 +2,141 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { MenuDataAction, addCart } from "../../Redux/Actions/CartActions";
-import Loader from "../../Components/Loader/Loader";
+import { FaCartPlus } from "react-icons/fa6";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 const Menu = () => {
   const dispatch = useDispatch();
   const [Items, SetItems] = useState([]);
+  const [tabs, setTabs] = useState("All");
+  const [tabsArray, setTabsArray] = useState([]);
   const { MenuData } = useSelector((state) => state.MenuReducer);
 
   useEffect(() => {
     dispatch(MenuDataAction());
-    window.scroll(0, 0);
+    // window.scroll(0, 0);
   }, []);
 
   useEffect(() => {
     if (MenuData) {
-      SetItems(MenuData);
+      const filterTabs = MenuData?.map((i) => i.category);
+      setTabsArray([...new Set(filterTabs)]);
     }
   }, [MenuData]);
+
+  useEffect(() => {
+    if (MenuData) {
+      const filterData = MenuData?.filter((i) => i.category == tabs);
+      if (filterData?.length !== 0) {
+        SetItems(filterData);
+        return;
+      }
+      SetItems(MenuData);
+    }
+  }, [tabs, MenuData]);
 
   const handleadd = (item) => {
     dispatch(addCart(item));
   };
 
+  const imagesData = [
+    "/Images/deliveroo.png",
+    "/Images/justEat.png",
+    "/Images/foodpanda.png",
+    "/Images/didiFood.png",
+    "/Images/instacart.png",
+    "/Images/doordash.png",
+    "/Images/uberEats.png",
+    "/Images/grubhub.png",
+    "/Images/postmates.png",
+  ];
   return (
-    <div className="menu">
-      <div className="section">
-        <h2 className="text-center font-semibold text-2xl">Pizza</h2>
-        <div className="row22">
-          {Items?.length === 0 && (
-            <p className="second-color">No Items in section</p>
-          )}
-          {Items?.map(
-            (item, i) =>
-              item.category === "pizza" && (
-                <div className="item" key={i}>
-                  <img src={item.image} alt="pizza" />
-                  <div className="menu-flex">
-                    <h3>{item.name}</h3>
-                    <p>Rs.{item.price}</p>
-                  </div>
-                  <div className="menu-flex">
-                    <Link to={`/menu/item-detail/${item.itemId}`}>
-                      <button className="button-1">View Detail</button>
-                    </Link>
-                    <button
-                      className="button-1"
-                      onClick={() => handleadd(item)}
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
+    <>
+      <div className="main-container pt-[50px] py-[90px]">
+        <h2 className="text-6xl font-bold text-center text-secondary leading-tight">
+          Our Menu
+        </h2>
+        <p className="max-w-[560px] mx-auto text-base text-center text-third leading-7 mt-[30px]">
+          We consider all the drivers of change gives you the components you
+          need to change to create a truly happens.
+        </p>
+
+        <div className="flex gap-6 justify-center my-[40px]">
+          <button
+            className={`min-w-[120px] border-[1px] h-[48px] rounded-full font-semibold ${
+              tabs === "All"
+                ? "bg-primary border-primary text-white"
+                : "bg-white border-third text-third"
+            }`}
+            onClick={() => setTabs("All")}
+          >
+            All
+          </button>
+          {tabsArray?.map((value, i) => (
+            <button
+              key={i}
+              className={`min-w-[120px] border-[1px] h-[48px] rounded-full font-semibold ${
+                tabs === value
+                  ? "bg-primary border-primary text-white"
+                  : "bg-white border-third text-third"
+              }`}
+              onClick={() => setTabs(value)}
+            >
+              {value}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid gap-6 grid-cols-4">
+          {Items?.map((item, i) => (
+            <div key={i} className="rounded-t-xl overflow-hidden">
+              <img src={item.image} alt="menu" className="w-full h-[230px]" />
+              <div className=" px-[30px] py-[30px] border border-t-0 border-[#DBDFD0] rounded-b-xl">
+                <p className=" text-lg font-medium text-third text-center leading-7 ">
+                  ${item.price}
+                </p>
+                <p className="my-[22px]  text-lg font-medium text-third text-center">
+                  {item.name}
+                </p>
+                <div className="flex gap-3 justify-center text-xl text-primary font-semibold">
+                  <Link to={`/menu/item-detail/${item.itemId}`}>
+                    <MdOutlineRemoveRedEye />
+                  </Link>
+                  <button onClick={() => handleadd(item)}>
+                    <FaCartPlus />
+                  </button>
                 </div>
-              )
-          )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-      <div className="section">
-        <h2 className="text-center font-semibold text-2xl">Burger</h2>
-        <div className="row22">
-          {Items?.length == 0 && <p>No Items in section</p>}
-          {Items?.map(
-            (item, i) =>
-              item.category === "burger" && (
-                <div className="item" key={i}>
-                  <img src={item.image} alt="burger" />
-                  <div className="menu-flex">
-                    <h3>{item.name}</h3>
-                    <p>Rs.{item.price}</p>
-                  </div>
-                  <div className="menu-flex">
-                    <Link to={`/menu/item-detail/${item.itemId}`}>
-                      <button className="button-1">View Detail</button>
-                    </Link>
-                    <button
-                      className="button-1"
-                      onClick={() => handleadd(item)}
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              )
-          )}
+      <div className="bg-[#e9e9e947]">
+        <div className="main-container py-[90px] flex">
+          <div className="w-[40%] flex flex-col justify-center">
+            <h2 className="text-6xl font-bold text-secondary leading-tight">
+              You can order through apps
+            </h2>
+            <p className="max-w-[460px] text-base text-third leading-7 mt-[30px]">
+              Lorem ipsum dolor sit amet consectetur adipiscing elit enim
+              bibendum sed et aliquet aliquet risus tempor semper.
+            </p>
+          </div>
+          <div className="w-[60%] flex flex-wrap gap-10 justify-center">
+            {imagesData?.map((value, i) => (
+              <div
+                key={i}
+                className={`bg-white h-[90px] flex justify-center items-center rounded-xl ${
+                  i + 1 === (4 || 5 || 6) ? "w-[280px]" : "w-[230px]"
+                }`}
+              >
+                <img src={value} alt="menu" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="section">
-        <h2 className="text-center font-semibold text-2xl">Shakes</h2>
-        <div className="row22">
-          {Items?.length == 0 && <p>No Items in section</p>}
-          {Items?.map(
-            (item, i) =>
-              item.category === "shakes" && (
-                <div className="item" key={i}>
-                  <img src={item.image} alt="burger" />
-                  <div className="menu-flex">
-                    <h3>{item.name}</h3>
-                    <p>Rs.{item.price}</p>
-                  </div>
-                  <div className="menu-flex">
-                    <Link to={`/menu/item-detail/${item.itemId}`}>
-                      <button className="button-1">View Detail</button>
-                    </Link>
-                    <button
-                      className="button-1"
-                      onClick={() => handleadd(item)}
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              )
-          )}
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 export default Menu;

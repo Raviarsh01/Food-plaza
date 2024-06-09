@@ -4,69 +4,75 @@ import {
   FaFacebookF,
   FaTwitter,
   FaInstagram,
-  FaPhone,
 } from "react-icons/fa6";
-import { MdOutlineMailOutline } from "react-icons/md";
+
+import { Link } from "react-router-dom";
+import { IoIosRestaurant } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <footer className="footer-section">
-      <div className="flex gap-[7rem]">
-        <div className="footerflex56y">
-          <p className=" text-xl">Social links</p>
-          <div className="flex gap-5 mt-6 mb-5">
-            <div className="footerdiv66">
-              <FaLinkedinIn className="flex3-img" />
+    <footer className="bg-secondary text-white">
+      <div className="main-container">
+        <div className="footer-grid py-8 border-b-[1px] border-white">
+          <div>
+            <div>
+              <Link
+                className="flex gap-1 items-end text-2xl font-semibold text-primary"
+                to="/"
+              >
+                <IoIosRestaurant className="font-bold text-4xl" />
+                <h2 className="text-primary">
+                  Food <span className="text-white">Plaza</span>
+                </h2>
+              </Link>
             </div>
-            <div className="footerdiv66">
-              <FaFacebookF className="flex3-img" />
-            </div>
-            <div className="footerdiv66">
-              <FaTwitter className="flex3-img" />
-            </div>
-            <div className="footerdiv66">
-              <FaInstagram className="flex3-img" />
+            <p className="mt-[20px]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt cons uur adipi orre labore et dolore
+              .Learn more
+            </p>
+          </div>
+          <div className="mt-[8px]">
+            <h2 className="font-semibold">NAVIGATION</h2>
+            <p className="mt-[24px]">Menu</p>
+            <p className="mt-[18px]">Contact us</p>
+            <p className="mt-[18px]">Main dishes</p>
+            <p className="mt-[18px]">About us </p>
+          </div>
+          <div className="mt-[8px]">
+            <h2 className="font-semibold">MENU</h2>
+            <p className="mt-[24px]">Pizza</p>
+            <p className="mt-[18px]">Burger</p>
+            <p className="mt-[18px]">Shakes</p>
+            <p className="mt-[18px]">Drinks</p>
+          </div>
+          <div className="mt-[8px]">
+            <h2 className="font-semibold">FOLLOW US</h2>
+            <div className="flex gap-5 mt-6 mb-5">
+              <div className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center">
+                <FaLinkedinIn className="text-xl text-secondary" />
+              </div>
+              <div className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center">
+                <FaFacebookF className="text-xl text-secondary" />
+              </div>
+              <div className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center">
+                <FaTwitter className="text-xl text-secondary" />
+              </div>
+              <div className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center">
+                <FaInstagram className="text-xl text-secondary" />
+              </div>
             </div>
           </div>
-          <p>
-            Sace the exquisite blend of flavors in every bite. Taste the
-            extraordinary!
-          </p>
         </div>
-        <div className="footerflex56y">
-          <h2 className="text-xl ">Get in Touch</h2>
-          <div className="flex items-center mt-6">
-            <div className="footerdiv66">
-              {" "}
-              <FaPhone className="flex3-img" />
-            </div>
 
-            <div className="ms-3">
-              <p>Phone</p>
-              <p>+91 9843520017</p>
-            </div>
+        <div className="flex justify-between py-4">
+          <p>© 2022 Restaurants. All Right Reserved. Designed by Isaac</p>
+          <div className="flex gap-8">
+            <p>Terms of Service</p>
+            <p>Privacy Policy</p>
           </div>
-          <div className="flex mt-5 items-center">
-            <div className="footerdiv66">
-              <MdOutlineMailOutline className="flex3-img" />
-            </div>
-
-            <div className="ms-3">
-              <p>Email</p>
-              <p>freshbox@email.com</p>
-            </div>
-          </div>
-        </div>
-        <div className="footerflex56y">
-          <h2 className="text-xl ">Address</h2>
-          <p className="mt-6">121 street d-block, Industrial Area,</p>
-          <p> Sector 74, Opp.: HDFC bank,</p>
-          <p>Sahibzada Ajit Singh Nagar,</p>
-          <p>Punjab 163400, India</p>
         </div>
       </div>
-      <hr />
-      <p className="text-center py-2">@2023 FreshBox. All rights reserved.</p>
     </footer>
   );
 };
