@@ -8,7 +8,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import Button from "../Components/Button";
 import { IoIosRestaurant } from "react-icons/io";
 
-const Navbar = () => {
+const Header = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -115,4 +115,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;

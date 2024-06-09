@@ -62,7 +62,7 @@ const Menu = () => {
 
         <div className="flex gap-6 justify-center my-[40px]">
           <button
-            className={`min-w-[120px] border-[1px] h-[48px] rounded-full font-semibold ${
+            className={`transition min-w-[120px] border-[1px] h-[48px] rounded rounded-tl-2xl rounded-br-2xl font-semibold ${
               tabs === "All"
                 ? "bg-primary border-primary text-white"
                 : "bg-white border-third text-third"
@@ -74,7 +74,7 @@ const Menu = () => {
           {tabsArray?.map((value, i) => (
             <button
               key={i}
-              className={`min-w-[120px] border-[1px] h-[48px] rounded-full font-semibold ${
+              className={`transition min-w-[120px] border-[1px] h-[48px] rounded rounded-tl-2xl rounded-br-2xl font-semibold ${
                 tabs === value
                   ? "bg-primary border-primary text-white"
                   : "bg-white border-third text-third"
