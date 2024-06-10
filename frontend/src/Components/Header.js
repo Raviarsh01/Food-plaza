@@ -31,8 +31,14 @@ const Header = () => {
     navigate("/login");
   };
 
+  const links = [
+    { value: "Home", link: "/" },
+    { value: "About", link: "/about" },
+    { value: "Menu", link: "/menu" },
+    { value: "Contact us", link: "/contact" },
+  ];
   return (
-    <div className="flex items-center bg-white w-full h-20 fixed top-0 z-10 shadow">
+    <div className="flex items-center bg-white w-full h-24 fixed top-0 z-10 shadow">
       <div className="main-container flex items-center justify-between w-full">
         <div>
           <Link
@@ -46,44 +52,18 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex gap-10 transition">
-          <Link
-            to="/"
-            className={`no-underline	text-secondary text-base px-2 ${
-              location.pathname === "/" ? "border-b-[1px] border-primary" : ""
-            } `}
-          >
-            Home
-          </Link>
-          <Link
-            to="/about"
-            className={`no-underline	text-secondary text-base px-2 ${
-              location.pathname === "/about"
-                ? "border-b-[1px] border-primary"
-                : ""
-            } `}
-          >
-            About
-          </Link>
-          <Link
-            to="/menu"
-            className={`no-underline	text-secondary text-base px-2 ${
-              location.pathname === "/menu"
-                ? "border-b-[1px] border-primary"
-                : ""
-            } `}
-          >
-            Menu
-          </Link>
-          <Link
-            to="/contact"
-            className={`no-underline	text-secondary text-base px-2 ${
-              location.pathname === "/contact"
-                ? "border-b-[1px] border-primary"
-                : ""
-            } `}
-          >
-            Contact
-          </Link>
+          {links?.map(({ value, link }, i) => (
+            <Link
+              to={link}
+              className={`no-underline font-medium text-secondary text-base px-2 pb-1 ${
+                location.pathname === link
+                  ? "border-b-[1px] border-primary"
+                  : ""
+              } `}
+            >
+              {value}
+            </Link>
+          ))}
         </div>
         <div className="flex items-center gap-6">
           <Link to="/cart" className="no-underline relative text-primary">

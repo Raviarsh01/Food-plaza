@@ -32,35 +32,36 @@ const Footer = () => {
               .Learn more
             </p>
           </div>
+
           <div className="mt-[8px]">
-            <h2 className="font-semibold">NAVIGATION</h2>
-            <p className="mt-[24px]">Menu</p>
-            <p className="mt-[18px]">Contact us</p>
-            <p className="mt-[18px]">Main dishes</p>
-            <p className="mt-[18px]">About us </p>
+            <h2 className="font-semibold mb-[24px]">NAVIGATION</h2>
+            {["Menu", "Contact us", "Main dishes", "About us"].map(
+              (value, i) => (
+                <p className="mb-[18px]">{value}</p>
+              )
+            )}
           </div>
+
           <div className="mt-[8px]">
-            <h2 className="font-semibold">MENU</h2>
-            <p className="mt-[24px]">Pizza</p>
-            <p className="mt-[18px]">Burger</p>
-            <p className="mt-[18px]">Shakes</p>
-            <p className="mt-[18px]">Drinks</p>
+            <h2 className="font-semibold mb-[24px]">MENU</h2>
+            {["Pizza", "Burger", "Shakes", "Drinks"].map((value, i) => (
+              <p className="mb-[18px]">{value}</p>
+            ))}
           </div>
+
           <div className="mt-[8px]">
             <h2 className="font-semibold">FOLLOW US</h2>
             <div className="flex gap-5 mt-6 mb-5">
-              <div className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center">
-                <FaLinkedinIn className="text-xl text-secondary" />
-              </div>
-              <div className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center">
-                <FaFacebookF className="text-xl text-secondary" />
-              </div>
-              <div className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center">
-                <FaTwitter className="text-xl text-secondary" />
-              </div>
-              <div className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center">
-                <FaInstagram className="text-xl text-secondary" />
-              </div>
+              {[
+                <FaFacebookF className="text-xl text-secondary" />,
+                <FaLinkedinIn className="text-xl text-secondary" />,
+                <FaTwitter className="text-xl text-secondary" />,
+                <FaInstagram className="text-xl text-secondary" />,
+              ].map((value, i) => (
+                <div className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center">
+                  {value}
+                </div>
+              ))}
             </div>
           </div>
         </div>

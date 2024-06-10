@@ -19,10 +19,10 @@ const ForgetPassword = () => {
     <div className="w-[100vw] h-[100vh] flex justify-between items-center">
       <div className="w-[500px] mx-auto shadow rounded-lg p-[50px]">
         <div className="relative">
-          <h2 className="text-center text-secondary font-semibold text-3xl">
+          <h2 className="text-center text-secondary font-semibold text-4xl">
             Forget Password
           </h2>
-          <button onClick={() => navigate(-1)}>
+          <button onClick={() => navigate("/login")}>
             <FaArrowLeft className="absolute top-[10px] cursor-pointer text-secondary" />
           </button>
         </div>

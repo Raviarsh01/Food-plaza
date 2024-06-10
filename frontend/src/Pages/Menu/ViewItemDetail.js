@@ -54,7 +54,7 @@ const ViewItemDetail = () => {
 
   return (
     <div className="pt-[50px] py-[100px] main-container">
-      <h2 className="text-6xl font-bold text-center text-secondary leading-tight">
+      <h2 className="text-5xl font-bold text-center text-secondary leading-tight">
         {userData[0]?.category} Detail
       </h2>
       <p className="max-w-[560px] mx-auto text-base text-center text-third leading-7 mt-[30px]">
@@ -92,14 +92,14 @@ const ViewItemDetail = () => {
                 <div className="flex items-center gap-2">
                   <span className="text-black font-semibold">Quantity: </span>
                   <button
-                    className="rounded p-1 border border-primary text-primary"
+                    className="rounded p-1 text-primary"
                     onClick={(event) => handleDec(event, item.itemId, quantity)}
                   >
                     <FaMinus />
                   </button>
                   <p className="min-w-[20px] flex justify-center">{quantity}</p>
                   <button
-                    className="rounded p-1 border border-primary text-primary"
+                    className="rounded p-1 text-primary"
                     onClick={(event) => handleInc(event, item.itemId)}
                   >
                     <FaPlus />

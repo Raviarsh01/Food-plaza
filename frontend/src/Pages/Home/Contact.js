@@ -10,7 +10,7 @@ const Contact = () => {
     <>
       <div className="bg-[#e9e9e947]">
         <div className="main-container h-[520px]">
-          <h2 className="text-6xl font-bold text-center text-secondary leading-tight pt-[50px]">
+          <h2 className="text-5xl font-bold text-center text-secondary leading-tight pt-[50px]">
             Contact Us
           </h2>
           <p className="max-w-[560px] mx-auto text-base text-center text-third leading-7 mt-[30px]">

@@ -52,7 +52,7 @@ const Menu = () => {
   return (
     <>
       <div className="main-container pt-[50px] py-[90px]">
-        <h2 className="text-6xl font-bold text-center text-secondary leading-tight">
+        <h2 className="text-5xl font-bold text-center text-secondary leading-tight">
           Our Menu
         </h2>
         <p className="max-w-[560px] mx-auto text-base text-center text-third leading-7 mt-[30px]">
@@ -119,7 +119,7 @@ const Menu = () => {
       <div className="bg-[#e9e9e947]">
         <div className="main-container py-[90px] flex gap-10">
           <div className="w-[40%] flex flex-col justify-center">
-            <h2 className="text-6xl font-bold text-secondary leading-tight">
+            <h2 className="text-5xl font-bold text-secondary leading-tight">
               You can order through apps
             </h2>
             <p className="text-base text-third leading-7 mt-[30px]">

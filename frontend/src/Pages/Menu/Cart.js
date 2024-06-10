@@ -41,7 +41,7 @@ const Cart = () => {
 
   return (
     <div className="pt-[50px] py-[90px] main-container">
-      <h2 className="text-6xl font-bold text-center text-secondary leading-tight mb-8">
+      <h2 className="text-5xl font-bold text-center text-secondary leading-tight mb-8">
         Your Cart
       </h2>
       {cartData?.length === 0 ? (
@@ -78,7 +78,7 @@ const Cart = () => {
                   <td>
                     <div className="flex items-center gap-2">
                       <button
-                        className="rounded p-1 border border-primary text-primary"
+                        className="rounded p-1 text-primary"
                         onClick={(event) =>
                           handleDec(event, i.itemId, i.quantity)
                         }
@@ -89,7 +89,7 @@ const Cart = () => {
                         {i.quantity}
                       </p>
                       <button
-                        className="rounded p-1 border border-primary text-primary"
+                        className="rounded p-1  text-primary"
                         onClick={(event) => handleInc(event, i.itemId)}
                       >
                         <FaPlus />

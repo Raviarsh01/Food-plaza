@@ -16,14 +16,12 @@
   --font-family-primary: "Montserrat", sans-serif;
   --font-family-secondary: "Roboto", sans-serif;
 }
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: var(--font-family-primary);
 }
-
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -34,85 +32,6 @@
 ::-webkit-scrollbar-thumb {
   background: var(--primary-color);
 }
-
-/* login code  */
-.login-container {
-  width: 30%;
-  margin: 0 auto;
-  padding: 50px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border: 1px solid #ddd;
-  border-radius: 6px;
-}
-.signup-container {
-  width: 50%;
-  margin: 0 auto;
-  padding: 50px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border: 1px solid #ddd;
-  border-radius: 6px;
-}
-
-.login-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
-  font-weight: 500;
-}
-/* input[type="text"],
-input[type="email"],
-input[type="password"],
-.textarea11 {
-  padding: 10px;
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  font-size: 14px;
-} */
-
-.btn-login {
-  padding: 10px;
-  background-color: var(--primary-color);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-.line-er45 {
-  border-top: 1px solid #333;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-.forget {
-  text-align: right;
-  font-size: 14px;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
-.error-msg {
-  float: right;
-  color: red;
-  font-size: 14px;
-}
-.arrowleft333 {
-  position: absolute;
-  top: 10px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-/* -----------NEW CSS---------  */
-
 .main-container {
   max-width: 1432px;
   padding-inline: 1rem;
@@ -121,7 +40,6 @@ input[type="password"],
 .curved-twoSides {
   border-radius: 5rem 2rem;
 }
-
 .footer-grid {
   display: grid;
   gap: 5rem;
