@@ -17,29 +17,34 @@ const ForgetPassword = () => {
   };
   return (
     <div className="w-[100vw] h-[100vh] flex justify-between items-center">
-      <div className="login-container">
-        <div style={{ position: "relative" }}>
-          <h2 className="text-center font-semibold text-2xl">
+      <div className="w-[500px] mx-auto shadow rounded-lg p-[50px]">
+        <div className="relative">
+          <h2 className="text-center text-secondary font-semibold text-3xl">
             Forget Password
           </h2>
-          <button className="btn-34347" onClick={() => navigate(-1)}>
-            <FaArrowLeft className="arrowleft333" />
+          <button onClick={() => navigate(-1)}>
+            <FaArrowLeft className="absolute top-[10px] cursor-pointer text-secondary" />
           </button>
         </div>
 
-        <form className="login-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            {errors && !email && <span className="error-msg">*Required</span>}
+        <form className="flex flex-col text-secondary" onSubmit={handleSubmit}>
+          <div className="mb-[1rem]">
+            <label className="font-semibold" htmlFor="email">
+              Email
+            </label>
             <input
               type="email"
               id="email"
+              className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <button type="submit" className="btn-login mt-6">
+          <button
+            type="submit"
+            className="mt-4 transition font-medium px-[38px] py-[14px] border rounded-lg  text-primary bg-white hover:text-white hover:bg-primary"
+          >
             Submit
           </button>
         </form>

@@ -84,30 +84,38 @@ const Signup = () => {
     <Loader />
   ) : (
     <div className="w-[100vw] h-[100vh] flex justify-between items-center">
-      <div className="signup-container">
-        <div style={{ position: "relative" }}>
-          <h2 className="text-center  font-semibold text-2xl">Sign Up</h2>
-          <button className="btn-34347" onClick={() => navigate(-1)}>
-            <FaArrowLeft className="arrowleft333" />
+      <div className="w-[860px] mx-auto shadow rounded-lg p-[50px]">
+        <div className="relative">
+          <h2 className="text-center text-secondary font-semibold text-3xl">
+            Sign Up
+          </h2>
+          <button onClick={() => navigate(-1)}>
+            <FaArrowLeft className="absolute top-[10px] cursor-pointer text-secondary" />
           </button>
         </div>
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="flex flex-col text-secondary" onSubmit={handleSubmit}>
           <div className="flex gap-6">
-            <div className="form-group w-[50%]">
-              <label htmlFor="email">First Name</label>
+            <div className="mb-[1rem] w-[50%]">
+              <label className="font-semibold" htmlFor="firstname">
+                First Name
+              </label>
               <input
                 type="text"
-                id="email"
+                id="firstname"
+                className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
                 placeholder="Enter first name"
                 value={fname}
                 onChange={(e) => setfName(e.target.value)}
               />
             </div>
-            <div className="form-group w-[50%]">
-              <label htmlFor="email">Last Name</label>
+            <div className="mb-[1rem] w-[50%]">
+              <label className="font-semibold" htmlFor="lastname">
+                Last Name
+              </label>
               <input
                 type="text"
-                id="email"
+                id="lastname"
+                className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
                 placeholder="Enter last name"
                 value={lname}
                 onChange={(e) => setlName(e.target.value)}
@@ -116,21 +124,27 @@ const Signup = () => {
           </div>
 
           <div className="flex gap-6">
-            <div className="form-group w-[50%]">
-              <label htmlFor="email">Email</label>
+            <div className="mb-[1rem] w-[50%]">
+              <label className="font-semibold" htmlFor="email">
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
+                className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
                 placeholder="Enter email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="form-group w-[50%]">
-              <label htmlFor="email">Phone Number</label>
+            <div className="mb-[1rem] w-[50%]">
+              <label className="font-semibold" htmlFor="phonenumber">
+                Phone Number
+              </label>
               <input
                 type="text"
-                id="email"
+                id="phonenumber"
+                className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
                 placeholder="Enter email"
                 value={phone}
                 onChange={(e) => setphone(e.target.value)}
@@ -138,28 +152,37 @@ const Signup = () => {
             </div>
           </div>
           <div className="flex gap-6">
-            <div className="form-group w-[50%]">
-              <label htmlFor="password">Password</label>
+            <div className="mb-[1rem] w-[50%]">
+              <label className="font-semibold" htmlFor="password">
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
+                className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="form-group w-[50%]">
-              <label htmlFor="cpassword">Confirm Password</label>
+            <div className="mb-[1rem] w-[50%]">
+              <label className="font-semibold" htmlFor="cpassword">
+                Confirm Password
+              </label>
               <input
                 type="password"
                 id="cpassword"
+                className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
                 placeholder="Enter confirm password"
                 value={confirmpassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
           </div>
-          <button type="submit" className="btn-login mt-6">
+          <button
+            type="submit"
+            className="mt-4 transition font-medium px-[38px] py-[14px] border rounded-lg  text-primary bg-white hover:text-white hover:bg-primary"
+          >
             Sign Up
           </button>
         </form>
