@@ -11,6 +11,7 @@ import {
   SINGLE_ITEM_GET_SUCCESS,
   SINGLE_ITEM_GET_ERROR,
 } from "../Constants";
+import { url } from "../../App";
 
 export const MenuDataAction = (params) => async (dispatch) => {
   try {
@@ -18,10 +19,7 @@ export const MenuDataAction = (params) => async (dispatch) => {
       type: MENU_GETDATA_LOADING,
     });
 
-    const { data } = await axios.get(
-      "http://127.0.0.1:5000/menu/all-items",
-      params
-    );
+    const { data } = await axios.get(`${url}menu/all-items`, params);
 
     dispatch({
       type: MENU_GETDATA_SUCCESS,
@@ -41,9 +39,7 @@ export const GetSingleItemAction = (params) => async (dispatch) => {
       type: SINGLE_ITEM_GET_LOADING,
     });
 
-    const { data } = await axios.get(
-      `http://127.0.0.1:5000/menu/single-item/${params}`
-    );
+    const { data } = await axios.get(`${url}menu/single-item/${params}`);
 
     dispatch({
       type: SINGLE_ITEM_GET_SUCCESS,

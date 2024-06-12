@@ -11,6 +11,7 @@ import {
   PROFILE_GETDATA_SUCCESS,
   PROFILE_GETDATA_ERROR,
 } from "../Constants";
+import { url } from "../../App";
 
 export const RegisterAction = (params) => async (dispatch) => {
   try {
@@ -18,15 +19,11 @@ export const RegisterAction = (params) => async (dispatch) => {
       type: SIGNUP_USER_LOADING,
     });
 
-    const { data } = await axios.post(
-      "http://127.0.0.1:5000/auth/signup",
-      params,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const { data } = await axios.post(`${url}auth/signup`, params, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     dispatch({
       type: SIGNUP_USER_SUCCESS,
@@ -46,16 +43,11 @@ export const LoginAction = (params) => async (dispatch) => {
       type: LOGIN_USER_LOADING,
     });
 
-    const { data } = await axios.post(
-      "http://127.0.0.1:5000/auth/login",
-      params,
-      {
-        headers: {
-          // "Content-Type": "multipart/form-data",
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const { data } = await axios.post(`${url}auth/login`, params, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     dispatch({
       type: LOGIN_USER_SUCCESS,
@@ -71,24 +63,10 @@ export const LoginAction = (params) => async (dispatch) => {
 
 export const LogoutAction = (params) => async (dispatch) => {
   try {
-    // dispatch({
-    //   type: variable.LOGIN_USER_LOADING,
-    // });
-
-    // const { data } = await axios.post(
-    //   "http://127.0.0.1:5000/auth/login",
-    //   params
-    // );
-
     dispatch({
       type: LOGOUT_USER,
     });
-  } catch (error) {
-    // dispatch({
-    //   type: variable.LOGIN_USER_ERROR,
-    //   payload: error,
-    // });
-  }
+  } catch (e) {}
 };
 
 export const GetProfileData = (params) => async (dispatch) => {
@@ -97,15 +75,12 @@ export const GetProfileData = (params) => async (dispatch) => {
       type: PROFILE_GETDATA_LOADING,
     });
     const token = localStorage.getItem("Token");
-    const { data } = await axios.get(
-      "http://127.0.0.1:5000/auth/user-profile",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const { data } = await axios.get(`${url}auth/user-profile`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     dispatch({
       type: PROFILE_GETDATA_SUCCESS,

@@ -11,7 +11,7 @@ export const aboutPostAction = (params) => async (dispatch) => {
       type: ABOUT_POST_LOADING,
     });
 
-    const { data } = await axios.post("http://127.0.0.1:5000", params, {
+    const { data } = await axios.post(`${url}`, params, {
       headers: {
         "Content-Type": "application/json",
       },

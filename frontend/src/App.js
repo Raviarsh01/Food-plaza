@@ -19,6 +19,8 @@ import Checkout from "./Pages/Menu/Checkout";
 import Payment from "./Pages/Menu/Payment";
 import PageNotFound from "./Components/PageNotFound";
 
+export const url = process.env.REACT_APP_BACKEND_URL;
+
 function App() {
   return (
     <Router>
