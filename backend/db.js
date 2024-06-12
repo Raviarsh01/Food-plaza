@@ -1,33 +1,31 @@
+// const mongoose = require("mongoose");
+
+// const url =
+//   "mongodb+srv://raviarsh786:<0C0uyvnLFhuOToD9>@cluster0.8w4fcgw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+// const ConnectToMongo = () => {
+//   mongoose
+//     .connect(url)
+//     .then(() => {
+//       console.log("Database connection successful");
+//     })
+//     .catch((err) => {
+//       console.log("Database connection error", err);
+//     });
+// };
+
+// module.exports = ConnectToMongo;
+
 const mongoose = require("mongoose");
-
-const url = "mongodb://127.0.0.1:27017";
-
 const ConnectToMongo = () => {
   mongoose
-    .connect(url, {
-      dbName: "FreshBox",
-    })
+    .connect(process.env.PROD_URL)
     .then(() => {
       console.log("Database connection successful");
     })
     .catch((err) => {
-      console.log("Database connection error");
+      console.log("Database connection error", err);
     });
 };
 
 module.exports = ConnectToMongo;
-
-// const mongoose = require("mongoose");
-
-// const connectionString = "mongodb://127.0.0.1:27017";
-
-// mongoose.connect(connectionString);
-
-// const db = mongoose.connection;
-
-// db.on("error", console.error.bind(console, "MongoDB connection error:"));
-// db.once("open", () => {
-//   console.log("Connected to MongoDB");
-// });
-
-// module.exports = db;
