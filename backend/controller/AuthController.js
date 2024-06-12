@@ -13,7 +13,6 @@ const UserSignup = async (req, res) => {
       return res.status(400).json({ message: "Email already exists" });
     }
   } catch (error) {
-    console.error("error....", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -48,13 +47,11 @@ const UserLogin = async (req, res) => {
     };
     return res.status(200).json(apiData);
   } catch (error) {
-    console.log("error....", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
 const UserProfile = async (req, res) => {
-  console.log("profile api hti");
   try {
     const UserData = await userRegister
       .findById(req.user.userId)
@@ -64,13 +61,11 @@ const UserProfile = async (req, res) => {
       UserData: {
         ...UserData.toObject(),
         fullName: `${UserData.firstName} ${UserData.lastName}`,
-        // dateCreatedModified: "sdhsjd",
       },
       message: "Success data fetch",
     };
     return res.status(200).json(data);
   } catch (error) {
-    console.log("error....", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
