@@ -23,7 +23,7 @@ export const MenuDataAction = (params) => async (dispatch) => {
 
     dispatch({
       type: MENU_GETDATA_SUCCESS,
-      payload: data,
+      payload: data?.response,
     });
   } catch (error) {
     dispatch({
