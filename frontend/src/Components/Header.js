@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import { FaCartShopping } from "react-icons/fa6";
 import Button from "../Components/Button";
 import { IoIosRestaurant } from "react-icons/io";
+import { FiMenu } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ const Header = () => {
   const { user } = useSelector((state) => state.LoginReducer);
   const number = cartData?.length;
   const [login, setlogin] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     if (user?.userData) {
       setlogin(true);
@@ -51,7 +54,7 @@ const Header = () => {
             </h2>
           </Link>
         </div>
-        <div className="flex gap-10 transition">
+        <div className="hidden md:flex gap-10 transition">
           {links?.map(({ value, link }, i) => (
             <Link
               to={link}
@@ -65,7 +68,7 @@ const Header = () => {
             </Link>
           ))}
         </div>
-        <div className="flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-6">
           <Link to="/cart" className="no-underline relative text-primary">
             <FaCartShopping className="text-[28px] font-medium" />
             <span className="absolute top-[-12px] right-[-11px] text-sm border-[1px] border-primary rounded-full w-[22px] h-[22px] flex items-center justify-center bg-white">
@@ -90,6 +93,62 @@ const Header = () => {
             />
           )}
         </div>
+
+        {/* mobile menu */}
+        <div className="flex gap-4 md:hidden">
+          <Link to="/cart" className="no-underline relative text-primary">
+            <FaCartShopping className="text-[28px] font-medium" />
+            <span className="absolute top-[-12px] right-[-11px] text-sm border-[1px] border-primary rounded-full w-[22px] h-[22px] flex items-center justify-center bg-white">
+              {number}
+            </span>
+          </Link>
+          <button onClick={() => setMenuOpen((prev) => !prev)}>
+            {menuOpen ? (
+              <IoClose className="text-3xl" />
+            ) : (
+              <FiMenu className="text-3xl" />
+            )}
+          </button>
+        </div>
+
+        {menuOpen && (
+          <div className="block p-6 md:hidden absolute bg-white top-[70px] right-0 w-[65%] h-screen">
+            <div className="flex flex-col gap-6 transition">
+              {links?.map(({ value, link }, i) => (
+                <Link
+                  onClick={() => setMenuOpen((prev) => !prev)}
+                  to={link}
+                  className={`no-underline font-medium text-secondary text-base px-2 pb-1`}
+                >
+                  {value}
+                </Link>
+              ))}
+            </div>
+
+            <div className="flex mt-8 items-center gap-6">
+              {login ? (
+                <>
+                  <button
+                    className="transition font-medium px-[38px] py-[14px] border rounded rounded-tl-2xl rounded-br-2xl text-primary bg-white hover:text-white hover:bg-primary"
+                    onClick={() => {
+                      handleLogout();
+                      setMenuOpen((prev) => !prev);
+                    }}
+                  >
+                    Log out
+                  </button>
+                </>
+              ) : (
+                <Button
+                  href="/login"
+                  text="Log In"
+                  variant="outlined"
+                  background="primary"
+                />
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

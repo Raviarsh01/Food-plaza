@@ -22,7 +22,7 @@ const Contact = () => {
               onSubmit={handleSubmit}
               className="absolute shadow top-[70px] max-w-[800px] w-full rounded-xl bg-white p-[40px] grid grid-cols-2 gap-[26px]"
             >
-              <div>
+              <div className="col-span-2 md:col-span-1">
                 <label className="font-semibold text-secondary">Name</label>
                 <input
                   type="text"
@@ -30,7 +30,7 @@ const Contact = () => {
                   placeholder="Enter your name"
                 />
               </div>
-              <div>
+              <div className="col-span-2 md:col-span-1">
                 <label className="font-semibold text-secondary">Email</label>
                 <input
                   type="email"
@@ -65,7 +65,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className="mt-[380px] mb-[90px] max-w-[800px] w-full mx-auto grid grid-cols-3">
+      <div className="mt-[500px] md:mt-[380px] mb-[90px] max-w-[800px] w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 px-4 md:px-0 md:gap-0">
         <div>
           <h2 className="text-secondary text-xl font-semibold">Contact Us</h2>
           <div className="flex gap-2 items-center text-third mt-6">

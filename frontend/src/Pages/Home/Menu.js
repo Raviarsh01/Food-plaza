@@ -60,7 +60,7 @@ const Menu = () => {
           need to change to create a truly happens.
         </p>
 
-        <div className="flex gap-6 justify-center my-[40px]">
+        <div className="flex gap-6 flex-wrap justify-center my-[40px]">
           <button
             className={`transition min-w-[120px] border-[1px] h-[48px] rounded rounded-tl-2xl rounded-br-2xl font-semibold ${
               tabs === "All"
@@ -92,7 +92,7 @@ const Menu = () => {
           </p>
         )}
 
-        <div className="grid gap-6 grid-cols-4">
+        <div className="grid px-4 gap-12 md:gap-6 grid-cols-1 md:grid-cols-4">
           {Items?.map((item, i) => (
             <div key={i} className="rounded-t-xl overflow-hidden">
               <img src={item.image} alt="menu" className="w-full h-[230px]" />
@@ -117,8 +117,8 @@ const Menu = () => {
         </div>
       </div>
       <div className="bg-[#e9e9e947]">
-        <div className="main-container py-[90px] flex gap-10">
-          <div className="w-[40%] flex flex-col justify-center">
+        <div className="main-container py-[90px] flex flex-col md:flex-row gap-10">
+          <div className="w-full md:w-[40%] flex flex-col justify-center">
             <h2 className="text-5xl font-bold text-secondary leading-tight">
               You can order through apps
             </h2>
@@ -127,7 +127,7 @@ const Menu = () => {
               bibendum sed et aliquet aliquet risus tempor semper.
             </p>
           </div>
-          <div className="w-[60%] flex flex-wrap gap-10 justify-center">
+          <div className="w-full md:w-[60%] flex flex-wrap gap-10 justify-center">
             {imagesData?.map((value, i) => (
               <div
                 key={i}

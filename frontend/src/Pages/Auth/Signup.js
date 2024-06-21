@@ -83,8 +83,8 @@ const Signup = () => {
   return render ? (
     <Loader />
   ) : (
-    <div className="w-[100vw] h-[100vh] flex justify-between items-center">
-      <div className="w-[860px] mx-auto shadow rounded-lg p-[50px]">
+    <div className="w-[100vw] my-8 h-auto md:h-[100vh] flex justify-between items-center">
+      <div className="w-[400px] md:w-[860px] mx-auto shadow rounded-lg p-[50px]">
         <div className="relative">
           <h2 className="text-center text-secondary font-semibold text-4xl">
             Sign Up
@@ -94,8 +94,8 @@ const Signup = () => {
           </button>
         </div>
         <form className="flex flex-col text-secondary" onSubmit={handleSubmit}>
-          <div className="flex gap-6">
-            <div className="mb-[1rem] w-[50%]">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-6">
+            <div className="mb-[1rem] w-full md:w-[50%]">
               <label className="font-semibold" htmlFor="firstname">
                 First Name
               </label>
@@ -108,7 +108,7 @@ const Signup = () => {
                 onChange={(e) => setfName(e.target.value)}
               />
             </div>
-            <div className="mb-[1rem] w-[50%]">
+            <div className="mb-[1rem] w-full md:w-[50%]">
               <label className="font-semibold" htmlFor="lastname">
                 Last Name
               </label>
@@ -123,8 +123,8 @@ const Signup = () => {
             </div>
           </div>
 
-          <div className="flex gap-6">
-            <div className="mb-[1rem] w-[50%]">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-6">
+            <div className="mb-[1rem] w-full md:w-[50%]">
               <label className="font-semibold" htmlFor="email">
                 Email
               </label>
@@ -137,7 +137,7 @@ const Signup = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="mb-[1rem] w-[50%]">
+            <div className="mb-[1rem] w-full md:w-[50%]">
               <label className="font-semibold" htmlFor="phonenumber">
                 Phone Number
               </label>
@@ -151,8 +151,8 @@ const Signup = () => {
               />
             </div>
           </div>
-          <div className="flex gap-6">
-            <div className="mb-[1rem] w-[50%]">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-6">
+            <div className="mb-[1rem] w-full md:w-[50%]">
               <label className="font-semibold" htmlFor="password">
                 Password
               </label>
@@ -165,7 +165,7 @@ const Signup = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="mb-[1rem] w-[50%]">
+            <div className="mb-[1rem] w-full md:w-[50%]">
               <label className="font-semibold" htmlFor="cpassword">
                 Confirm Password
               </label>

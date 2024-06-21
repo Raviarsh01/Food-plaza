@@ -51,7 +51,7 @@ const About = () => {
       <h2 className="text-5xl font-bold text-center text-secondary leading-tight pt-[50px]">
         About Us
       </h2>
-      <div className="main-container pt-[70px] pb-[90px] grid grid-cols-2">
+      <div className="main-container pt-[70px] pb-[90px] gap-10 md:gap-0 grid grid-cols-1 md:grid-cols-2">
         <div>
           <img className="rounded-xl" src={Image1} alt="about" />
         </div>
@@ -70,7 +70,7 @@ const About = () => {
         </div>
       </div>
       <div className="bg-[#e9e9e947] ">
-        <div className="main-container py-[90px] grid grid-cols-3 gap-24">
+        <div className="main-container py-[90px] grid grid-cols-1 md:grid-cols-3 gap-24">
           {data?.gridData?.map(({ icon, heading, content }, i) => (
             <div className="flex gap-6 items-start">
               {icon}
@@ -86,7 +86,7 @@ const About = () => {
           ))}
         </div>
       </div>
-      <div className="py-[90px] main-container grid grid-cols-2">
+      <div className="py-[90px] main-container flex flex-col-reverse md:flex-row  gap-10 md:gap-0">
         <div>
           <h2 className="text-5xl font-bold text-secondary leading-tight">
             A little information for our valuable guest
@@ -96,7 +96,7 @@ const About = () => {
             about the overall experience. Our staff, renowned for their warmth
             and dedication, strives to make every visit an unforgettable event.
           </p>
-          <div className="mt-[60px] grid grid-cols-2 gap-6">
+          <div className="mt-[60px] grid grid-cols-1 md:grid-cols-2 gap-6">
             {data?.cardsData?.map(({ heading, content }, i) => (
               <div
                 key={i}

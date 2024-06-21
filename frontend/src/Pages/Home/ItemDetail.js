@@ -11,7 +11,7 @@ import Loader from "../../Components/Loader";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 
-const ViewItemDetail = () => {
+const ItemDetail = () => {
   const dispatch = useDispatch();
   const { Itemid } = useParams();
   const { cartData } = useSelector((state) => state.cartReducer);
@@ -61,13 +61,13 @@ const ViewItemDetail = () => {
         We consider all the drivers of change gives you the components you need
         to change to create a truly happens.
       </p>
-      <div className="mt-[40px] grid grid-cols-2">
+      <div className="mt-[40px] gap-10 md:gap-0 grid grid-cols-1 md:grid-cols-2">
         {userData.length != 0 ? (
           userData.map((item) => (
             <>
               <div className="flex justify-center">
                 <img
-                  className="h-[600px] w-[500px] rounded-xl"
+                  className=" h-[360px] md:h-[600px] w-[360px] md:w-[500px] rounded-xl"
                   src={item.image}
                   alt="detail"
                 ></img>
@@ -122,4 +122,4 @@ const ViewItemDetail = () => {
   );
 };
 
-export default ViewItemDetail;
+export default ItemDetail;

@@ -66,9 +66,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex justify-between py-4">
-          <p>© 2022 Restaurants. All Right Reserved. Designed by Isaac</p>
-          <div className="flex gap-8">
+        <div className="flex justify-between py-4 flex-col md:flex-row">
+          <p className="mb-8 md:mb-0">
+            © 2022 Restaurants. All Right Reserved. Designed by Isaac
+          </p>
+          <div className="flex gap-8 flex-col md:flex-row">
             <p>Terms of Service</p>
             <p>Privacy Policy</p>
           </div>

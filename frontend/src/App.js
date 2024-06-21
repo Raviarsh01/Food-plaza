@@ -9,7 +9,7 @@ import Signup from "./Pages/Auth/Signup";
 import ForgetPassword from "./Pages/Auth/ForgetPassword";
 
 import Layout from "./Components/Layout";
-import ViewItemDetail from "./Pages/Cart/ViewItemDetail";
+import ItemDetail from "./Pages/Home/ItemDetail";
 import Home from "./Pages/Home/Home";
 import Menu from "./Pages/Home/Menu";
 import About from "./Pages/Home/About";
@@ -31,10 +31,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/menu" element={<Menu />} />
-          <Route
-            path="/menu/item-detail/:Itemid"
-            element={<ViewItemDetail />}
-          />
+          <Route path="/menu/item-detail/:Itemid" element={<ItemDetail />} />
 
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />

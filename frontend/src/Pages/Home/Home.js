@@ -67,8 +67,8 @@ const Home = () => {
   ];
   return (
     <div className="">
-      <div className="pt-[70px] pb-[100px] main-container grid grid-cols-2">
-        <div>
+      <div className="pt-[70px] pb-[100px] main-container flex gap-16 md:0 flex-col-reverse md:flex-row">
+        <div className="w-full md:w-1/2">
           <img className="w-[100px] h-[100px]" src={Image1} alt="home" />
           <h1 className="text-6xl font-bold text-secondary mt-[30px] leading-tight">
             We provide the best food for you
@@ -80,14 +80,14 @@ const Home = () => {
           </p>
           <ButtonsDuo />
         </div>
-        <div className="relative flex justify-center items-center">
+        <div className="relative w-full md:w-1/2 flex justify-center items-center">
           <img
-            className="w-[450px] h-[600px] curved-twoSides"
+            className="w-[320px] md:w-[450px] h-[400px] md:h-[600px] curved-twoSides"
             src={Image2}
             alt="home"
           />
           <img
-            className="w-[364px] h-[364px] absolute bottom-[30px] left-[-17%]"
+            className="w-[210px] md:w-[364px] h-[210px] md:h-[364px] absolute bottom-[30px] left-[-20px] md:left-[-17%]"
             src={Image3}
             alt="home"
           />
@@ -105,7 +105,7 @@ const Home = () => {
             Explore a world of flavors and embark on a gastronomic adventure
             with us.
           </p>
-          <div className="text-center flex gap-[30px]">
+          <div className="text-center flex gap-44 md:gap-[30px] flex-wrap md:flex-nowrap">
             {data?.map(({ img, heading, content, price }, i) => (
               <div
                 key={i}
@@ -132,9 +132,13 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="mt-[100px] grid grid-cols-2">
+          <div className="mt-[100px] grid gap-8 md:gap-0 grid-cols-1 md:grid-cols-2">
             <div className="">
-              <img className=" w-full max-w-[560px]" src={Image3} alt="home" />
+              <img
+                className=" w-full max-w-[320px] mx-auto md:mx-0 md:max-w-[560px]"
+                src={Image3}
+                alt="home"
+              />
             </div>
             <div className="flex flex-col justify-center">
               <h2 className="text-5xl font-bold text-secondary leading-tight">
@@ -150,8 +154,8 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="py-[90px] main-container grid grid-cols-2">
-        <div className="flex flex-col justify-center">
+      <div className="py-[90px] main-container flex gap-8 md:gap-0 flex-col-reverse md:flex-row">
+        <div className="flex flex-col justify-center w-full md:w-1/2">
           <h2 className="text-5xl font-bold text-secondary">
             Our Expects Chef
           </h2>
@@ -159,7 +163,7 @@ const Home = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <div className="grid grid-cols-2 text-third mb-[34px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 text-third mb-[34px]">
             <div>
               {[
                 "Lorem ipsum dolor sit amet, consectetur",
@@ -168,7 +172,7 @@ const Home = () => {
               ]?.map((value, i) => (
                 <div
                   key={i}
-                  className="flex gap-2.5 items-center mb-[24px] last:mb-0"
+                  className="flex gap-2.5 items-center mb-[24px] md:last:mb-0"
                 >
                   <div className="w-6 h-6 rounded-full bg-primary flex justify-center items-center ">
                     <img src="/Images/tick.svg" alt="home" />
@@ -197,12 +201,12 @@ const Home = () => {
           </div>
           <ButtonsDuo />
         </div>
-        <div className="flex justify-center">
-          <img className="w-[540px]" src={Image5} alt="home" />
+        <div className="flex justify-center  w-full md:w-1/2">
+          <img className="w-[300px] md:w-[540px]" src={Image5} alt="home" />
         </div>
       </div>
 
-      <div className="py-[90px] main-container grid grid-cols-2 gap-24">
+      <div className="py-[90px] main-container grid grid-cols-1 md:grid-cols-2 gap-24">
         <div className="grid grid-cols-2 gap-4">
           <img src={Image6} className="row-span-2 w-full h-[95%]" alt="home" />
           <img src={Image7} className="w-full h-[220px] mt-8" alt="home" />
@@ -238,7 +242,7 @@ const Home = () => {
           eiusmod tempor incididunt
         </p>
 
-        <div className="curved-twoSides relative flex flex-col items-center bg-white w-[640px] mx-auto px-[70px] pt-[80px] pb-[40px]">
+        <div className="curved-twoSides relative flex flex-col items-center bg-white w-[400px] md:w-[640px] mx-auto px-[40px] md:px-[70px] pt-[80px] pb-[40px]">
           <img
             className="w-[110px] h-[110px] rounded-full absolute top-[-50px]"
             src="/Images/person-1.png"

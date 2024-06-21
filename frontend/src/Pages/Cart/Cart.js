@@ -58,57 +58,59 @@ const Cart = () => {
         </div>
       ) : (
         <>
-          <table className="text-secondary w-full">
-            <thead>
-              <tr className="border-b-[1px] border-[#DBDFD0]">
-                <th className="py-[16px] text-left">
-                  Items ({cartData?.length})
-                </th>
-                <th className="py-[16px] text-left">Price</th>
-                <th className="py-[16px] text-left">Quantity</th>
-                <th className="py-[16px] text-left">Total</th>
-                <th className="py-[16px] text-left">Action</th>
-              </tr>
-            </thead>
-            {cartData?.map((i) => (
-              <tbody className="second-color">
+          <div className="overflow-auto table-scrollbar">
+            <table className="w-[800px]  md-w-full text-secondary">
+              <thead>
                 <tr className="border-b-[1px] border-[#DBDFD0]">
-                  <td className="py-[16px]">{i.name}</td>
-                  <td>{i.price}</td>
-                  <td>
-                    <div className="flex items-center gap-2">
-                      <button
-                        className="rounded p-1 text-primary"
-                        onClick={(event) =>
-                          handleDec(event, i.itemId, i.quantity)
-                        }
-                      >
-                        <FaMinus />
-                      </button>
-                      <p className="min-w-[20px] flex justify-center">
-                        {i.quantity}
-                      </p>
-                      <button
-                        className="rounded p-1  text-primary"
-                        onClick={(event) => handleInc(event, i.itemId)}
-                      >
-                        <FaPlus />
-                      </button>
-                    </div>
-                  </td>
-                  <td>{i.price * i.quantity}</td>
-                  <td>
-                    <button onClick={() => handleRemove(i.itemId)}>
-                      Remove
-                    </button>
-                  </td>
+                  <th className="py-[16px] text-left">
+                    Items ({cartData?.length})
+                  </th>
+                  <th className="py-[16px] text-left">Price</th>
+                  <th className="py-[16px] text-left">Quantity</th>
+                  <th className="py-[16px] text-left">Total</th>
+                  <th className="py-[16px] text-left">Action</th>
                 </tr>
-              </tbody>
-            ))}
-          </table>
+              </thead>
+              {cartData?.map((i) => (
+                <tbody className="second-color">
+                  <tr className="border-b-[1px] border-[#DBDFD0]">
+                    <td className="py-[16px]">{i.name}</td>
+                    <td>{i.price}</td>
+                    <td>
+                      <div className="flex items-center gap-2">
+                        <button
+                          className="rounded p-1 text-primary"
+                          onClick={(event) =>
+                            handleDec(event, i.itemId, i.quantity)
+                          }
+                        >
+                          <FaMinus />
+                        </button>
+                        <p className="min-w-[20px] flex justify-center">
+                          {i.quantity}
+                        </p>
+                        <button
+                          className="rounded p-1  text-primary"
+                          onClick={(event) => handleInc(event, i.itemId)}
+                        >
+                          <FaPlus />
+                        </button>
+                      </div>
+                    </td>
+                    <td>{i.price * i.quantity}</td>
+                    <td>
+                      <button onClick={() => handleRemove(i.itemId)}>
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
+            </table>
+          </div>
 
-          <div className="mt-8 flex justify-between items-center">
-            <div className="flex justify-between items-center gap-[20px]">
+          <div className="mt-8 flex flex-col-reverse md:flex-row justify-between items-start md:items-center">
+            <div className="flex mt-6 md:mt-0 flex-wrap justify-between items-center gap-[20px]">
               <Button
                 href="/menu"
                 text="Return to Menu"
