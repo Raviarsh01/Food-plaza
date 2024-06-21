@@ -125,6 +125,7 @@ const Home = () => {
                 <Link
                   to="/menu"
                   className=" text-base text-primary font-bold hover:underline"
+                  onClick={() => localStorage.setItem(`${heading}`, true)}
                 >
                   Explore Menu
                 </Link>

@@ -12,8 +12,20 @@ const Menu = () => {
   const [tabsArray, setTabsArray] = useState([]);
   const { MenuData } = useSelector((state) => state.MenuReducer);
 
+  const arr = ["Pizza", "Shakes", "Burger"];
+
   useEffect(() => {
     dispatch(MenuDataAction());
+
+    arr.forEach((i) => {
+      const tab = localStorage.getItem(i);
+      console.log(tab);
+      if (tab) {
+        setTabs(i);
+        localStorage.removeItem(i);
+      }
+    });
+
     window.scroll(0, 0);
   }, []);
 

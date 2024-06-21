@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FaLinkedinIn,
   FaFacebookF,
@@ -6,10 +7,27 @@ import {
   FaInstagram,
 } from "react-icons/fa6";
 
-import { Link } from "react-router-dom";
 import { IoIosRestaurant } from "react-icons/io";
 
 const Footer = () => {
+  const navigation = [
+    {
+      value: "Menu",
+      href: "/menu",
+    },
+    {
+      value: "Contact us",
+      href: "/contact",
+    },
+    {
+      value: "Main dishes",
+      href: "/menu",
+    },
+    {
+      value: "About us",
+      href: "/about",
+    },
+  ];
   return (
     <footer className="bg-secondary text-white">
       <div className="main-container">
@@ -35,17 +53,27 @@ const Footer = () => {
 
           <div className="mt-[8px]">
             <h2 className="font-semibold mb-[24px]">NAVIGATION</h2>
-            {["Menu", "Contact us", "Main dishes", "About us"].map(
-              (value, i) => (
-                <p className="mb-[18px]">{value}</p>
-              )
-            )}
+            {navigation?.map(({ value, href }, i) => (
+              <div key={i} className="mb-[18px]">
+                <Link to={href} className="text-base text-white">
+                  {value}
+                </Link>
+              </div>
+            ))}
           </div>
 
           <div className="mt-[8px]">
             <h2 className="font-semibold mb-[24px]">MENU</h2>
             {["Pizza", "Burger", "Shakes", "Drinks"].map((value, i) => (
-              <p className="mb-[18px]">{value}</p>
+              <div key={i} className="mb-[18px]">
+                <Link
+                  to="/menu"
+                  className="text-base text-white"
+                  onClick={() => localStorage.setItem(`${value}`, true)}
+                >
+                  {value}
+                </Link>
+              </div>
             ))}
           </div>
 
