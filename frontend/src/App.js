@@ -9,14 +9,14 @@ import Signup from "./Pages/Auth/Signup";
 import ForgetPassword from "./Pages/Auth/ForgetPassword";
 
 import Layout from "./Components/Layout";
-import ViewItemDetail from "./Pages/Menu/ViewItemDetail";
+import ViewItemDetail from "./Pages/Cart/ViewItemDetail";
 import Home from "./Pages/Home/Home";
-import Menu from "./Pages/Menu/Menu";
+import Menu from "./Pages/Home/Menu";
 import About from "./Pages/Home/About";
 import Contact from "./Pages/Home/Contact";
-import Cart from "./Pages/Menu/Cart";
-import Checkout from "./Pages/Menu/Checkout";
-import Payment from "./Pages/Menu/Payment";
+import Cart from "./Pages/Cart/Cart";
+import Checkout from "./Pages/Cart/Checkout";
+import Payment from "./Pages/Cart/Payment";
 import PageNotFound from "./Components/PageNotFound";
 
 export const url = process.env.REACT_APP_BACKEND_URL;

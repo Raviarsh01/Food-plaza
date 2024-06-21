@@ -7,15 +7,11 @@ const Layout = () => {
   return (
     <>
       <div className="layout">
-        <div>
-          <Header />
-        </div>
+        <div>{/* <Header /> */}</div>
         <div className="mt-[90px]">
           <Outlet />
         </div>
-        <div>
-          <Footer />
-        </div>
+        <div>{/* <Footer /> */}</div>
       </div>
     </>
   );

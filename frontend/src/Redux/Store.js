@@ -10,7 +10,7 @@ import {
   LoginReducer,
   ProfileGetData,
 } from "./Reducer/AuthReducer";
-import { AboutPostReducer } from "./Reducer/OtherReducer";
+import { AboutPostReducer } from "./Reducer/HomeReducer";
 
 const allReducers = combineReducers({
   RegisterReducer,
