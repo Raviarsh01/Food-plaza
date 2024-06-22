@@ -8,7 +8,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 const Menu = () => {
   const dispatch = useDispatch();
   const [Items, SetItems] = useState([]);
-  const [tabs, setTabs] = useState("All");
+  const [tabs, setTabs] = useState("");
   const [tabsArray, setTabsArray] = useState([]);
   const { MenuData } = useSelector((state) => state.MenuReducer);
 
@@ -23,13 +23,13 @@ const Menu = () => {
       setTabsArray([...new Set(filterTabs)]);
     }
 
-    tabsArray.forEach((i) => {
-      const tab = localStorage.getItem("menuTab");
-      if (tab === i) {
-        setTabs(tab);
-        localStorage.removeItem("menuTab");
-      }
-    });
+    const tab = localStorage.getItem("menuTab");
+    if (tabsArray.includes(tab)) {
+      setTabs(tab);
+      localStorage.removeItem("menuTab");
+    } else {
+      setTabs("All");
+    }
   }, [MenuData]);
 
   useEffect(() => {

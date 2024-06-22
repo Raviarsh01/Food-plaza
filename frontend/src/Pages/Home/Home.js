@@ -83,12 +83,12 @@ const Home = () => {
         <div className="w-full md:w-1/2 flex justify-center items-center">
           <div className="relative">
             <img
-              className="w-[320px] md:w-[450px] h-[400px] md:h-[600px] curved-twoSides"
+              className="w-[280px] md:w-[450px] h-[360px] md:h-[600px] curved-twoSides"
               src={Image2}
               alt="home"
             />
             <img
-              className="w-[210px] md:w-[364px] h-[210px] md:h-[364px] absolute bottom-[30px] left-[-70px] md:left-[-140px]"
+              className="w-[170px] md:w-[364px] h-[170px] md:h-[364px] absolute bottom-[30px] left-[-60px] md:left-[-140px]"
               src={Image3}
               alt="home"
             />

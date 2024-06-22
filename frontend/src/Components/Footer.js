@@ -98,7 +98,7 @@ const Footer = () => {
         </div>
 
         <div className="flex justify-between items-center md:items-start py-4 flex-col md:flex-row">
-          <p className="mb-8 md:mb-0">
+          <p className="mb-8 md:mb-0 text-center md:text-left">
             © 2022 Restaurants. All Right Reserved. Designed by Isaac
           </p>
           <div className="flex gap-8 flex-col md:flex-row">

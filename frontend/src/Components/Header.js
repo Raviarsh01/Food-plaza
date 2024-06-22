@@ -19,11 +19,28 @@ const Header = () => {
   const number = cartData?.length;
   const [login, setlogin] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     if (user?.userData) {
       setlogin(true);
     }
   }, [user]);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (event) => {
+    // console.log("hanlde click", event.target);
+    // const sidebarElement = document.getElementById("mobileMenu");
+    // console.log("sidebarElement", sidebarElement);
+    // if (sidebarElement !== event.target) {
+    //   setMenuOpen(false);
+    // }
+  };
 
   const handleLogout = async () => {
     await dispatch(LogoutAction());
@@ -113,7 +130,10 @@ const Header = () => {
         </div>
 
         {menuOpen && (
-          <div className="block p-6 md:hidden absolute bg-white top-[70px] right-0 w-[65%] h-screen">
+          <div
+            id="mobileMenu"
+            className="block p-6 md:hidden absolute bg-white top-[70px] right-0 w-[65%] h-screen"
+          >
             <div className="flex flex-col gap-6 transition">
               {links?.map(({ value, link }, i) => (
                 <Link
