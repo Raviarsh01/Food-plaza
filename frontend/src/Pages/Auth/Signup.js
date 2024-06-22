@@ -83,7 +83,7 @@ const Signup = () => {
   return render ? (
     <Loader />
   ) : (
-    <div className="w-[100vw] my-8 h-auto md:h-[100vh] flex justify-between items-center">
+    <div className="w-full my-8 h-auto md:h-screen flex justify-between items-center">
       <div className="w-[400px] md:w-[860px] mx-auto shadow rounded-lg p-[50px]">
         <div className="relative">
           <h2 className="text-center text-secondary font-semibold text-4xl">

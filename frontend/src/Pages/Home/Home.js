@@ -43,7 +43,7 @@ const Home = () => {
 
   const ButtonsDuo = () => {
     return (
-      <div className="flex gap-[25px]">
+      <div className="flex gap-[25px] justify-center md:justify-start">
         <Button
           href="/menu"
           text="Menu"
@@ -70,27 +70,29 @@ const Home = () => {
       <div className="pt-[70px] pb-[100px] main-container flex gap-16 md:0 flex-col-reverse md:flex-row">
         <div className="w-full md:w-1/2">
           <img className="w-[100px] h-[100px]" src={Image1} alt="home" />
-          <h1 className="text-6xl font-bold text-secondary mt-[30px] leading-tight">
+          <h1 className="text-6xl text-center md:text-left font-bold text-secondary mt-[30px] leading-tight">
             We provide the best food for you
           </h1>
-          <p className="max-w-[410px] text-base text-third leading-7 mt-[40px] mb-[50px]">
+          <p className=" max-w-full md:max-w-[410px] text-base text-center md:text-left text-third leading-7 mt-[40px] mb-[50px]">
             Savor exquisite flavors and create lasting memories in our inviting
             culinary sanctuary, where every bite is a delight and every moment
             is cherished. Welcome to our gastronomic paradise.
           </p>
           <ButtonsDuo />
         </div>
-        <div className="relative w-full md:w-1/2 flex justify-center items-center">
-          <img
-            className="w-[320px] md:w-[450px] h-[400px] md:h-[600px] curved-twoSides"
-            src={Image2}
-            alt="home"
-          />
-          <img
-            className="w-[210px] md:w-[364px] h-[210px] md:h-[364px] absolute bottom-[30px] left-[-20px] md:left-[-17%]"
-            src={Image3}
-            alt="home"
-          />
+        <div className="w-full md:w-1/2 flex justify-center items-center">
+          <div className="relative">
+            <img
+              className="w-[320px] md:w-[450px] h-[400px] md:h-[600px] curved-twoSides"
+              src={Image2}
+              alt="home"
+            />
+            <img
+              className="w-[210px] md:w-[364px] h-[210px] md:h-[364px] absolute bottom-[30px] left-[-70px] md:left-[-140px]"
+              src={Image3}
+              alt="home"
+            />
+          </div>
         </div>
       </div>
 
@@ -106,7 +108,7 @@ const Home = () => {
             with us.
           </p>
           <div className="text-center flex gap-44 md:gap-[30px] flex-wrap md:flex-nowrap">
-            {data?.map(({ img, heading, content, price }, i) => (
+            {data?.map(({ img, heading, content }, i) => (
               <div
                 key={i}
                 className="rounded-xl px-[20px] pt-[100px] pb-[40px] border-white border-2 hover:bg-white relative flex flex-col items-center"
@@ -125,7 +127,7 @@ const Home = () => {
                 <Link
                   to="/menu"
                   className=" text-base text-primary font-bold hover:underline"
-                  onClick={() => localStorage.setItem(`${heading}`, true)}
+                  onClick={() => localStorage.setItem("menuTab", `${heading}`)}
                 >
                   Explore Menu
                 </Link>
@@ -133,7 +135,7 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="mt-[100px] grid gap-8 md:gap-0 grid-cols-1 md:grid-cols-2">
+          <div className="mt-[100px] grid gap-8 md:gap-4 grid-cols-1 md:grid-cols-2">
             <div className="">
               <img
                 className=" w-full max-w-[320px] mx-auto md:mx-0 md:max-w-[560px]"
@@ -142,10 +144,10 @@ const Home = () => {
               />
             </div>
             <div className="flex flex-col justify-center">
-              <h2 className="text-5xl font-bold text-secondary leading-tight">
+              <h2 className="text-5xl text-center md:text-left font-bold text-secondary leading-tight">
                 Welcome to Our Restaurant
               </h2>
-              <p className="max-w-[460px] text-base text-third leading-7 mt-[30px] mb-[38px]">
+              <p className="max-w-full md:max-w-[460px] text-center md:text-left text-base text-third leading-7 mt-[30px] mb-[38px]">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
@@ -155,12 +157,12 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="py-[90px] main-container flex gap-8 md:gap-0 flex-col-reverse md:flex-row">
+      <div className="py-[90px] main-container flex gap-8 md:gap-4 flex-col-reverse md:flex-row">
         <div className="flex flex-col justify-center w-full md:w-1/2">
-          <h2 className="text-5xl font-bold text-secondary">
+          <h2 className="text-5xl  text-center md:text-left font-bold text-secondary">
             Our Expects Chef
           </h2>
-          <p className="max-w-[460px] text-base text-third leading-7 my-[30px]">
+          <p className="max-w-full md:max-w-[460px]  text-center md:text-left text-base text-third leading-7 my-[30px]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
@@ -173,7 +175,7 @@ const Home = () => {
               ]?.map((value, i) => (
                 <div
                   key={i}
-                  className="flex gap-2.5 items-center mb-[24px] md:last:mb-0"
+                  className="flex gap-2.5 items-center justify-center md:justify-start mb-[24px] md:last:mb-0"
                 >
                   <div className="w-6 h-6 rounded-full bg-primary flex justify-center items-center ">
                     <img src="/Images/tick.svg" alt="home" />
@@ -190,7 +192,7 @@ const Home = () => {
               ]?.map((value, i) => (
                 <div
                   key={i}
-                  className="flex gap-2.5 items-center mb-[24px] last:mb-0"
+                  className="flex gap-2.5 items-center justify-center md:justify-start mb-[24px] last:mb-0"
                 >
                   <div className="w-6 h-6 rounded-full bg-primary flex justify-center items-center ">
                     <img src="/Images/tick.svg" alt="home" />
@@ -214,14 +216,14 @@ const Home = () => {
           <img src={Image8} className="w-full h-[270px]" alt="home" />
         </div>
         <div className="flex flex-col justify-center">
-          <h2 className="text-5xl font-bold text-secondary leading-tight">
+          <h2 className="text-5xl text-center md:text-left font-bold text-secondary leading-tight">
             Fastest Food Delivery
           </h2>
-          <p className="max-w-[460px] text-base text-third leading-7  my-[30px]">
+          <p className="max-w-full md:max-w-[460px] text-center md:text-left text-base text-third leading-7  my-[30px]">
             Our visual designer lets you quickly and of drag a down your way to
             customapps for both keep desktop.
           </p>
-          <div>
+          <div className="min-w-[200px] mx-auto md:mx-0">
             {iconData?.map(({ icon, content }, i) => (
               <div key={i} className="flex gap-3 items-center mb-[20px]">
                 <div className="w-6 h-6 text-sm rounded-full bg-primary flex justify-center items-center text-white">

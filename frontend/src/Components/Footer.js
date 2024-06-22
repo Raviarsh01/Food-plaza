@@ -31,11 +31,11 @@ const Footer = () => {
   return (
     <footer className="bg-secondary text-white">
       <div className="main-container">
-        <div className="footer-grid py-8 border-b-[1px] border-white">
-          <div>
+        <div className="footer-grid  py-8 border-b-[1px] border-white">
+          <div className=" text-center md:text-left">
             <div>
               <Link
-                className="flex gap-1 items-end text-2xl font-semibold text-primary"
+                className="flex gap-1 items-end justify-center md:justify-start text-2xl font-semibold text-primary"
                 to="/"
               >
                 <IoIosRestaurant className="font-bold text-4xl" />
@@ -51,7 +51,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="mt-[8px]">
+          <div className="mt-[8px] text-center md:text-left">
             <h2 className="font-semibold mb-[24px]">NAVIGATION</h2>
             {navigation?.map(({ value, href }, i) => (
               <div key={i} className="mb-[18px]">
@@ -62,14 +62,14 @@ const Footer = () => {
             ))}
           </div>
 
-          <div className="mt-[8px]">
+          <div className="mt-[8px] text-center md:text-left">
             <h2 className="font-semibold mb-[24px]">MENU</h2>
             {["Pizza", "Burger", "Shakes", "Drinks"].map((value, i) => (
               <div key={i} className="mb-[18px]">
                 <Link
                   to="/menu"
                   className="text-base text-white"
-                  onClick={() => localStorage.setItem(`${value}`, true)}
+                  onClick={() => localStorage.setItem("menuTab", `${value}`)}
                 >
                   {value}
                 </Link>
@@ -77,16 +77,19 @@ const Footer = () => {
             ))}
           </div>
 
-          <div className="mt-[8px]">
+          <div className="mt-[8px] text-center md:text-left">
             <h2 className="font-semibold">FOLLOW US</h2>
-            <div className="flex gap-5 mt-6 mb-5">
+            <div className="flex gap-5 mt-6 mb-5 justify-center md:justify-start">
               {[
                 <FaFacebookF className="text-xl text-secondary" />,
                 <FaLinkedinIn className="text-xl text-secondary" />,
                 <FaTwitter className="text-xl text-secondary" />,
                 <FaInstagram className="text-xl text-secondary" />,
               ].map((value, i) => (
-                <div className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center">
+                <div
+                  key={i}
+                  className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center"
+                >
                   {value}
                 </div>
               ))}
@@ -94,7 +97,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex justify-between py-4 flex-col md:flex-row">
+        <div className="flex justify-between items-center md:items-start py-4 flex-col md:flex-row">
           <p className="mb-8 md:mb-0">
             © 2022 Restaurants. All Right Reserved. Designed by Isaac
           </p>

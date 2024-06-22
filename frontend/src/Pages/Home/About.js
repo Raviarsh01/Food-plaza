@@ -51,19 +51,22 @@ const About = () => {
       <h2 className="text-5xl font-bold text-center text-secondary leading-tight pt-[50px]">
         About Us
       </h2>
-      <div className="main-container pt-[70px] pb-[90px] gap-10 md:gap-0 grid grid-cols-1 md:grid-cols-2">
-        <div>
+      <div className="main-container pt-[70px] pb-[90px] gap-10 md:gap-4 grid grid-cols-1 md:grid-cols-2">
+        <div className="flex justify-center">
           <img className="rounded-xl" src={Image1} alt="about" />
         </div>
         <div className="flex flex-col justify-center">
-          <h2 className="text-5xl font-bold text-secondary leading-tight">
+          <h2 className="text-5xl text-center md:text-left font-bold text-secondary leading-tight">
             We provide healthy food for your family.
           </h2>
           {[
             " Our story began with a vision to create a unique dining experience that merges fine dining, exceptional service, and a vibrant ambiance. Rooted in city's rich culinary culture, we aim to honor our local roots while infusing a global palate.",
             "At place, we believe that dining is not just about food, but also about the overall experience. Our staff, renowned for their warmth and dedication, strives to make every visit an unforgettable event.",
           ].map((value, i) => (
-            <p key={i} className=" text-base text-third leading-7 mt-[30px]">
+            <p
+              key={i}
+              className="text-center md:text-left text-base text-third leading-7 mt-[30px]"
+            >
               {value}
             </p>
           ))}
@@ -72,7 +75,7 @@ const About = () => {
       <div className="bg-[#e9e9e947] ">
         <div className="main-container py-[90px] grid grid-cols-1 md:grid-cols-3 gap-24">
           {data?.gridData?.map(({ icon, heading, content }, i) => (
-            <div className="flex gap-6 items-start">
+            <div key={i} className="flex gap-6 items-start">
               {icon}
               <div>
                 <h3 className="text-xl text-secondary font-semibold">
@@ -86,12 +89,12 @@ const About = () => {
           ))}
         </div>
       </div>
-      <div className="py-[90px] main-container flex flex-col-reverse md:flex-row  gap-10 md:gap-0">
-        <div>
-          <h2 className="text-5xl font-bold text-secondary leading-tight">
+      <div className="py-[90px] main-container flex flex-col-reverse md:flex-row  gap-10 md:gap-4">
+        <div className="w-full md:w-1/2">
+          <h2 className="text-5xl text-center md:text-left font-bold text-secondary leading-tight">
             A little information for our valuable guest
           </h2>
-          <p className="text-base text-third leading-7 mt-[30px]">
+          <p className="text-base text-center md:text-left text-third leading-7 mt-[30px]">
             At place, we believe that dining is not just about food, but also
             about the overall experience. Our staff, renowned for their warmth
             and dedication, strives to make every visit an unforgettable event.
@@ -112,7 +115,7 @@ const About = () => {
             ))}
           </div>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center w-full md:w-1/2">
           <img className="rounded-xl" src={Image2} alt="about" />
         </div>
       </div>

@@ -59,7 +59,7 @@ const Cart = () => {
       ) : (
         <>
           <div className="overflow-auto table-scrollbar">
-            <table className="w-[800px]  md-w-full text-secondary">
+            <table className="w-[800px]  md:w-full text-secondary">
               <thead>
                 <tr className="border-b-[1px] border-[#DBDFD0]">
                   <th className="py-[16px] text-left">

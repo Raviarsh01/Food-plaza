@@ -61,10 +61,13 @@ const ItemDetail = () => {
         We consider all the drivers of change gives you the components you need
         to change to create a truly happens.
       </p>
-      <div className="mt-[40px] gap-10 md:gap-0 grid grid-cols-1 md:grid-cols-2">
+      <div>
         {userData.length != 0 ? (
-          userData.map((item) => (
-            <>
+          userData.map((item, i) => (
+            <div
+              key={i}
+              className="mt-[40px] gap-10 md:gap-4 grid grid-cols-1 md:grid-cols-2"
+            >
               <div className="flex justify-center">
                 <img
                   className=" h-[360px] md:h-[600px] w-[360px] md:w-[500px] rounded-xl"
@@ -112,7 +115,7 @@ const ItemDetail = () => {
                   Add to cart
                 </button>
               </div>
-            </>
+            </div>
           ))
         ) : (
           <Loader />

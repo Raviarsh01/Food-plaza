@@ -65,7 +65,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className="mt-[500px] md:mt-[380px] mb-[90px] max-w-[800px] w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 px-4 md:px-0 md:gap-0">
+      <div className="mt-[500px] md:mt-[380px] mb-[90px] max-w-[800px] w-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-4 md:px-0 md:gap-4">
         <div>
           <h2 className="text-secondary text-xl font-semibold">Contact Us</h2>
           <div className="flex gap-2 items-center text-third mt-6">

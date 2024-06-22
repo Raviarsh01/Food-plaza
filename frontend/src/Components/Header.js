@@ -58,6 +58,7 @@ const Header = () => {
           {links?.map(({ value, link }, i) => (
             <Link
               to={link}
+              key={i}
               className={`no-underline font-medium text-secondary text-base px-2 pb-1 ${
                 location.pathname === link
                   ? "border-b-[1px] border-primary"
@@ -118,6 +119,7 @@ const Header = () => {
                 <Link
                   onClick={() => setMenuOpen((prev) => !prev)}
                   to={link}
+                  key={i}
                   className={`no-underline font-medium text-secondary text-base px-2 pb-1`}
                 >
                   {value}
