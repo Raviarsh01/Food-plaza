@@ -15,7 +15,7 @@ const ItemDetail = () => {
   const dispatch = useDispatch();
   const { Itemid } = useParams();
   const { cartData } = useSelector((state) => state.cartReducer);
-  const { ItemData } = useSelector((state) => state.SingleItemReducer);
+  const { ItemData, loading } = useSelector((state) => state.SingleItemReducer);
   const [userData, setUserData] = useState([]);
   const [quantity, setquantity] = useState(0);
 
@@ -52,7 +52,9 @@ const ItemDetail = () => {
     }
   }, [handleInc, handleInc]);
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="pt-[50px] py-[100px] main-container">
       <h2 className="text-5xl font-bold text-center text-secondary leading-tight">
         {userData[0]?.category} Detail
@@ -62,7 +64,7 @@ const ItemDetail = () => {
         to change to create a truly happens.
       </p>
       <div>
-        {userData.length != 0 ? (
+        {userData.length != 0 &&
           userData.map((item, i) => (
             <div
               key={i}
@@ -116,10 +118,7 @@ const ItemDetail = () => {
                 </button>
               </div>
             </div>
-          ))
-        ) : (
-          <Loader />
-        )}
+          ))}
       </div>
     </div>
   );

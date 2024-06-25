@@ -1,5 +1,5 @@
 {
-  "name": "freshbox",
+  "name": "foodplaza",
   "version": "1.0.1",
   "description": "All api of auth , menu sections , carts are present",
   "main": "index.js",

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { MenuDataAction, addCart } from "../../Redux/Actions/CartActions";
 import { FaCartPlus } from "react-icons/fa6";
+import Loader from "../../Components/Loader";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 
 const Menu = () => {
@@ -10,7 +11,8 @@ const Menu = () => {
   const [Items, SetItems] = useState([]);
   const [tabs, setTabs] = useState("");
   const [tabsArray, setTabsArray] = useState([]);
-  const { MenuData } = useSelector((state) => state.MenuReducer);
+
+  const { MenuData, loading } = useSelector((state) => state.MenuReducer);
 
   useEffect(() => {
     dispatch(MenuDataAction());
@@ -22,15 +24,20 @@ const Menu = () => {
       const filterTabs = MenuData?.map((i) => i.category);
       setTabsArray([...new Set(filterTabs)]);
     }
-
-    const tab = localStorage.getItem("menuTab");
-    if (tabsArray.includes(tab)) {
-      setTabs(tab);
-      localStorage.removeItem("menuTab");
-    } else {
-      setTabs("All");
-    }
   }, [MenuData]);
+
+  useEffect(() => {
+    if (tabsArray.length > 0) {
+      const tab = localStorage.getItem("menuTab");
+      if (tabsArray.includes(tab)) {
+        setTabs(tab);
+        localStorage.removeItem("menuTab");
+        return;
+      } else {
+        setTabs("All");
+      }
+    }
+  }, [tabsArray]);
 
   useEffect(() => {
     if (MenuData) {
@@ -46,7 +53,6 @@ const Menu = () => {
   const handleadd = (item) => {
     dispatch(addCart(item));
   };
-
   const imagesData = [
     "/Images/deliveroo.png",
     "/Images/justEat.png",
@@ -57,7 +63,9 @@ const Menu = () => {
     "/Images/uberEats.png",
     "/Images/grubhub.png",
   ];
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <>
       <div className="main-container pt-[50px] py-[90px]">
         <h2 className="text-5xl font-bold text-center text-secondary leading-tight">
@@ -68,34 +76,36 @@ const Menu = () => {
           need to change to create a truly happens.
         </p>
 
-        <div className="flex gap-6 flex-wrap justify-center my-[40px]">
-          <button
-            className={`transition min-w-[120px] border-[1px] h-[48px] rounded rounded-tl-2xl rounded-br-2xl font-semibold ${
-              tabs === "All"
-                ? "bg-primary border-primary text-white"
-                : "bg-white border-third text-third"
-            }`}
-            onClick={() => setTabs("All")}
-          >
-            All
-          </button>
-          {tabsArray?.map((value, i) => (
+        {tabsArray?.length > 0 && (
+          <div className="flex gap-6 flex-wrap justify-center my-[40px]">
             <button
-              key={i}
               className={`transition min-w-[120px] border-[1px] h-[48px] rounded rounded-tl-2xl rounded-br-2xl font-semibold ${
-                tabs === value
+                tabs === "All"
                   ? "bg-primary border-primary text-white"
                   : "bg-white border-third text-third"
               }`}
-              onClick={() => setTabs(value)}
+              onClick={() => setTabs("All")}
             >
-              {value}
+              All
             </button>
-          ))}
-        </div>
+            {tabsArray?.map((value, i) => (
+              <button
+                key={i}
+                className={`transition min-w-[120px] border-[1px] h-[48px] rounded rounded-tl-2xl rounded-br-2xl font-semibold ${
+                  tabs === value
+                    ? "bg-primary border-primary text-white"
+                    : "bg-white border-third text-third"
+                }`}
+                onClick={() => setTabs(value)}
+              >
+                {value}
+              </button>
+            ))}
+          </div>
+        )}
 
         {Items.length == 0 && (
-          <p className="text-base text-center text-third leading-7">
+          <p className="text-base mt-[30px] text-center text-third leading-7">
             No item available
           </p>
         )}
