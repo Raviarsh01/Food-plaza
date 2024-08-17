@@ -19,7 +19,7 @@
 const mongoose = require("mongoose");
 const ConnectToMongo = () => {
   mongoose
-    .connect(process.env.PROD_URL)
+    .connect(process.env.PROD_URL ||process.env.LOCAL_URL )
     .then(() => {
       console.log("Database connection successful");
     })
