@@ -9,18 +9,15 @@ const Contact = () => {
   return (
     <>
       <div className="bg-[#e9e9e947]">
-        <div className="main-container h-[520px]">
-          <h2 className="text-5xl font-bold text-center text-secondary leading-tight pt-[50px]">
-            Contact Us
-          </h2>
-          <p className="max-w-[560px] mx-auto text-base text-center text-third leading-7 mt-[30px]">
+        <div className="main-container h-[520px] pt-[50px]">
+          <p className="max-w-[560px] mx-auto text-base text-center text-third leading-7">
             We consider all the drivers of change gives you the components you
             need to change to create a truly happens.
           </p>
           <div className="relative flex justify-center">
             <form
               onSubmit={handleSubmit}
-              className="absolute shadow top-[70px] max-w-[800px] w-full rounded-xl bg-white p-[40px] grid grid-cols-2 gap-[26px]"
+              className="absolute shadow top-[40px] max-w-[800px] w-full rounded-xl bg-white p-[40px] grid grid-cols-2 gap-[26px]"
             >
               <div className="col-span-2 md:col-span-1">
                 <label className="font-semibold text-secondary">Name</label>
@@ -65,7 +62,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className="mt-[500px] md:mt-[380px] mb-[90px] max-w-[800px] w-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-4 md:px-0 md:gap-4">
+      <div className="mt-[300px] md:mt-[230px] mb-[90px] max-w-[800px] w-full mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-4 md:px-0 md:gap-4">
         <div>
           <h2 className="text-secondary text-xl font-semibold">Contact Us</h2>
           <div className="flex gap-2 items-center text-third mt-6">
