@@ -48,9 +48,7 @@ const About = () => {
   };
   return (
     <>
-      <h2 className="text-5xl font-bold text-center text-secondary leading-tight pt-[50px]">
-        About Us
-      </h2>
+     
       <div className="main-container pt-[70px] pb-[90px] gap-10 md:gap-4 grid grid-cols-1 md:grid-cols-2">
         <div className="flex justify-center">
           <img className="rounded-xl" src={Image1} alt="about" />

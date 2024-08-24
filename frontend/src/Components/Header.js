@@ -9,6 +9,7 @@ import Button from "../Components/Button";
 import { IoIosRestaurant } from "react-icons/io";
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
+import { FaUser } from "react-icons/fa";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Header = () => {
   const number = cartData?.length;
   const [login, setlogin] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [onHover, setOnHover] = useState(false);
 
   useEffect(() => {
     if (user?.userData) {
@@ -45,6 +47,7 @@ const Header = () => {
   const handleLogout = async () => {
     await dispatch(LogoutAction());
     setlogin(false);
+    setOnHover((prev) => !prev);
     toast.success("Logout success", {
       autoClose: 1500,
     });
@@ -94,14 +97,37 @@ const Header = () => {
             </span>
           </Link>
           {login ? (
-            <>
-              <button
-                className="transition font-medium px-[38px] py-[14px] border rounded rounded-tl-2xl rounded-br-2xl text-primary bg-white hover:text-white hover:bg-primary"
-                onClick={handleLogout}
+            <div className="relative">
+              <div
+                onClick={() => setOnHover((prev) => !prev)}
+                className="cursor-pointer p-[8px] mr-[4px] transition font-medium border border-2 rounded-full text-primary bg-white"
               >
-                Log out
-              </button>
-            </>
+                <FaUser />
+              </div>
+              {onHover ? (
+                <div className="shadow absolute top-[2.5rem] right-0 bg-white px-4 py-2 rounded">
+                  <Link
+                  to="/profile"
+                    onClick={() => setOnHover((prev) => !prev)}
+                    className="hover:text-primary"
+                  >
+                    Profile
+                  </Link>
+                  <div className="border my-1 border-primary"></div>
+                  <Link
+                   to="/orders"
+                    onClick={() => setOnHover((prev) => !prev)}
+                    className="hover:text-primary"
+                  >
+                    Orders
+                  </Link>
+                  <div className="border my-1 border-primary"></div>
+                  <div className="cursor-pointer hover:text-primary" onClick={handleLogout}>
+                    Logout
+                  </div>
+                </div>
+              ) : null}
+            </div>
           ) : (
             <Button
               href="/login"

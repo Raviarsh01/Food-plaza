@@ -68,10 +68,7 @@ const Menu = () => {
   ) : (
     <>
       <div className="main-container pt-[50px] py-[90px]">
-        <h2 className="text-5xl font-bold text-center text-secondary leading-tight">
-          Our Menu
-        </h2>
-        <p className="max-w-[560px] mx-auto text-base text-center text-third leading-7 mt-[30px]">
+        <p className="max-w-[560px] mx-auto text-base text-center text-third leading-7">
           We consider all the drivers of change gives you the components you
           need to change to create a truly happens.
         </p>

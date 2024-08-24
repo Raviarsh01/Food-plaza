@@ -56,10 +56,8 @@ const ItemDetail = () => {
     <Loader />
   ) : (
     <div className="pt-[50px] py-[100px] main-container">
-      <h2 className="text-5xl font-bold text-center text-secondary leading-tight">
-        {userData[0]?.category} Detail
-      </h2>
-      <p className="max-w-[560px] mx-auto text-base text-center text-third leading-7 mt-[30px]">
+    
+      <p className="max-w-[560px] mx-auto text-base text-center text-third leading-7">
         We consider all the drivers of change gives you the components you need
         to change to create a truly happens.
       </p>
