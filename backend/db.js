@@ -19,11 +19,7 @@
 const mongoose = require("mongoose");
 const ConnectToMongo = () => {
   mongoose
-<<<<<<< HEAD
     .connect(process.env.PROD_URL || process.env.DEV_URL)
-=======
-    .connect(process.env.PROD_URL ||process.env.LOCAL_URL )
->>>>>>> 1c7b9e23393e82c348eadc7dee69f94a8c05dba8
     .then(() => {
       console.log("Database connection successful");
     })
