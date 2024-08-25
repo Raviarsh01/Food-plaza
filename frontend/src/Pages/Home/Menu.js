@@ -119,7 +119,7 @@ const Menu = () => {
                   {item.name}
                 </p>
                 <div className="flex gap-3 justify-center text-xl text-primary font-semibold">
-                  <Link to={`/menu/item-detail/${item.itemId}`}>
+                  <Link to={`/menu/item-detail/${item._id}`}>
                     <MdOutlineRemoveRedEye />
                   </Link>
                   <button onClick={() => handleadd(item)}>

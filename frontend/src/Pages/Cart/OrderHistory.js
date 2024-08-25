@@ -7,7 +7,7 @@ const Orders = () => {
       <div className="mb-[1rem] flex gap-12">
         <div
           className={`font-medium cursor-pointer pb-[2px] ${
-            tabs === 1 ? "border-b-2  border-primary" : ""
+            tabs === 1 ? "border-b-[1px]  border-primary" : ""
           }`}
           onClick={() => setTabs(1)}
         >
@@ -15,7 +15,7 @@ const Orders = () => {
         </div>
         <div
           className={`font-medium cursor-pointer pb-[2px] ${
-            tabs === 2 ? "border-b-2  border-primary" : ""
+            tabs === 2 ? "border-b-[1px]  border-primary" : ""
           }`}
           onClick={() => setTabs(2)}
         >

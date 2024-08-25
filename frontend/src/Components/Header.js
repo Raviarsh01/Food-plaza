@@ -105,7 +105,7 @@ const Header = () => {
                 <FaUser />
               </div>
               {onHover ? (
-                <div className="shadow absolute top-[2.5rem] right-0 bg-white px-4 py-2 rounded">
+                <div className="shadow absolute top-[2.5rem] right-0 bg-white px-8 py-4 rounded">
                   <Link
                   to="/profile"
                     onClick={() => setOnHover((prev) => !prev)}
