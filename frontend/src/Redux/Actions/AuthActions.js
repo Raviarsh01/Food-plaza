@@ -74,7 +74,7 @@ export const GetProfileData = (params) => async (dispatch) => {
     dispatch({
       type: PROFILE_GETDATA_LOADING,
     });
-    const token = localStorage.getItem("Token");
+    const token = "";
     const { data } = await axios.get(`${url}auth/user-profile`, {
       headers: {
         "Content-Type": "application/json",

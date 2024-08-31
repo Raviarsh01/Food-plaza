@@ -20,8 +20,6 @@ import Checkout from "./Pages/Cart/Checkout";
 import Payment from "./Pages/Cart/Payment";
 import Orders from "./Pages/Cart/OrderHistory";
 import PageNotFound from "./Components/PageNotFound";
-import OrderHistory from "./Pages/Cart/OrderHistory";
-
 
 export const url = process.env.REACT_APP_BACKEND_URL;
 

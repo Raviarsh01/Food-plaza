@@ -53,6 +53,7 @@ export const SingleItemReducer = (state = {}, action) => {
 
 export const cartReducer = (state = { cartData: [] }, action) => {
   switch (action.type) {
+
     case ADD_TO_CART:
       const { itemId, name, price } = action.payload;
       const existingItem = state.cartData.find(

@@ -9,11 +9,14 @@ import {
 import Button from "../../Components/Button";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
+import { IoMdRemoveCircleOutline } from "react-icons/io";
 
 const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { cartData } = useSelector((state) => state.cartReducer);
+  const { cartData } = useSelector((state) => state.cart);
+  const cartD = useSelector((state) => state);
+  console.log('all reducers :>> ', cartD);
   const [grandTotal, setGrandTotal] = useState(0);
   useEffect(() => {
     window.scroll(0, 0);
@@ -68,7 +71,7 @@ const Cart = () => {
                   <th className="py-[16px] text-left">Price</th>
                   <th className="py-[16px] text-left">Quantity</th>
                   <th className="py-[16px] text-left">Total</th>
-                  <th className="py-[16px] text-left">Action</th>
+                  <th className="py-[16px] text-left">Remove</th>
                 </tr>
               </thead>
               {cartData?.map((i) => (
@@ -98,9 +101,9 @@ const Cart = () => {
                       </div>
                     </td>
                     <td>{i.price * i.quantity}</td>
-                    <td>
+                    <td className="pl-6">
                       <button onClick={() => handleRemove(i.itemId)}>
-                        Remove
+                        <IoMdRemoveCircleOutline/>
                       </button>
                     </td>
                   </tr>

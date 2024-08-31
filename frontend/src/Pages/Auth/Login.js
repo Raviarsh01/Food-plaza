@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { LoginAction } from "../../Redux/Actions/AuthActions";
 import { emailVal, passwordVal } from "../../Extra/validations";
@@ -8,8 +8,10 @@ import Loader from "../../Components/Loader";
 import { FaArrowLeft } from "react-icons/fa";
 
 const Login = () => {
+  const [searchParams] = useSearchParams();
+  const redirectUrl = searchParams.get("from");
   const dispatch = useDispatch();
-  const { user, error } = useSelector((state) => state.LoginReducer);
+  const { user, error } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,14 +22,16 @@ const Login = () => {
   }, []);
   useEffect(() => {
     if (user?.userData && render) {
-      localStorage.setItem("Token", user?.token);
-      localStorage.setItem("UserData", JSON.stringify(user?.userData));
       toast.success(user?.message, {
         autoClose: 2000,
       });
       setEmail("");
       setPassword("");
       setrender(false);
+      if (redirectUrl) {
+        navigate(`/${redirectUrl}`);
+        return;
+      }
       navigate("/");
     }
 

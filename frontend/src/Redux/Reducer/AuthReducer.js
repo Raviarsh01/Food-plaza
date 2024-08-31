@@ -48,7 +48,6 @@ export const LoginReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
 
     case LOGOUT_USER:
-      localStorage.clear();
       return { user: {} };
 
     default:

@@ -14,7 +14,7 @@ import { FaPlus } from "react-icons/fa6";
 const ItemDetail = () => {
   const dispatch = useDispatch();
   const { Itemid } = useParams();
-  const { cartData } = useSelector((state) => state.cartReducer);
+  const { cartData } = useSelector((state) => state.cart);
   const { ItemData, loading } = useSelector((state) => state.SingleItemReducer);
   const [userData, setUserData] = useState([]);
   const [quantity, setquantity] = useState(0);
