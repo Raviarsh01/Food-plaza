@@ -1,5 +1,7 @@
 import { legacy_createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import {
   MenuReducer,
   cartReducer,
@@ -12,32 +14,29 @@ import {
 } from "./Reducer/AuthReducer";
 import { AboutPostReducer } from "./Reducer/HomeReducer";
 
+const cartPersistConfig = {
+  key: "cart",
+  storage,
+};
+
+const loginPersistConfig = {
+  key: "login",
+  storage,
+};
+
+const LoginReducerPersist = persistReducer(loginPersistConfig, LoginReducer);
+const cartReducerPersist = persistReducer(cartPersistConfig, cartReducer);
+
 const allReducers = combineReducers({
   RegisterReducer,
-  LoginReducer,
+  auth: LoginReducerPersist,
   MenuReducer,
-  cartReducer,
+  cart: cartReducerPersist,
   ProfileGetData,
   AboutPostReducer,
   SingleItemReducer,
 });
 
-// get userData from localStorage
-const userDataFromStorage = localStorage.getItem("UserData")
-  ? JSON.parse(localStorage.getItem("UserData"))
-  : null;
-// initialState
-const initialState = {
-  LoginReducer: { user: { userData: userDataFromStorage } },
-};
-// middleware used thunk
-const middleware = [thunk];
-
-// store variable initialized
-export const Store = legacy_createStore(
-  allReducers,
-  initialState,
-  applyMiddleware(...middleware)
-);
-
-// export const Store = legacy_createStore(allReducers, applyMiddleware(thunk));
+const store = legacy_createStore(allReducers, applyMiddleware(thunk));
+const persistor = persistStore(store);
+export { store, persistor };
