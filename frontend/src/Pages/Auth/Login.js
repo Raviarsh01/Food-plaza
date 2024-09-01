@@ -11,7 +11,7 @@ const Login = () => {
   const [searchParams] = useSearchParams();
   const redirectUrl = searchParams.get("from");
   const dispatch = useDispatch();
-  const { user, error } = useSelector((state) => state.auth);
+  const { user, error,message } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,8 +21,8 @@ const Login = () => {
     window.scroll(0, 0);
   }, []);
   useEffect(() => {
-    if (user?.userData && render) {
-      toast.success(user?.message, {
+    if (user?.token && render) {
+      toast.success(message, {
         autoClose: 2000,
       });
       setEmail("");
@@ -39,7 +39,7 @@ const Login = () => {
       setrender(false);
       toast.error(error?.response?.data?.message);
     }
-  }, [user, error]);
+  }, [user, error,message]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,7 +104,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <Link to="/forget-password" className="text-right text-sm mb-[14px]">
+          <Link to="/forget-password" className="text-right text-sm mb-[14px] font-medium">
             Forget Password?
           </Link>
           <button

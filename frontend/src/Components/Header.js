@@ -24,7 +24,7 @@ const Header = () => {
   const [onHover, setOnHover] = useState(false);
 
   useEffect(() => {
-    if (user?.userData) {
+    if (user?.token) {
       setlogin(true);
     }
   }, [user]);
@@ -113,11 +113,19 @@ const Header = () => {
                   id="profileTab"
                   className="shadow absolute top-[2.5rem] right-0 bg-white px-8 py-4 rounded"
                 >
-                  <Link to="/profile" className="hover:text-primary">
+                  <Link
+                    to="/profile"
+                    onClick={() => setOnHover((prev) => !prev)}
+                    className="hover:text-primary"
+                  >
                     Profile
                   </Link>
                   <div className="border my-1 border-primary"></div>
-                  <Link to="/orders" className="hover:text-primary">
+                  <Link
+                    to="/orders"
+                    onClick={() => setOnHover((prev) => !prev)}
+                    className="hover:text-primary"
+                  >
                     Orders
                   </Link>
                   <div className="border my-1 border-primary"></div>
@@ -133,7 +141,7 @@ const Header = () => {
           ) : (
             <>
               <Link className=" md:hidden" to="/login">
-                <FaArrowRight className="text-primary text-2xl"/>
+                <FaArrowRight className="text-primary text-2xl" />
               </Link>
               <div className="hidden md:flex">
                 <Button

@@ -37,10 +37,14 @@ export const LoginReducer = (state = {}, action) => {
       return { loading: true };
 
     case LOGIN_USER_SUCCESS:
+      const data = {
+        token: action.payload.token,
+        key: "",
+      };
       return {
         loading: false,
         success: true,
-        user: action.payload,
+        user: data,
         message: action.payload.message,
       };
 
@@ -65,7 +69,7 @@ export const ProfileGetData = (state = {}, action) => {
       return {
         loading: false,
         success: true,
-        data: action.payload,
+        data: action.payload.UserData,
         message: action.payload.message,
       };
     case PROFILE_GETDATA_ERROR:

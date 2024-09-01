@@ -32,7 +32,7 @@ const allReducers = combineReducers({
   auth: LoginReducerPersist,
   MenuReducer,
   cart: cartReducerPersist,
-  ProfileGetData,
+  profileData:ProfileGetData,
   AboutPostReducer,
   SingleItemReducer,
 });

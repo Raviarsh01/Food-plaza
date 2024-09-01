@@ -12,11 +12,10 @@ import { FaPlus } from "react-icons/fa6";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 
 const Cart = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { cartData } = useSelector((state) => state.cart);
   const cartD = useSelector((state) => state);
-  console.log('all reducers :>> ', cartD);
+
   const [grandTotal, setGrandTotal] = useState(0);
   useEffect(() => {
     window.scroll(0, 0);

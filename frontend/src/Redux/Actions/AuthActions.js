@@ -61,7 +61,7 @@ export const LoginAction = (params) => async (dispatch) => {
   }
 };
 
-export const LogoutAction = (params) => async (dispatch) => {
+export const LogoutAction = () => async (dispatch) => {
   try {
     dispatch({
       type: LOGOUT_USER,
@@ -69,16 +69,17 @@ export const LogoutAction = (params) => async (dispatch) => {
   } catch (e) {}
 };
 
-export const GetProfileData = (params) => async (dispatch) => {
+export const GetProfileData = () => async (dispatch, getState) => {
+  const { auth } = getState();
   try {
     dispatch({
       type: PROFILE_GETDATA_LOADING,
     });
-    const token = "";
+
     const { data } = await axios.get(`${url}auth/user-profile`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${auth?.user?.token}`,
       },
     });
 

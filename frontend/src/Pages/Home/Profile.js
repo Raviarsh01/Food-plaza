@@ -1,28 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { GetProfileData } from "../../Redux/Actions/AuthActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const [tabs, setTabs] = useState(1);
+
+  const { data, loading, message } = useSelector((state) => state.profileData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (tabs === 1) {
+    if (tabs === 2) {
       alert("Profile updates");
     } else {
       alert("Password change");
     }
   };
-
+  useEffect(() => {
+    dispatch(GetProfileData());
+  }, []);
   return (
     <div className="main-container py-[50px]">
-  
-      <div className="mb-[1rem] flex justify-center gap-12">
+      <div className="mb-[1rem] flex  gap-12">
         <div
           className={`font-medium cursor-pointer pb-[2px] ${
             tabs === 1 ? "border-b-[1px]  border-primary" : ""
           }`}
           onClick={() => setTabs(1)}
         >
-          Update profile
+          User profile
         </div>
         <div
           className={`font-medium cursor-pointer pb-[2px] ${
@@ -30,10 +36,36 @@ const Profile = () => {
           }`}
           onClick={() => setTabs(2)}
         >
+          Update profile
+        </div>
+        <div
+          className={`font-medium cursor-pointer pb-[2px] ${
+            tabs === 3 ? "border-b-[1px]  border-primary" : ""
+          }`}
+          onClick={() => setTabs(3)}
+        >
           Change password
         </div>
       </div>
+
       {tabs === 1 && (
+        <div>
+          <p className="font-medium">
+            First name: <span className="font-normal">{data?.firstName}</span>
+          </p>
+          <p className="font-medium">
+            Last name: <span className="font-normal">{data?.lastName}</span>
+          </p>
+          <p className="font-medium">
+            Email: <span className="font-normal">{data?.email}</span>
+          </p>
+          <p className="font-medium">
+            Phone number:{" "}
+            <span className="font-normal">{data?.phoneNumber}</span>
+          </p>
+        </div>
+      )}
+      {tabs === 2 && (
         <form
           className="max-w-[660px] mx-4 md:mx-auto flex flex-col text-secondary"
           onSubmit={handleSubmit}
@@ -120,7 +152,7 @@ const Profile = () => {
         </form>
       )}
 
-      {tabs === 2 && (
+      {tabs === 3 && (
         <form
           className="max-w-[360px] mx-4 md:mx-auto flex flex-col text-secondary pb-6"
           onSubmit={handleSubmit}
