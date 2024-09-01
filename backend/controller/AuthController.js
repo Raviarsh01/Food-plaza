@@ -2,7 +2,9 @@ const userRegister = require("../models/AuthModel");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
+const fs = require("fs");
+const path = require("path");
 
 const UserSignup = async (req, res) => {
   const { firstName, lastName, phoneNumber, email, password } = req.body;
@@ -62,7 +64,6 @@ const UserLogin = async (req, res) => {
 };
 
 const UserProfile = async (req, res) => {
-
   try {
     const UserData = await userRegister
       .findById(req.user.userId)
@@ -79,46 +80,109 @@ const UserProfile = async (req, res) => {
 };
 
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
+  service: "gmail",
   port: 587,
-  secure: false, // use false for STARTTLS; true for SSL on port 465
+  secure: false,
   auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
-  }
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
 });
 
-// Email sending endpoint.
-const sendMail =  async (req, res) => {
-  try {
-      const { name, subject, email,message  } = req.body; // Destructure and retrieve data from request body.
-
-
-      // Validate required fields.
-      if (!name || !subject || !email) {
-          return res.status(400).json({ status: 'error', message: 'Missing required fields' });
-      }
-
-
-      // Prepare the email message options.
-      const mailOptions = {
-          from: process.env.SENDER_EMAIL, // Sender address from environment variables.
-          to: `${name} <${email}>`, // Recipient's name and email address.
-          replyTo: process.env.REPLY_TO, // Sets the email address for recipient responses.
-          subject: subject, // Subject line.
-          text: message // Plaintext body.
-      };
-
-
-      // Send email and log the response.
-      const info = await transporter.sendMail(mailOptions);
-      console.log('Email sent:', info.response);
-      res.status(200).json({ status: 'success', message: 'Email sent successfully' });
-  } catch (err) {
-      // Handle errors and log them.
-      console.error('Error sending email:', err);
-      res.status(500).json({ status: 'error', message: 'Error sending email, please try again.' });
-  }
+function generateOTP() {
+  return Math.floor(100000 + Math.random() * 900000);
 }
 
-module.exports = { UserSignup, UserLogin, UserProfile ,sendMail};
+const SendMail = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const isemail = await userRegister.findOne({ email });
+    if (!isemail) {
+      return res.status(400).json({ message: "User not found" });
+    }
+
+    const otp = generateOTP();
+
+    await userRegister.updateOne({ email }, { otp });
+    const filePath = path.join(
+      "D:/.My work/Food Plaza/backend/public/html/forget-password.html"
+    );
+    let htmlTemplate = fs.readFileSync(filePath, "utf8");
+    htmlTemplate = htmlTemplate.replace("{{otp}}", otp);
+
+    const mailOptions = {
+      from: process.env.SENDER_EMAIL,
+      to: isemail?.email,
+      replyTo: process.env.REPLY_TO,
+      subject: "Reset password",
+      html: htmlTemplate,
+    };
+
+    await transporter.sendMail(mailOptions);
+    res
+      .status(200)
+      .json({ status: "success", message: "Email sent successfully" });
+  } catch (err) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const VerifyMail = async (req, res) => {
+  const { email, otp } = req.body;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const isemail = await userRegister.findOne({ email });
+
+    if (!isemail) {
+      return res.status(400).json({ message: "User not found" });
+    }
+
+    if (isemail.otp === parseInt(otp)) {
+      await userRegister.updateOne({ email: isemail?.email }, { otp: null });
+      return res.status(200).json({ status: "success", message: "Otp verify" });
+    }
+    return res.status(400).json({ message: "OTP not match" });
+  } catch (err) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const RestPassword = async (req, res) => {
+  const { email, newpassword } = req.body;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const isemail = await userRegister.findOne({ email });
+
+    if (!isemail) {
+      return res.status(400).json({ message: "User not found" });
+    }
+    const hashedPassword = await bcrypt.hash(newpassword, 10);
+    await userRegister.updateOne(
+      { email: isemail?.email },
+      { password: hashedPassword }
+    );
+    return res.status(200).json({ message: "Password Update" });
+  } catch (err) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+module.exports = {
+  UserSignup,
+  UserLogin,
+  UserProfile,
+  SendMail,
+  VerifyMail,
+  RestPassword,
+};
