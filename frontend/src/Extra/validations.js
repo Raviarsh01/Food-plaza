@@ -45,6 +45,7 @@ export const phoneVal = (mobile) => {
 
 export const passwordVal = (value) => {
   if (!value) return "Password is required";
+  if (value.length < 6) return "Password min 6 digit long";
   return null;
 };
 
@@ -67,5 +68,12 @@ export const fullNameVal = (value) => {
 export const feedbackVal = (value) => {
   if (!value) return "Feedback is required";
 
+  return null;
+};
+
+
+export const OTPVal = (value) => {
+  if (!value) return "OTP is required";
+  if (value.length !== 6) return "OTP must be 6 digit";
   return null;
 };
