@@ -22,6 +22,10 @@ const userRegister = new mongoose.Schema({
     type: String,
     required: true,
   },
+  otp: {
+    type: Number,
+    default: null,
+  },
   role: {
     type: Number,
     required: true,
