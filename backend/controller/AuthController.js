@@ -82,6 +82,7 @@ const UserProfile = async (req, res) => {
 const transporter = nodemailer.createTransport({
   service: "gmail",
   port: 587,
+  host: "smtp.gmail.com",
   secure: false,
   auth: {
     user: process.env.SMTP_USER,
@@ -105,8 +106,12 @@ const SendMail = async (req, res) => {
     const otp = generateOTP();
 
     await userRegister.updateOne({ email }, { otp });
+
     const filePath = path.join(
-      "D:/.My work/Food Plaza/backend/public/html/forget-password.html"
+      process.cwd(),
+      "public",
+      "html",
+      "forget-password.html"
     );
 
     let htmlTemplate = fs.readFileSync(filePath, "utf8");
@@ -119,7 +124,15 @@ const SendMail = async (req, res) => {
       subject: "Reset password",
       html: htmlTemplate,
     };
-    await transporter.sendMail(mailOptions);
+
+    await transporter.sendMail(mailOptions, (err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("success");
+      }
+    });
+
     return res
       .status(200)
       .json({ status: "success", message: "Email sent successfully" });
