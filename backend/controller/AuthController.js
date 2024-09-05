@@ -108,6 +108,7 @@ const SendMail = async (req, res) => {
     const filePath = path.join(
       "D:/.My work/Food Plaza/backend/public/html/forget-password.html"
     );
+
     let htmlTemplate = fs.readFileSync(filePath, "utf8");
     htmlTemplate = htmlTemplate.replace("{{otp}}", otp);
 
@@ -118,9 +119,8 @@ const SendMail = async (req, res) => {
       subject: "Reset password",
       html: htmlTemplate,
     };
-
     await transporter.sendMail(mailOptions);
-    res
+    return res
       .status(200)
       .json({ status: "success", message: "Email sent successfully" });
   } catch (err) {
