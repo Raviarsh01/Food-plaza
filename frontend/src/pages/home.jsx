@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { paths } from "../utils/paths";
 import Button from "../components/button";
 import { IoStarSharp } from "react-icons/io5";
 import { IoTimerOutline } from "react-icons/io5";
@@ -125,7 +126,7 @@ const Home = () => {
                   {content}
                 </p>
                 <Link
-                  to="/menu"
+                  to={paths.menu}
                   className=" text-base text-primary font-bold hover:underline"
                   onClick={() => localStorage.setItem("menuTab", `${heading}`)}
                 >

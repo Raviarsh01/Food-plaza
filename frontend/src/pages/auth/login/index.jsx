@@ -6,12 +6,13 @@ import { emailVal, passwordVal } from "../../../utils/validations";
 import { toast } from "react-toastify";
 import Loader from "../../../components/loader";
 import { FaArrowLeft } from "react-icons/fa";
+import { paths } from "../../../utils/paths";
 
 const Login = () => {
   const [searchParams] = useSearchParams();
   const redirectUrl = searchParams.get("from");
   const dispatch = useDispatch();
-  const { user, error,message } = useSelector((state) => state.auth);
+  const { user, error, message } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,7 +40,7 @@ const Login = () => {
       setrender(false);
       toast.error(error?.response?.data?.message);
     }
-  }, [user, error,message]);
+  }, [user, error, message]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,7 +105,10 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <Link to="/forget-password" className="text-right text-sm mb-[14px] font-medium">
+          <Link
+            to={paths.forgetPassword}
+            className="text-right text-sm mb-[14px] font-medium"
+          >
             Forget Password?
           </Link>
           <button
@@ -116,7 +120,7 @@ const Login = () => {
         </form>
         <p className="pt-[1rem]">
           Donot have account?{" "}
-          <Link className="text-primary font-semibold" to="/signup">
+          <Link className="text-primary font-semibold" to={paths.signup}>
             Sign Up
           </Link>
         </p>

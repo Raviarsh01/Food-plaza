@@ -5,6 +5,7 @@ import { MenuDataAction, addCart } from "../../redux/actions/cart-actions";
 import { FaCartPlus } from "react-icons/fa6";
 import Loader from "../../components/loader";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { paths } from "../../utils/paths";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -119,7 +120,7 @@ const Menu = () => {
                   {item.name}
                 </p>
                 <div className="flex gap-3 justify-center text-xl text-primary font-semibold">
-                  <Link to={`/menu/item-detail/${item._id}`}>
+                  <Link to={`${paths.itemDetail}${item._id}`}>
                     <MdOutlineRemoveRedEye />
                   </Link>
                   <button onClick={() => handleadd(item)}>

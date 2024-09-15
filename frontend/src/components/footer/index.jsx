@@ -1,31 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { paths } from "../../utils/paths";
 import {
   FaLinkedinIn,
   FaFacebookF,
   FaTwitter,
   FaInstagram,
 } from "react-icons/fa6";
-
 import { IoIosRestaurant } from "react-icons/io";
 
 const Footer = () => {
   const navigation = [
     {
       value: "Menu",
-      href: "/menu",
+      href: paths.menu,
     },
     {
       value: "Contact us",
-      href: "/contact",
+      href: paths.contact,
     },
     {
       value: "Main dishes",
-      href: "/menu",
+      href: paths.menu,
     },
     {
       value: "About us",
-      href: "/about",
+      href: paths.about,
     },
   ];
   return (
@@ -67,7 +67,7 @@ const Footer = () => {
             {["Pizza", "Burger", "Shakes", "Drinks"].map((value, i) => (
               <div key={i} className="mb-[18px]">
                 <Link
-                  to="/menu"
+                  to={paths.menu}
                   className="text-base text-white"
                   onClick={() => localStorage.setItem("menuTab", `${value}`)}
                 >

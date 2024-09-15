@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { paths } from "../../utils/paths";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { LogoutAction } from "../../redux/actions/auth-actions";
@@ -59,10 +60,10 @@ const Header = () => {
   };
 
   const links = [
-    { value: "Home", link: "/" },
-    { value: "About", link: "/about" },
-    { value: "Menu", link: "/menu" },
-    { value: "Contact us", link: "/contact" },
+    { value: "Home", link: paths.home },
+    { value: "About", link: paths.about },
+    { value: "Menu", link: paths.menu },
+    { value: "Contact us", link: paths.contact },
   ];
   return (
     <div className="flex items-center bg-white w-full h-24 fixed top-0 z-10 shadow">
@@ -70,7 +71,7 @@ const Header = () => {
         <div>
           <Link
             className="flex gap-1 items-center text-2xl font-semibold text-primary"
-            to="/"
+            to={paths.home}
           >
             <IoIosRestaurant className="font-bold text-4xl" />
             <h2 className="text-primary">
@@ -94,7 +95,7 @@ const Header = () => {
           ))}
         </div>
         <div className="flex items-center gap-4 md:gap-6">
-          <Link to="/cart" className="no-underline relative text-primary">
+          <Link to={paths.cart} className="no-underline relative text-primary">
             <FaCartShopping className="text-[28px] font-medium" />
             <span className="absolute top-[-12px] right-[-11px] text-sm border-[1px] border-primary rounded-full w-[22px] h-[22px] flex items-center justify-center bg-white">
               {number}
@@ -114,7 +115,7 @@ const Header = () => {
                   className="shadow absolute top-[2.5rem] right-0 bg-white px-8 py-4 rounded"
                 >
                   <Link
-                    to="/profile"
+                    to={paths.profile}
                     onClick={() => setOnHover((prev) => !prev)}
                     className="hover:text-primary"
                   >
@@ -122,7 +123,7 @@ const Header = () => {
                   </Link>
                   <div className="border my-1 border-primary"></div>
                   <Link
-                    to="/orders"
+                    to={paths.orders}
                     onClick={() => setOnHover((prev) => !prev)}
                     className="hover:text-primary"
                   >
@@ -140,12 +141,12 @@ const Header = () => {
             </div>
           ) : (
             <>
-              <Link className=" md:hidden" to="/login">
+              <Link className=" md:hidden" to={paths.login}>
                 <FaArrowRight className="text-primary text-2xl" />
               </Link>
               <div className="hidden md:flex">
                 <Button
-                  href="/login"
+                  href={paths.login}
                   text="Log In"
                   variant="outlined"
                   background="primary"
