@@ -33,14 +33,14 @@ const Login = () => {
         navigate(`/${redirectUrl}`);
         return;
       }
-      navigate("/");
+      navigate(`${paths.home}`);
     }
 
     if (error && render) {
       setrender(false);
       toast.error(error?.response?.data?.message);
     }
-  }, [user, error, message]);
+  }, [user, error, message, navigate, redirectUrl, render]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,7 +70,7 @@ const Login = () => {
           <h2 className="text-center text-secondary font-semibold text-4xl">
             Login
           </h2>
-          <button onClick={() => navigate("/")}>
+          <button onClick={() => navigate(`${paths.home}`)}>
             <FaArrowLeft className="absolute top-[10px] cursor-pointer text-secondary" />
           </button>
         </div>

@@ -22,7 +22,7 @@ const ItemDetail = () => {
   useEffect(() => {
     window.scroll(0, 0);
     dispatch(GetSingleItemAction(Itemid));
-  }, []);
+  }, [Itemid, dispatch]);
   useEffect(() => {
     if (ItemData) {
       setUserData(ItemData);
@@ -50,20 +50,17 @@ const ItemDetail = () => {
     if (quan) {
       setquantity(quan.quantity);
     }
-  }, [handleInc, handleInc]);
+  }, [handleInc, handleInc, Itemid, cartData]);
 
   return loading ? (
     <Loader />
   ) : (
     <div className="pt-[50px] py-[100px] main-container">
-
       <p className="max-w-[560px] mx-auto text-base text-center text-third leading-7">
         We consider all the drivers of change gives you the components you need
         to change to create a truly happens.
       </p>
-      <div
-        className="mt-[40px] gap-10 md:gap-4 grid grid-cols-1 md:grid-cols-2"
-      >
+      <div className="mt-[40px] gap-10 md:gap-4 grid grid-cols-1 md:grid-cols-2">
         <div className="flex justify-center">
           <img
             className=" h-[360px] md:h-[600px] w-[360px] md:w-[500px] rounded-xl"

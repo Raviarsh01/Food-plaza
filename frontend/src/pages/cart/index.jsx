@@ -13,7 +13,6 @@ import { IoMdRemoveCircleOutline } from "react-icons/io";
 const Cart = () => {
   const dispatch = useDispatch();
   const { cartData } = useSelector((state) => state.cart);
-  const cartD = useSelector((state) => state);
 
   const [grandTotal, setGrandTotal] = useState(0);
   useEffect(() => {
@@ -38,7 +37,7 @@ const Cart = () => {
       return accumulator + currentItem.price * currentItem.quantity;
     }, 0);
     setGrandTotal(total);
-  }, [handleInc, handleDec]);
+  }, [cartData]);
 
   return (
     <div className="pt-[50px] py-[90px] main-container">
@@ -101,7 +100,7 @@ const Cart = () => {
                     <td>{i.price * i.quantity}</td>
                     <td className="pl-6">
                       <button onClick={() => handleRemove(i.itemId)}>
-                        <IoMdRemoveCircleOutline/>
+                        <IoMdRemoveCircleOutline />
                       </button>
                     </td>
                   </tr>

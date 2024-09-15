@@ -56,7 +56,7 @@ const Header = () => {
     toast.success("Logout success", {
       autoClose: 1500,
     });
-    navigate("/login");
+    navigate(`${paths.login}`);
   };
 
   const links = [

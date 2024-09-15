@@ -18,7 +18,7 @@ const Menu = () => {
   useEffect(() => {
     dispatch(MenuDataAction());
     window.scroll(0, 0);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (MenuData) {
@@ -42,7 +42,7 @@ const Menu = () => {
 
   useEffect(() => {
     if (MenuData) {
-      const filterData = MenuData?.filter((i) => i.category == tabs);
+      const filterData = MenuData?.filter((i) => i.category === tabs);
       if (filterData?.length !== 0) {
         SetItems(filterData);
         return;
@@ -102,7 +102,7 @@ const Menu = () => {
           </div>
         )}
 
-        {Items.length == 0 && (
+        {Items.length === 0 && (
           <p className="text-base mt-[30px] text-center text-third leading-7">
             No item available
           </p>

@@ -12,6 +12,7 @@ import {
   passwordVal,
   confirmPasswordVal,
 } from "../../../utils/validations";
+import { paths } from "../../../utils/paths";
 import { FaArrowLeft } from "react-icons/fa";
 
 const Signup = () => {
@@ -34,7 +35,7 @@ const Signup = () => {
         autoClose: 1500,
       });
 
-      navigate("/login");
+      navigate(`${paths.login}`);
       setPassword("");
       setConfirmPassword("");
       setfName("");
@@ -46,7 +47,7 @@ const Signup = () => {
       setrender(false);
       toast.error(error?.response?.data?.message);
     }
-  }, [userData, error]);
+  }, [userData, error, navigate, render]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -89,7 +90,7 @@ const Signup = () => {
           <h2 className="text-center text-secondary font-semibold text-4xl">
             Sign Up
           </h2>
-          <button onClick={() => navigate("/login")}>
+          <button onClick={() => navigate(`${paths.login}`)}>
             <FaArrowLeft className="absolute top-[10px] cursor-pointer text-secondary" />
           </button>
         </div>

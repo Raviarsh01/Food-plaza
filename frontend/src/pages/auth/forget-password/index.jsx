@@ -11,6 +11,7 @@ import {
   OTPVal,
   passwordVal,
 } from "../../../utils/validations";
+import { paths } from "../../../utils/paths";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();
@@ -115,7 +116,7 @@ const ForgetPassword = () => {
       setrender(false);
       setFirstForm(true);
       toast.success(data?.message);
-      navigate("/login");
+      navigate(`${paths.login}`);
     } catch (err) {
       setrender(false);
       toast.error(err?.response?.data?.message);
@@ -131,7 +132,7 @@ const ForgetPassword = () => {
           <h2 className="text-center text-secondary font-semibold text-4xl">
             Forget Password
           </h2>
-          <button onClick={() => navigate("/login")}>
+          <button onClick={() => navigate(`${paths.login}`)}>
             <FaArrowLeft className="absolute top-[10px] cursor-pointer text-secondary" />
           </button>
         </div>
