@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { LoginAction } from "../../../redux/actions/auth-actions";
-import { emailVal, passwordVal } from "../../../extra/validations";
+import { emailVal, passwordVal } from "../../../utils/validations";
 import { toast } from "react-toastify";
 import Loader from "../../../components/loader";
 import { FaArrowLeft } from "react-icons/fa";

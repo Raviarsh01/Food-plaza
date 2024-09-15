@@ -10,7 +10,7 @@ import {
   emailVal,
   OTPVal,
   passwordVal,
-} from "../../../extra/validations";
+} from "../../../utils/validations";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();

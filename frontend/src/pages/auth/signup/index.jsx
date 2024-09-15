@@ -11,7 +11,7 @@ import {
   phoneVal,
   passwordVal,
   confirmPasswordVal,
-} from "../../../extra/validations";
+} from "../../../utils/validations";
 import { FaArrowLeft } from "react-icons/fa";
 
 const Signup = () => {
