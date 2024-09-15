@@ -7,13 +7,13 @@ const {
   SendMail,
   VerifyMail,
   RestPassword,
-} = require("../controller/AuthController");
-const verifyToken = require("../middleware/VerifyToken");
-const userSignupValidationRules = require("../validations/signup-form");
+} = require("../controller/auth-controller");
+const verifyToken = require("../middleware/verify-token");
+const userSignupValidationRules = require("../utils/validations/signup-form");
 const {
   VerifyOtpValidations,
   RestPasswordValidations,
-} = require("../validations/reset-password");
+} = require("../utils/validations/reset-password");
 
 router.post("/signup", userSignupValidationRules, UserSignup);
 router.post("/login", UserLogin);

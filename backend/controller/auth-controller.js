@@ -1,4 +1,4 @@
-const userRegister = require("../models/AuthModel");
+const userRegister = require("../models/auth-model");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");

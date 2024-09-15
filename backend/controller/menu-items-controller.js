@@ -1,4 +1,4 @@
-const ItemsMenu = require("../models/MenuItems");
+const ItemsMenu = require("../models/menu-items-model");
 
 const GetItems = async (req, res) => {
   try {
