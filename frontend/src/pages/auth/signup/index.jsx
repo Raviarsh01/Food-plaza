@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RegisterAction } from "../../redux/actions/auth-actions";
+import { RegisterAction } from "../../../redux/actions/auth-actions";
 import { toast } from "react-toastify";
-import Loader from "../../components/loader";
+import Loader from "../../../components/loader";
 import {
   firstNameVal,
   lastNameVal,
@@ -11,7 +11,7 @@ import {
   phoneVal,
   passwordVal,
   confirmPasswordVal,
-} from "../../extra/validations";
+} from "../../../extra/validations";
 import { FaArrowLeft } from "react-icons/fa";
 
 const Signup = () => {

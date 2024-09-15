@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Loader from "../../components/loader";
+import Loader from "../../../components/loader";
 import { FaArrowLeft } from "react-icons/fa";
-import { url } from "../../App";
+import { url } from "../../../App";
 import axios from "axios";
 import {
   confirmPasswordVal,
   emailVal,
   OTPVal,
   passwordVal,
-} from "../../extra/validations";
+} from "../../../extra/validations";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();

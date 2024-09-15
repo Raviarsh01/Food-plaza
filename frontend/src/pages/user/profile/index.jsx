@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GetProfileData } from "../../redux/actions/auth-actions";
+import { GetProfileData } from "../../../redux/actions/auth-actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Profile = () => {

@@ -6,8 +6,8 @@ import {
   quantityInc,
   quantityDec,
   GetSingleItemAction,
-} from "../../redux/actions/cart-actions";
-import Loader from "../../components/loader";
+} from "../../../redux/actions/cart-actions";
+import Loader from "../../../components/loader";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 

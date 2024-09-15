@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../../components/button";
+import Button from "../components/button";
 import { IoStarSharp } from "react-icons/io5";
 import { IoTimerOutline } from "react-icons/io5";
 import { MdOutlineLocalOffer } from "react-icons/md";
 import { CiShoppingCart } from "react-icons/ci";
-import Image1 from "../../assets/images/Group1.png";
-import Image2 from "../../assets/images/home-bg-image.webp";
-import Image3 from "../../assets/images/dish-2.webp";
-import Image5 from "../../assets/images/chef.png";
-import Image6 from "../../assets/images/fast-image.webp";
-import Image7 from "../../assets/images/fast-delivery.png";
-import Image8 from "../../assets/images/image-12.png";
+import Image1 from "../assets/images/Group1.png";
+import Image2 from "../assets/images/home-bg-image.webp";
+import Image3 from "../assets/images/dish-2.webp";
+import Image5 from "../assets/images/chef.png";
+import Image6 from "../assets/images/fast-image.webp";
+import Image7 from "../assets/images/fast-delivery.png";
+import Image8 from "../assets/images/image-12.png";
 
 const Home = () => {
   const data = [
