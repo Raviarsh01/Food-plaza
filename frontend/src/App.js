@@ -8,7 +8,6 @@ import PageNotFound from "./components/page-not-found";
 import Login from "./pages/auth/login";
 import Signup from "./pages/auth/signup";
 import ForgetPassword from "./pages/auth/forget-password";
-import ItemDetail from "./pages/menu/item-detail";
 import Home from "./pages/home";
 import Menu from "./pages/menu";
 import About from "./pages/about";
@@ -35,7 +34,6 @@ function App() {
           <Route path={paths.about} element={<About />} />
           <Route path={paths.contact} element={<Contact />} />
           <Route path={paths.menu} element={<Menu />} />
-          <Route path={paths.itemDetailParam} element={<ItemDetail />} />
           <Route path={paths.profile} element={<Profile />} />
           <Route path={paths.orders} element={<Orders />} />
           <Route path={paths.cart} element={<Cart />} />

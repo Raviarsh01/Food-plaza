@@ -1,8 +1,9 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/autoplay";
 import { IoStarSharp } from "react-icons/io5";
 
 const ReviewSlider = () => {
@@ -19,8 +20,12 @@ const ReviewSlider = () => {
       <div className="max-w-[700px] mx-auto">
         <Swiper
           id="review-swiper"
-          modules={[Pagination]}
+          modules={[Pagination, Autoplay]}
           slidesPerView={1}
+          autoplay={{
+            delay: 5000, 
+            disableOnInteraction: false,
+          }}
           pagination={{ clickable: true }}
         >
           <SwiperSlide>

@@ -6,8 +6,6 @@ export const paths = {
   about: "/about",
   contact: "/contact",
   menu: "/menu",
-  itemDetail: "/menu/item-detail/",
-  itemDetailParam: "/menu/item-detail/:Itemid",
   profile: "/profile",
   orders: "/orders",
   cart: "/cart",
