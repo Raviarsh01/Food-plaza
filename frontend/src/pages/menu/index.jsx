@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { MenuDataAction, addCart } from "../../redux/actions/cart-actions";
-
 import Loader from "../../components/loader";
-
 import AppsForOrder from "../../components/apps-for-order";
 import ItemCard from "../../components/ItemCard";
+import { toast } from "react-toastify";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -54,6 +52,7 @@ const Menu = () => {
 
   const handleadd = (item) => {
     dispatch(addCart(item));
+    toast.success("Item added to cart")
   };
 
   return loading ? (
@@ -103,10 +102,6 @@ const Menu = () => {
         <div className="grid px-4 gap-12 md:gap-6 grid-cols-1 md:grid-cols-4">
           {Items?.map((item, i) => (
             <ItemCard
-              image={item.image}
-              price={item.price}
-              name={item.name}
-              id={item._id}
               item={item}
               handleadd={handleadd}
             />
