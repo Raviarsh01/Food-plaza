@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
 });
 app.use("/auth", require("./routes/auth-routes"));
 app.use("/menu", require("./routes/menu-items-routes"));
+app.use("/address", require("./routes/address-routes"));
 
 app.listen(process.env.PORT_URL, () => {
   console.log(`Server at ${process.env.PORT_URL} port`);
