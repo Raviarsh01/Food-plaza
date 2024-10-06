@@ -29,11 +29,8 @@ const Login = () => {
       setEmail("");
       setPassword("");
       setrender(false);
-      if (redirectUrl) {
-        navigate(`/${redirectUrl}`);
-        return;
-      }
-      navigate(`${paths.home}`);
+      const url = `/${redirectUrl}` || paths.home;
+      navigate(url);
     }
 
     if (error && render) {
