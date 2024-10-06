@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 
 const ItemCard = ({ item, handleadd }) => {
   const dispatch = useDispatch();
-  const { image, price, name, toping, itemId } = item;
+  const { image, price, name, toping, _id } = item;
 
   const { cartData } = useSelector((state) => state.cart);
 
@@ -29,7 +29,7 @@ const ItemCard = ({ item, handleadd }) => {
     }
     dispatch(quantityDec(id));
   };
-  const value = cartData.find((item) => item.itemId === itemId);
+  const value = cartData.find((item) => item._id === _id);
   return (
     <div className="rounded-xl shadow">
       <img src={image} alt="menu" className="w-full h-[230px]" />
@@ -44,7 +44,7 @@ const ItemCard = ({ item, handleadd }) => {
           <div className="flex gap-2 justify-center items-center text-base transition font-medium w-[140px] mx-auto h-[40px] border rounded rounded-tl-2xl rounded-br-2xl text-primary bg-white group hover:text-white hover:bg-primary ">
             <button
               className="rounded p-1 text-primary group-hover:text-white"
-              onClick={(event) => handleDec(event, itemId, value?.quantity)}
+              onClick={(event) => handleDec(event, _id, value?.quantity)}
             >
               <FaMinus />
             </button>
@@ -53,7 +53,7 @@ const ItemCard = ({ item, handleadd }) => {
             </p>
             <button
               className="rounded p-1 text-primary group-hover:text-white"
-              onClick={(event) => handleInc(event, itemId)}
+              onClick={(event) => handleInc(event, _id)}
             >
               <FaPlus />
             </button>

@@ -9,10 +9,6 @@ const ItemsMenu = new mongoose.Schema({
     type: String,
     required: true,
   },
-  itemId: {
-    type: Number,
-    required: true,
-  },
   price: {
     type: Number,
     required: true,

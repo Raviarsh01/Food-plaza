@@ -81,7 +81,7 @@ const Cart = () => {
                         <button
                           className="rounded p-1 text-primary"
                           onClick={(event) =>
-                            handleDec(event, i.itemId, i.quantity)
+                            handleDec(event, i._id, i.quantity)
                           }
                         >
                           <FaMinus />
@@ -91,7 +91,7 @@ const Cart = () => {
                         </p>
                         <button
                           className="rounded p-1  text-primary"
-                          onClick={(event) => handleInc(event, i.itemId)}
+                          onClick={(event) => handleInc(event, i._id)}
                         >
                           <FaPlus />
                         </button>
@@ -99,7 +99,7 @@ const Cart = () => {
                     </td>
                     <td>{i.price * i.quantity}</td>
                     <td className="pl-6">
-                      <button onClick={() => handleRemove(i.itemId)}>
+                      <button onClick={() => handleRemove(i._id)}>
                         <IoMdRemoveCircleOutline />
                       </button>
                     </td>
