@@ -17,6 +17,8 @@ const userRegister = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    lowercase: true,
+    trim: true,
   },
   password: {
     type: String,
@@ -28,13 +30,21 @@ const userRegister = new mongoose.Schema({
   },
   role: {
     type: Number,
-    required: true,
-    default: 1,
+    default: 1, // 0:admin,1:user
   },
-  dateCreated: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+userRegister.pre("save", function (next) {
+  this.updatedAt = Date.now();
+  next();
 });
 
 module.exports = mongoose.model("Customers", userRegister);
