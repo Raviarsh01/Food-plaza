@@ -14,7 +14,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { cartData } = useSelector((state) => state.cart);
 
-  const [grandTotal, setGrandTotal] = useState(0);
+  const [bill, setBill] = useState(0);
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
@@ -36,12 +36,12 @@ const Cart = () => {
     const total = cartData?.reduce((accumulator, currentItem) => {
       return accumulator + currentItem.price * currentItem.quantity;
     }, 0);
-    setGrandTotal(total);
+    setBill(total);
   }, [cartData]);
 
   return (
     <div className="pt-[50px] py-[90px] main-container">
-      <h2 className="text-5xl font-bold text-center text-secondary leading-tight mb-8">
+      <h2 className="text-3xl font-bold text-center text-secondary leading-tight mb-6">
         Your Cart
       </h2>
       {cartData?.length === 0 ? (
@@ -125,7 +125,7 @@ const Cart = () => {
               />
             </div>
             <p className="text-secondary text-lg font-semibold">
-              Your Bill: {grandTotal}{" "}
+              Your Bill: {bill}{" "}
             </p>
           </div>
         </>

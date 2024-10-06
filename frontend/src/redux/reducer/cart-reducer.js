@@ -53,18 +53,12 @@ export const SingleItemReducer = (state = {}, action) => {
 
 export const cartReducer = (state = { cartData: [] }, action) => {
   switch (action.type) {
-
     case ADD_TO_CART:
       const { _id, name, price } = action.payload;
-      const existingItem = state.cartData.find(
-        (item) => item._id === _id
-      );
-      if (!existingItem) {
-        return {
-          ...state,
-          cartData: [...state.cartData, { _id, name, price, quantity: 1 }],
-        };
-      }
+      return {
+        ...state,
+        cartData: [...state.cartData, { _id, name, price, quantity: 1 }],
+      };
 
     case REMOVE_FROM_CART:
       let updatedCart = state.cartData.filter(
