@@ -29,7 +29,7 @@ const Login = () => {
       setEmail("");
       setPassword("");
       setrender(false);
-      const url = `/${redirectUrl}` || paths.home;
+      const url = redirectUrl ? `/${redirectUrl}` : paths.home;
       navigate(url);
     }
 
@@ -42,11 +42,13 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     toast.error(emailVal(email));
-    toast.error(passwordVal(password));
+    if (!password) {
+      toast.error("Password is required");
+    }
 
     const tempErrors = {
       emailErr: emailVal(email),
-      passErr: passwordVal(password),
+      passErr: !password,
     };
 
     if (Object.values(tempErrors).filter((value) => value).length) {
