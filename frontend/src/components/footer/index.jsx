@@ -10,6 +10,7 @@ import {
 import { IoIosRestaurant } from "react-icons/io";
 
 const Footer = () => {
+  const date = new Date();
   const navigation = [
     {
       value: "Menu",
@@ -99,7 +100,7 @@ const Footer = () => {
 
         <div className="flex justify-between items-center md:items-start py-4 flex-col md:flex-row">
           <p className="mb-8 md:mb-0 text-center md:text-left">
-            © 2022 Restaurants. All Right Reserved. Designed by Isaac
+            © {date.getFullYear()} Restaurants. All Right Reserved. Designed by Isaac
           </p>
           <div className="flex gap-8 flex-col md:flex-row">
             <p>Terms of Service</p>

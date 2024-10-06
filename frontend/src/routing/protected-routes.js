@@ -7,7 +7,7 @@ const ProtectedRoutes = ({ children }) => {
   const { pathname } = useLocation();
   const { user } = useSelector((state) => state.auth);
 
-  return user?.userData ? (
+  return user?.token ? (
     children
   ) : (
     <Navigate to={`${paths.login}?from=${pathname.slice(1)}`} />
