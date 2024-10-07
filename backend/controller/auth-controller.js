@@ -1,6 +1,5 @@
 const userRegister = require("../models/auth-model");
 const jwt = require("jsonwebtoken");
-const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const fs = require("fs");
@@ -8,12 +7,12 @@ const path = require("path");
 
 const UserSignup = async (req, res) => {
   const { firstName, lastName, phoneNumber, email, password } = req.body;
-  try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
 
+  if (!firstName || !lastName || !phoneNumber || !email || !password) {
+    return res.status(400).json({ errors: "Please fill all fields" });
+  }
+
+  try {
     const isemail = await userRegister.findOne({ email });
 
     if (!isemail) {
@@ -39,6 +38,10 @@ const UserSignup = async (req, res) => {
 
 const UserLogin = async (req, res) => {
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ errors: "Please fill all fields" });
+  }
 
   try {
     const isemail = await userRegister.findOne({ email });
@@ -96,7 +99,9 @@ function generateOTP() {
 
 const SendMail = async (req, res) => {
   const { email } = req.body;
-
+  if (!email) {
+    return res.status(400).json({ errors: "Email is required" });
+  }
   try {
     const isemail = await userRegister.findOne({ email });
     if (!isemail) {
@@ -143,12 +148,9 @@ const SendMail = async (req, res) => {
 
 const VerifyMail = async (req, res) => {
   const { email, otp } = req.body;
-
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+  if (!email || !otp) {
+    return res.status(400).json({ errors: "Please fill all fields" });
   }
-
   try {
     const isemail = await userRegister.findOne({ email });
 
@@ -169,9 +171,8 @@ const VerifyMail = async (req, res) => {
 const RestPassword = async (req, res) => {
   const { email, newpassword } = req.body;
 
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+  if (!email || !newpassword) {
+    return res.status(400).json({ errors: "Please fill all fields" });
   }
 
   try {

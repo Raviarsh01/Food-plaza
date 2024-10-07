@@ -3,6 +3,11 @@ const Address = require("../models/address-model");
 const AddAddress = async (req, res) => {
   const { customerID, addressLine1, addressLine2, city, state, postalCode } =
     req.body;
+
+  if (!customerID || !addressLine1 || !city || !state || !postalCode) {
+    return res.status(400).json({ errors: "Please fill all fields" });
+  }
+
   try {
     const address = new Address({
       customerID,
