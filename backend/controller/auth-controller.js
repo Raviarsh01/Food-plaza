@@ -70,7 +70,7 @@ const UserProfile = async (req, res) => {
   try {
     const UserData = await userRegister
       .findById(req.user.userId)
-      .select("-password -_id -__v");
+      .select("-password -_id -__v -otp");
 
     const data = {
       UserData,
@@ -79,6 +79,39 @@ const UserProfile = async (req, res) => {
     return res.status(200).json(data);
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+const UserProfileUpdate = async (req, res) => {
+  const { firstName, lastName, phoneNumber, email } = req.body;
+  const userImage = req.file ? req.file.path : null;
+  const userId = req.user.userId;
+  console.log(" req.body", req.body);
+  console.log("req.file", req.file);
+  try {
+    const updateFields = {
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+    };
+    if (userImage) {
+      updateFields.profileImage = userImage;
+    }
+
+    const updatedUser = await userRegister.findByIdAndUpdate(
+      userId,
+      { $set: updateFields },
+      { new: true }
+    );
+
+    return res
+      .status(200)
+      .json({ success: "true", message: "Profile updated", user: updatedUser });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: "false", message: "Internal Server Error" });
   }
 };
 
@@ -199,4 +232,5 @@ module.exports = {
   SendMail,
   VerifyMail,
   RestPassword,
+  UserProfileUpdate
 };
