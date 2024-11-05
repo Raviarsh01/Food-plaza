@@ -86,8 +86,7 @@ const UserProfileUpdate = async (req, res) => {
   const { firstName, lastName, phoneNumber, email } = req.body;
   const userImage = req.file ? req.file.path : null;
   const userId = req.user.userId;
-  console.log(" req.body", req.body);
-  console.log("req.file", req.file);
+
   try {
     const updateFields = {
       firstName,
@@ -96,14 +95,12 @@ const UserProfileUpdate = async (req, res) => {
       email,
     };
     if (userImage) {
-      updateFields.profileImage = userImage;
+      updateFields.profileImage = userImage.slice(7);
     }
 
-    const updatedUser = await userRegister.findByIdAndUpdate(
-      userId,
-      { $set: updateFields },
-      { new: true }
-    );
+    const updatedUser = await userRegister
+      .findByIdAndUpdate(userId, { $set: updateFields }, { new: true })
+      .select("-password -_id -__v -otp");
 
     return res
       .status(200)
@@ -165,9 +162,7 @@ const SendMail = async (req, res) => {
 
     await transporter.sendMail(mailOptions, (err, res) => {
       if (err) {
-        console.log(err);
-      } else {
-        console.log("success");
+          // no code
       }
     });
 
@@ -232,5 +227,5 @@ module.exports = {
   SendMail,
   VerifyMail,
   RestPassword,
-  UserProfileUpdate
+  UserProfileUpdate,
 };

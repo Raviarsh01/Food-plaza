@@ -37,7 +37,6 @@ const GetAddress = async (req, res) => {
       response: data.reverse(),
     });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
