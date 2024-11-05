@@ -14,7 +14,6 @@ const Checkout = () => {
     postalCode: "",
     state: "",
   });
-  console.log("formValues", formValues);
   const [userAddress, setUserAddress] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
   const { cartData } = useSelector((state) => state.cart);
@@ -38,12 +37,11 @@ const Checkout = () => {
             },
           }
         );
-        console.log("data", data);
         setLoading(false);
         setSelectedAddress(data?.response[0]?._id);
         setUserAddress(data?.response);
       } catch (error) {
-        console.error("Error resetting password:", error);
+        //no code
       }
     }
 
@@ -78,7 +76,7 @@ const Checkout = () => {
         });
       }
     } catch (error) {
-      console.error("Error", error);
+      //no code
     }
   }
 
@@ -123,7 +121,7 @@ const Checkout = () => {
               >
                 <div className="w-[16px] h-[16px] border border-primary rounded-full flex justify-center items-center">
                   {value?._id === selectedAddress ? (
-                    <div className="w-[10px] h-[10px] bg-primary rounded-full"></div>
+                    <div className="w-[8px] h-[8px] bg-primary rounded-full"></div>
                   ) : null}
                 </div>
 
