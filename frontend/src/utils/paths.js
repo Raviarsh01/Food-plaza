@@ -1,0 +1,15 @@
+export const paths = {
+  login: "/auth/login",
+  signup: "/auth/signup",
+  forgetPassword: "/auth/forget-password",
+  home: "/",
+  about: "/about",
+  contact: "/contact",
+  menu: "/menu",
+  profile: "/profile",
+  orders: "/orders",
+  cart: "/cart",
+  checkout: "/checkout",
+  payment: "/payment",
+  notFound: "/*",
+};
