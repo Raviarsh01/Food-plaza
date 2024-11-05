@@ -10,7 +10,7 @@ const Layout = () => {
         <div>
           <Header />
         </div>
-        <div className="mt-[90px]">
+        <div className="mt-[90px] min-h-[64vh]">
           <Outlet />
         </div>
         <div>
