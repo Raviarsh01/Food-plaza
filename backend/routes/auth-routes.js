@@ -8,6 +8,7 @@ const {
   VerifyMail,
   RestPassword,
   UserProfileUpdate,
+  ChangePassword,
 } = require("../controller/auth-controller");
 const verifyToken = require("../middleware/verify-token");
 const multer = require("multer");
@@ -31,6 +32,7 @@ router.post(
   upload.single("profileimage"),
   UserProfileUpdate
 );
+router.post("/change-password", verifyToken, ChangePassword);
 router.post("/send-mail", SendMail);
 router.post("/verify-otp", VerifyMail);
 router.post("/reset-password", RestPassword);

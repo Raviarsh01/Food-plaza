@@ -84,7 +84,7 @@ const UserProfile = async (req, res) => {
 
 const UserProfileUpdate = async (req, res) => {
   const { firstName, lastName, phoneNumber, email } = req.body;
-  const userImage = req.file ? req.file.path : null;
+  const userImage = req?.file?.path;
   const userId = req.user.userId;
 
   try {
@@ -94,10 +94,8 @@ const UserProfileUpdate = async (req, res) => {
       phoneNumber,
       email,
     };
-    if (userImage) {
-      updateFields.profileImage = userImage.slice(7);
-    }
 
+    updateFields.profileImage = !userImage ? null : userImage?.slice(7);
     const updatedUser = await userRegister
       .findByIdAndUpdate(userId, { $set: updateFields }, { new: true })
       .select("-password -_id -__v -otp");
@@ -109,6 +107,33 @@ const UserProfileUpdate = async (req, res) => {
     return res
       .status(500)
       .json({ success: "false", message: "Internal Server Error" });
+  }
+};
+
+const ChangePassword = async (req, res) => {
+  const { password, newpassword } = req.body;
+  const email = req.user.email;
+  if (!password || !newpassword) {
+    return res.status(400).json({ errors: "Please fill all fields" });
+  }
+
+  try {
+    const isemail = await userRegister.findOne({ email });
+    if (!isemail) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const isPassword = await bcrypt.compare(password, isemail.password);
+    if (!isPassword) {
+      return res.status(400).json({ message: "Password is not correct" });
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newpassword, 10);
+    isemail.password = hashedNewPassword;
+    await isemail.save();
+
+    return res.status(200).json({ message: "Password updated" });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
@@ -162,7 +187,7 @@ const SendMail = async (req, res) => {
 
     await transporter.sendMail(mailOptions, (err, res) => {
       if (err) {
-          // no code
+        // no code
       }
     });
 
@@ -228,4 +253,5 @@ module.exports = {
   VerifyMail,
   RestPassword,
   UserProfileUpdate,
+  ChangePassword,
 };

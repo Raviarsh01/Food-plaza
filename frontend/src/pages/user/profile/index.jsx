@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { GetProfileData } from "../../../redux/actions/auth-actions";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const [tabs, setTabs] = useState(1);
+  const [render, setRender] = useState(true);
   const [formValues, setFormValues] = useState({
     profileImage: null,
     firstName: "",
@@ -13,14 +15,24 @@ const Profile = () => {
     email: "",
     phoneNumber: "",
   });
-  const { data, loading } = useSelector((state) => state.profileData);
-  console.log("formValues", formValues);
+
+  const [passwordForm, setPasswordForm] = useState({
+    oldpassword: "",
+    newpassword: "",
+    confirmpassword: "",
+  });
+
+  const { data } = useSelector((state) => state.profileData);
+
   useEffect(() => {
-    dispatch(GetProfileData());
-  }, []);
+    if (render) {
+      dispatch(GetProfileData());
+    }
+  }, [render, dispatch]);
 
   useEffect(() => {
     if (data) {
+      setRender(false);
       setFormValues({
         profileImage: data?.profileImage,
         firstName: data?.firstName,
@@ -39,6 +51,10 @@ const Profile = () => {
     }
   }
 
+  function handlePasswordFormChange(e) {
+    setPasswordForm({ ...passwordForm, [e.target.name]: e.target.value });
+  }
+
   async function handleFormSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
@@ -52,7 +68,7 @@ const Profile = () => {
       const reducer = localStorage.getItem("persist:login");
       const extractToken = JSON.parse(reducer)?.user;
       const token = JSON.parse(extractToken)?.token;
-      const { data } = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}auth/user-profile`,
         formData,
         {
@@ -61,6 +77,47 @@ const Profile = () => {
           },
         }
       );
+      toast.success("Profile updated");
+      setRender(true);
+    } catch (error) {
+      // no code
+    }
+  }
+  const handleImageUpload = (e) => {
+    e.preventDefault();
+    document.getElementById("upload-image").click();
+  };
+
+  async function handlePasswordFormSubmit(e) {
+    e.preventDefault();
+    if (passwordForm.newpassword !== passwordForm.confirmpassword) {
+      toast.error("Confirm password not match");
+      return;
+    }
+    const formData = {
+      password: passwordForm.oldpassword,
+      newpassword: passwordForm.newpassword,
+    };
+    try {
+      const reducer = localStorage.getItem("persist:login");
+      const extractToken = JSON.parse(reducer)?.user;
+      const token = JSON.parse(extractToken)?.token;
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}auth/change-password`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      toast.success("Password updated");
+      setRender(true);
+      setPasswordForm({
+        oldpassword: "",
+        newpassword: "",
+        confirmpassword: "",
+      });
     } catch (error) {
       // no code
     }
@@ -90,51 +147,46 @@ const Profile = () => {
         <form className="max-w-[660px] mx-4 md:mx-auto flex flex-col text-secondary">
           <div className="mx-auto w-fit relative flex items-center gap-6">
             <img
-              className="w-[140px] h-[140px] rounded-full object-cover mt-3"
+              className="w-[160px] h-[160px] rounded-full object-cover mt-3"
               src={
                 formValues.profileImage
-                  ? `${process.env.REACT_APP_BACKEND_URL}${formValues.profileImage}`
+                  ? typeof formValues.profileImage === "string"
+                    ? `${process.env.REACT_APP_BACKEND_URL}${formValues.profileImage}`
+                    : URL.createObjectURL(formValues.profileImage)
                   : "https://cdn.pixabay.com/photo/2016/03/31/20/37/client-1295901_1280.png"
               }
               alt="profile pic"
             />
-            {formValues.profileImage ? (
-              <div className="flex gap-4">
+
+            <div>
+              <button
+                className="text-primary text-base font-semibold hover:underline"
+                onClick={handleImageUpload}
+              >
+                {formValues.profileImage ? "Edit Image" : "Add Image"}
+              </button>
+              <br />
+              {formValues.profileImage ? (
                 <button
-                  className="border border-primary text-primary rounded px-3 py-1"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Edit image
-                </button>
-                <button
-                  className="border border-primary text-primary rounded px-3 py-1"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Delete image
-                </button>
-              </div>
-            ) : (
-              <>
-                <button
-                  className="border border-primary text-primary rounded px-3 py-1"
+                  className="text-primary text-base font-semibold hover:underline mt-1"
                   onClick={(e) => {
                     e.preventDefault();
-                    document.getElementById(`upload-image`).click();
+                    setFormValues({ ...formValues, profileImage: null });
                   }}
                 >
-                  Add image
+                  Delete Image
                 </button>
-                <input
-                  type="file"
-                  hidden
-                  id="upload-image"
-                  accept="image/*"
-                  className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
-                  name="profileImage"
-                  onChange={handleFormChange}
-                />
-              </>
-            )}
+              ) : null}
+              <input
+                type="file"
+                hidden
+                id="upload-image"
+                accept="image/*"
+                className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
+                name="profileImage"
+                onChange={handleFormChange}
+              />
+            </div>
           </div>
           <div className="flex flex-col md:flex-row gap-3 md:gap-6 mt-8">
             <div className="mb-[1rem] w-full md:w-[50%]">
@@ -209,16 +261,22 @@ const Profile = () => {
       )}
 
       {tabs === 2 && (
-        <form className="max-w-[360px] mx-4 md:mx-auto flex flex-col text-secondary pb-6">
+        <form
+          className="max-w-[360px] mx-4 md:mx-auto flex flex-col text-secondary pb-6"
+          onSubmit={handlePasswordFormSubmit}
+        >
           <div className="mb-[1rem]">
             <label className="font-semibold" htmlFor="currentpass">
               Current password
             </label>
             <input
-              type="password"
+              type="text"
               id="currentpass"
               className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
               placeholder="Enter current password"
+              name="oldpassword"
+              value={passwordForm.oldpassword}
+              onChange={handlePasswordFormChange}
             />
           </div>
           <div className="mb-[1rem]">
@@ -226,10 +284,13 @@ const Profile = () => {
               New Password
             </label>
             <input
-              type="password"
+              type="text"
               id="newpassword"
               className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
               placeholder="Enter new password"
+              name="newpassword"
+              value={passwordForm.newpassword}
+              onChange={handlePasswordFormChange}
             />
           </div>
           <div className="mb-[2rem]">
@@ -237,10 +298,13 @@ const Profile = () => {
               Confirm New Password
             </label>
             <input
-              type="password"
+              type="text"
               id="confirmnewpassword"
               className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
               placeholder="Enter confirm password"
+              name="confirmpassword"
+              value={passwordForm.confirmpassword}
+              onChange={handlePasswordFormChange}
             />
           </div>
 
