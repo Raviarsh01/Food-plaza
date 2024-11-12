@@ -70,13 +70,68 @@ const UserProfile = async (req, res) => {
   try {
     const UserData = await userRegister
       .findById(req.user.userId)
-      .select("-password -_id -__v");
+      .select("-password -_id -__v -otp");
 
     const data = {
       UserData,
       message: "Success data fetch",
     };
     return res.status(200).json(data);
+  } catch (error) {
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+const UserProfileUpdate = async (req, res) => {
+  const { firstName, lastName, phoneNumber, email } = req.body;
+  const userImage = req?.file?.path;
+  const userId = req.user.userId;
+
+  try {
+    const updateFields = {
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+    };
+
+    updateFields.profileImage = !userImage ? null : userImage?.slice(7);
+    const updatedUser = await userRegister
+      .findByIdAndUpdate(userId, { $set: updateFields }, { new: true })
+      .select("-password -_id -__v -otp");
+
+    return res
+      .status(200)
+      .json({ success: "true", message: "Profile updated", user: updatedUser });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: "false", message: "Internal Server Error" });
+  }
+};
+
+const ChangePassword = async (req, res) => {
+  const { password, newpassword } = req.body;
+  const email = req.user.email;
+  if (!password || !newpassword) {
+    return res.status(400).json({ errors: "Please fill all fields" });
+  }
+
+  try {
+    const isemail = await userRegister.findOne({ email });
+    if (!isemail) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const isPassword = await bcrypt.compare(password, isemail.password);
+    if (!isPassword) {
+      return res.status(400).json({ message: "Password is not correct" });
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newpassword, 10);
+    isemail.password = hashedNewPassword;
+    await isemail.save();
+
+    return res.status(200).json({ message: "Password updated" });
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error" });
   }
@@ -132,9 +187,7 @@ const SendMail = async (req, res) => {
 
     await transporter.sendMail(mailOptions, (err, res) => {
       if (err) {
-        console.log(err);
-      } else {
-        console.log("success");
+        // no code
       }
     });
 
@@ -199,4 +252,6 @@ module.exports = {
   SendMail,
   VerifyMail,
   RestPassword,
+  UserProfileUpdate,
+  ChangePassword,
 };
