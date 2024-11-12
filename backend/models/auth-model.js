@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const userRegister = new mongoose.Schema({
+  profileImage: {
+    type: String,
+    default: null,
+  },
   firstName: {
     type: String,
     required: true,
