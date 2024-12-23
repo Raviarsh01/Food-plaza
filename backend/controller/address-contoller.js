@@ -1,16 +1,16 @@
 const Address = require("../models/address-model");
 
 const AddAddress = async (req, res) => {
-  const { customerID, addressLine1, addressLine2, city, state, postalCode } =
-    req.body;
+  const userId = req.user.userId;
+  const { addressLine1, addressLine2, city, state, postalCode } = req.body;
 
-  if (!customerID || !addressLine1 || !city || !state || !postalCode) {
+  if (!addressLine1 || !city || !state || !postalCode) {
     return res.status(400).json({ errors: "Please fill all fields" });
   }
 
   try {
     const address = new Address({
-      customerID,
+      customerID: userId,
       addressLine1,
       addressLine2,
       city,
@@ -20,14 +20,17 @@ const AddAddress = async (req, res) => {
     await address.save();
     res.status(201).json({ success: true, message: "Address added" });
   } catch (error) {
+    console.log("error", error);
     res.status(500).json({ success: "false", error: "Internal Server Error" });
   }
 };
 
 const GetAddress = async (req, res) => {
-  const { customerId } = req.params;
+  const userId = req.user.userId;
+
+  console.log("userId", userId);
   try {
-    const data = await Address.find({ customerID: customerId }).populate(
+    const data = await Address.find({ customerID: userId }).populate(
       "customerID",
       "firstName lastName email"
     );
