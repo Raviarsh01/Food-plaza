@@ -1,42 +1,26 @@
-import { legacy_createStore, combineReducers, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import { persistStore, persistReducer } from "redux-persist";
+import { configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
 import storage from "redux-persist/lib/storage";
-import {
-  MenuReducer,
-  cartReducer,
-  SingleItemReducer,
-} from "./reducer/cart-reducer";
-import {
-  RegisterReducer,
-  LoginReducer,
-  ProfileGetData,
-} from "./reducer/auth-reducer";
-import { AboutPostReducer } from "./reducer/home-reducer";
+import { persistReducer } from "redux-persist";
+import { persistStore } from "redux-persist";
+import { AuthQuery } from "./redux-toolkit-query/auth";
+import cartSlice from "./slices/cart";
 
-const cartPersistConfig = {
+const persistConfig = {
   key: "cart",
   storage,
 };
 
-const loginPersistConfig = {
-  key: "login",
-  storage,
-};
-
-const LoginReducerPersist = persistReducer(loginPersistConfig, LoginReducer);
-const cartReducerPersist = persistReducer(cartPersistConfig, cartReducer);
-
-const allReducers = combineReducers({
-  RegisterReducer,
-  auth: LoginReducerPersist,
-  MenuReducer,
-  cart: cartReducerPersist,
-  profileData:ProfileGetData,
-  AboutPostReducer,
-  SingleItemReducer,
+const cartPersist = persistReducer(persistConfig, cartSlice);
+export const store = configureStore({
+  reducer: {
+    cart: cartPersist,
+    [AuthQuery.reducerPath]: AuthQuery.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware()
+      .concat(AuthQuery.middleware)
 });
 
-const store = legacy_createStore(allReducers, applyMiddleware(thunk));
-const persistor = persistStore(store);
-export { store, persistor };
+setupListeners(store.dispatch);
+export let persistor = persistStore(store);

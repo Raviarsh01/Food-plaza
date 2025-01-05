@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  removeCart,
-  quantityInc,
-  quantityDec,
-} from "../../redux/actions/cart-actions";
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+} from "../../redux/slices/cart";
 import Button from "../../components/button";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
@@ -20,16 +20,16 @@ const Cart = () => {
   }, []);
 
   const handleRemove = (id) => {
-    dispatch(removeCart(id));
+    dispatch(removeFromCart(id));
   };
   const handleInc = (event, id) => {
     event.preventDefault();
-    dispatch(quantityInc(id));
+    dispatch(increaseQuantity(id));
   };
   const handleDec = (event, id, quantity) => {
     event.preventDefault();
     if (quantity > 1) {
-      dispatch(quantityDec(id));
+      dispatch(decreaseQuantity(id));
     }
   };
   useEffect(() => {
