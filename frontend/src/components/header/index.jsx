@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { paths } from "../../utils/paths";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LogoutAction } from "../../redux/actions/auth-actions";
 import { toast } from "react-toastify";
 import { FaCartShopping } from "react-icons/fa6";
 import Button from "../../components/button";
@@ -14,24 +13,22 @@ import { FaUser } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
 
 const Header = () => {
-  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const { cartData } = useSelector((state) => state.cart);
-  const { user } = useSelector((state) => state.auth);
   const number = cartData?.length;
   const [login, setlogin] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [onHover, setOnHover] = useState(false);
 
   useEffect(() => {
-    if (user?.token) {
+    const token = localStorage.getItem("token");
+    if (token) {
       setlogin(true);
     }
-  }, [user]);
 
-  useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -50,7 +47,6 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    dispatch(LogoutAction());
     setlogin(false);
     setOnHover((prev) => !prev);
     toast.success("Logout success", {
