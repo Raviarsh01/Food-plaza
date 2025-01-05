@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { RegisterAction } from "../../../redux/actions/auth-actions";
 import { toast } from "react-toastify";
 import Loader from "../../../components/loader";
 import {
@@ -14,40 +12,35 @@ import {
 } from "../../../utils/validations";
 import { paths } from "../../../utils/paths";
 import { FaArrowLeft } from "react-icons/fa";
+import { useUserSignupMutation } from "../../../redux/redux-toolkit-query/auth";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { userData, error } = useSelector((state) => state.RegisterReducer);
+
+  const [userSignup, { data, error, isLoading }] = useUserSignupMutation();
+
   const [fname, setfName] = useState("");
   const [lname, setlName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setphone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
-  const [render, setrender] = useState(false);
 
   useEffect(() => {
-    window.scroll(0, 0);
-    if (userData && render) {
-      setrender(false);
-      toast.success(userData?.message, {
-        autoClose: 1500,
-      });
-
-      navigate(`${paths.login}`);
+    if (data) {
+      toast.success(data?.message);
       setPassword("");
       setConfirmPassword("");
       setfName("");
       setlName("");
       setEmail("");
       setphone("");
+      navigate(`${paths.login}`);
     }
-    if (error && render) {
-      setrender(false);
-      toast.error(error?.response?.data?.message);
+    if (error) {
+      toast.error(error?.data?.message);
     }
-  }, [userData, error, navigate, render]);
+  }, [data, error, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,28 +53,27 @@ const Signup = () => {
     password && toast.error(confirmPasswordVal(password, confirmpassword));
 
     const tempErrors = {
-      fnameErr: firstNameVal(fname),
-      lnameErr: lastNameVal(lname),
-      emailErr: emailVal(email),
-      phoneErr: phoneVal(phone),
-      passErr: passwordVal(password),
-      cpassErr: confirmPasswordVal(password, confirmpassword),
+      // fnameErr: firstNameVal(fname),
+      // lnameErr: lastNameVal(lname),
+      // emailErr: emailVal(email),
+      // phoneErr: phoneVal(phone),
+      // passErr: passwordVal(password),
+      // cpassErr: confirmPasswordVal(password, confirmpassword),
     };
 
     if (Object.values(tempErrors).filter((value) => value).length) {
       return;
     }
-
-    const data = new FormData();
-    data.append("firstName", fname);
-    data.append("lastName", lname);
-    data.append("email", email);
-    data.append("phoneNumber", phone);
-    data.append("password", password);
-    setrender(true);
-    dispatch(RegisterAction(data));
+    const data = {
+      firstName: fname,
+      lastName: lname,
+      email,
+      phoneNumber: phone,
+      password,
+    };
+    userSignup(data);
   };
-  return render ? (
+  return isLoading ? (
     <Loader />
   ) : (
     <div className="w-full my-8 h-auto md:h-screen flex justify-between items-center">
