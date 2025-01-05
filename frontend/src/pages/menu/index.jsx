@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { MenuDataAction, addCart } from "../../redux/actions/cart-actions";
+import { useDispatch } from "react-redux";
 import Loader from "../../components/loader";
 import AppsForOrder from "../../components/apps-for-order";
 import ItemCard from "../../components/ItemCard";
 import { toast } from "react-toastify";
+import { useGetMenuDataQuery } from "../../redux/redux-toolkit-query/menu";
+import { addToCart } from "../../redux/slices/cart";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -12,19 +13,14 @@ const Menu = () => {
   const [tabs, setTabs] = useState("");
   const [tabsArray, setTabsArray] = useState([]);
 
-  const { MenuData, loading } = useSelector((state) => state.MenuReducer);
+  const { data, loading } = useGetMenuDataQuery();
 
   useEffect(() => {
-    dispatch(MenuDataAction());
-    window.scroll(0, 0);
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (MenuData) {
-      const filterTabs = MenuData?.map((i) => i.category);
+    if (data?.response) {
+      const filterTabs = data?.response?.map((i) => i.category);
       setTabsArray([...new Set(filterTabs)]);
     }
-  }, [MenuData]);
+  }, [data?.response]);
 
   useEffect(() => {
     if (tabsArray.length > 0) {
@@ -40,19 +36,19 @@ const Menu = () => {
   }, [tabsArray]);
 
   useEffect(() => {
-    if (MenuData) {
-      const filterData = MenuData?.filter((i) => i.category === tabs);
+    if (data?.response) {
+      const filterData = data?.response?.filter((i) => i.category === tabs);
       if (filterData?.length !== 0) {
         SetItems(filterData);
         return;
       }
-      SetItems(MenuData);
+      SetItems(data?.response);
     }
-  }, [tabs, MenuData]);
+  }, [tabs, data?.response]);
 
   const handleadd = (item) => {
-    dispatch(addCart(item));
-    toast.success("Item added to cart")
+    dispatch(addToCart(item));
+    toast.success("Item added to cart");
   };
 
   return loading ? (
@@ -101,10 +97,7 @@ const Menu = () => {
 
         <div className="grid px-4 gap-12 md:gap-6 grid-cols-1 md:grid-cols-4">
           {Items?.map((item, i) => (
-            <ItemCard
-              item={item}
-              handleadd={handleadd}
-            />
+            <ItemCard item={item} handleadd={handleadd} />
           ))}
         </div>
       </div>
