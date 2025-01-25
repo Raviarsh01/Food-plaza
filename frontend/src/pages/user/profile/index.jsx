@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { GetProfileData } from "../../../redux/actions/auth-actions";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useGetUserProfileQuery } from "../../../redux/redux-toolkit-query/auth";
 
 const Profile = () => {
-  const dispatch = useDispatch();
   const [tabs, setTabs] = useState(1);
 
-  const { data, loading, message } = useSelector((state) => state.profileData);
+  const { data } = useGetUserProfileQuery();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,9 +14,7 @@ const Profile = () => {
       alert("Password change");
     }
   };
-  useEffect(() => {
-    dispatch(GetProfileData());
-  }, []);
+
   return (
     <div className="main-container py-[50px]">
       <div className="mb-[1rem] flex  gap-12">
@@ -51,17 +47,19 @@ const Profile = () => {
       {tabs === 1 && (
         <div>
           <p className="font-medium">
-            First name: <span className="font-normal">{data?.firstName}</span>
+            First name:{" "}
+            <span className="font-normal">{data?.UserData?.firstName}</span>
           </p>
           <p className="font-medium">
-            Last name: <span className="font-normal">{data?.lastName}</span>
+            Last name:{" "}
+            <span className="font-normal">{data?.UserData?.lastName}</span>
           </p>
           <p className="font-medium">
-            Email: <span className="font-normal">{data?.email}</span>
+            Email: <span className="font-normal">{data?.UserData?.email}</span>
           </p>
           <p className="font-medium">
             Phone number:{" "}
-            <span className="font-normal">{data?.phoneNumber}</span>
+            <span className="font-normal">{data?.UserData?.phoneNumber}</span>
           </p>
         </div>
       )}

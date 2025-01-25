@@ -4,10 +4,10 @@ import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  quantityDec,
-  quantityInc,
-  removeCart,
-} from "../../redux/actions/cart-actions";
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+} from "../../redux/slices/cart";
 import { toast } from "react-toastify";
 import { RiStarSFill } from "react-icons/ri";
 
@@ -19,16 +19,16 @@ const ItemCard = ({ item, handleadd }) => {
 
   const handleInc = (event, id) => {
     event.preventDefault();
-    dispatch(quantityInc(id));
+    dispatch(increaseQuantity(id));
   };
   const handleDec = (event, id, quantity) => {
     event.preventDefault();
     if (quantity === 1) {
-      dispatch(removeCart(id));
+      dispatch(removeFromCart(id));
       toast.success("Item removed from cart");
       return;
     }
-    dispatch(quantityDec(id));
+    dispatch(decreaseQuantity(id));
   };
   const value = cartData.find((item) => item._id === _id);
   return (

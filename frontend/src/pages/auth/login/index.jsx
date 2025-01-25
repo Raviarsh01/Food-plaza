@@ -1,43 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { LoginAction } from "../../../redux/actions/auth-actions";
 import { emailVal } from "../../../utils/validations";
 import { toast } from "react-toastify";
 import Loader from "../../../components/loader";
 import { FaArrowLeft } from "react-icons/fa";
 import { paths } from "../../../utils/paths";
+import { useUserLoginMutation } from "../../../redux/redux-toolkit-query/auth";
 
 const Login = () => {
   const [searchParams] = useSearchParams();
   const redirectUrl = searchParams.get("from");
-  const dispatch = useDispatch();
-  const { user, error, message } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const [userLogin, { data, error, isLoading }] = useUserLoginMutation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [render, setrender] = useState(false);
 
   useEffect(() => {
-    window.scroll(0, 0);
-  }, []);
-  useEffect(() => {
-    if (user?.token && render) {
-      toast.success(message, {
-        autoClose: 2000,
-      });
+    if (data?.token) {
+      toast.success(data?.message);
       setEmail("");
       setPassword("");
-      setrender(false);
+      localStorage.setItem("token", data?.token);
       const url = redirectUrl ? `/${redirectUrl}` : paths.home;
       navigate(url);
     }
-
-    if (error && render) {
-      setrender(false);
-      toast.error(error?.response?.data?.message);
+    if (error) {
+      toast.error(error?.data?.errors);
     }
-  }, [user, error, message, navigate, redirectUrl, render]);
+  }, [data, error, navigate, redirectUrl]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,13 +45,14 @@ const Login = () => {
     if (Object.values(tempErrors).filter((value) => value).length) {
       return;
     }
-    const data = new FormData();
-    data.append("email", email);
-    data.append("password", password);
-    setrender(true);
-    dispatch(LoginAction(data));
+
+    const data = {
+      email,
+      password,
+    };
+    userLogin(data);
   };
-  return render ? (
+  return isLoading ? (
     <Loader />
   ) : (
     <div className="w-[100vw] h-[100vh] flex justify-between items-center">
