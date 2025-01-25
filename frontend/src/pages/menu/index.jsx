@@ -13,7 +13,7 @@ const Menu = () => {
   const [tabs, setTabs] = useState("");
   const [tabsArray, setTabsArray] = useState([]);
 
-  const { data, loading } = useGetMenuDataQuery();
+  const { data, isLoading } = useGetMenuDataQuery();
 
   useEffect(() => {
     if (data?.response) {
@@ -51,7 +51,7 @@ const Menu = () => {
     toast.success("Item added to cart");
   };
 
-  return loading ? (
+  return isLoading ? (
     <Loader />
   ) : (
     <>
