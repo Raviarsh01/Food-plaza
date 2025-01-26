@@ -51,6 +51,16 @@ const Checkout = () => {
 
   async function handleSubmitForm() {
     const token = localStorage.getItem("token");
+
+    const checkValues = Object.values(formValues).some(
+      (value) => value === "" || value == null
+    );
+
+    if (checkValues) {
+      toast.error("Please fill all fields");
+      return;
+    }
+
     try {
       const { data } = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}address/add-address`,
@@ -87,9 +97,7 @@ const Checkout = () => {
 
   function handleCartData() {
     const cartData = {
-      bill,
-      deliveryCharges: charges,
-      grandtotal: total,
+      total,
       address: selectedAddress,
     };
     localStorage.setItem("cartData", JSON.stringify(cartData));
