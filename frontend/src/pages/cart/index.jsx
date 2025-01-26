@@ -9,6 +9,7 @@ import Button from "../../components/button";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const Cart = () => {
 
   const handleRemove = (id) => {
     dispatch(removeFromCart(id));
+    toast.success("Item removed from cart");
   };
   const handleInc = (event, id) => {
     event.preventDefault();
