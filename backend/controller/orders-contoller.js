@@ -1,7 +1,8 @@
 const Orders = require("../models/order-model");
 
 const CreateOrder = async (req, res) => {
-  const { customerID, deliveryAddress, cartData, totalAmount } = req.body;
+  const customerID = req.user.userId;
+  const { deliveryAddress, cartData, totalAmount } = req.body;
   if (!customerID || !deliveryAddress || !cartData.length > 0 || !totalAmount) {
     return res.status(400).json({ errors: "Please fill all fields" });
   }
@@ -19,36 +20,29 @@ const CreateOrder = async (req, res) => {
     res.status(500).json({ success: "false", error: "Internal Server Error" });
   }
 };
+
 const GetOrders = async (req, res) => {
-  const { customerId } = req.params;
-  console.log("api hit");
-  if (!customerId) {
+  const customerID = req.user.userId;
+  if (!customerID) {
     return res.status(400).json({ errors: "Field is required" });
   }
+
   try {
-    const data = await Orders.find({ customerID: customerId })
-      .populate({
-        path: "customerID",
-        select: "firstName lastName email",
-      })
+    const data = await Orders.find({ customerID })
       .populate({
         path: "cartData.itemID",
+        select: "category image name price -_id",
       })
       .populate({
         path: "deliveryAddress",
-        select: "-_id -customerID -createdAt -updatedAt -__v",
+        select: "addressLine1 addressLine2 city postalCode state -_id",
       });
-    // .populate(
-    //   "customerID",
-    //   "firstName lastName email"
-    // );
     res.status(200).json({
-      success: "Get successfully",
+      success: true,
       page: null,
-      response: data,
+      data,
     });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

@@ -9,6 +9,7 @@ import Button from "../../components/button";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const Cart = () => {
 
   const handleRemove = (id) => {
     dispatch(removeFromCart(id));
+    toast.success("Item removed from cart");
   };
   const handleInc = (event, id) => {
     event.preventDefault();
@@ -41,7 +43,7 @@ const Cart = () => {
 
   return (
     <div className="pt-[50px] py-[90px] main-container">
-      <h2 className="text-3xl font-bold text-center text-secondary leading-tight mb-6">
+      <h2 className="text-3xl font-semibold text-center text-secondary leading-tight mb-6">
         Your Cart
       </h2>
       {cartData?.length === 0 ? (

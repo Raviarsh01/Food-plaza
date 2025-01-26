@@ -22,14 +22,14 @@ const Button = ({
   return background === "primary" ? (
     <Link
       to={href}
-      className={`transition font-medium px-[38px] py-[14px] border rounded rounded-tl-2xl rounded-br-2xl ${primaryBtn}`}
+      className={`transition font-medium px-[38px] py-[12px] border rounded rounded-tl-2xl rounded-br-2xl ${primaryBtn}`}
     >
       {text}
     </Link>
   ) : (
     <Link
       to={href}
-      className={`transition font-medium px-[38px] py-[14px] border rounded rounded-tl-2xl rounded-br-2xl ${secondaryBtn}`}
+      className={`transition font-medium px-[38px] py-[12px] border rounded rounded-tl-2xl rounded-br-2xl ${secondaryBtn}`}
     >
       {text}
     </Link>

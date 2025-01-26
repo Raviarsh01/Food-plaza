@@ -53,12 +53,12 @@ const Signup = () => {
     password && toast.error(confirmPasswordVal(password, confirmpassword));
 
     const tempErrors = {
-      // fnameErr: firstNameVal(fname),
-      // lnameErr: lastNameVal(lname),
-      // emailErr: emailVal(email),
-      // phoneErr: phoneVal(phone),
-      // passErr: passwordVal(password),
-      // cpassErr: confirmPasswordVal(password, confirmpassword),
+      fnameErr: firstNameVal(fname),
+      lnameErr: lastNameVal(lname),
+      emailErr: emailVal(email),
+      phoneErr: phoneVal(phone),
+      passErr: passwordVal(password),
+      cpassErr: confirmPasswordVal(password, confirmpassword),
     };
 
     if (Object.values(tempErrors).filter((value) => value).length) {
