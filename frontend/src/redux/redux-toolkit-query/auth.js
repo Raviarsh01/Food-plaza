@@ -1,19 +1,9 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { fetchQuery } from "./config-rtk";
 
 export const AuthQuery = createApi({
   reducerPath: "auth",
-  baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_BACKEND_URL,
-    prepareHeaders: (headers, { endpoint }) => {
-      if (endpoint === "getUserProfile") {
-        const token = localStorage.getItem("token");
-        if (token) {
-          headers.set("Authorization", `Bearer ${token}`);
-        }
-      }
-      return headers;
-    },
-  }),
+  baseQuery: fetchQuery,
   endpoints: (builder) => ({
     userSignup: builder.mutation({
       query: (formValues) => ({
