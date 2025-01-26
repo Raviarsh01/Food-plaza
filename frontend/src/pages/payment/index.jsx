@@ -1,55 +1,66 @@
-import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { emptyCart } from "../../redux/slices/cart";
+import { useCreateOrderMutation } from "../../redux/redux-toolkit-query/orders";
 
 const Payment = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [formValues, setFormValues] = useState({
     cardNumber: "",
     holderName: "",
     cvv: "",
-    expiryDate: new Date().toISOString().split("T")[0],
+    expiryDate: "",
   });
+
+  const { cartData } = useSelector((state) => state.cart);
+  const [createOrder, { data }] = useCreateOrderMutation();
+
+  useEffect(() => {
+    if (data?.message) {
+      setFormValues({
+        cardNumber: "",
+        holderName: "",
+        cvv: "",
+        expiryDate: "",
+      });
+      dispatch(emptyCart());
+      toast.success(data?.message);
+      navigate("/orders");
+    }
+  }, [data, dispatch, navigate]);
 
   function handleForm(e) {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmitForm() {
-    const token = localStorage.getItem("token");
-    const cartData = localStorage.getItem("cartData");
-    const parsedData = JSON.parse(cartData);
+  const value = cartData.map((item) => ({
+    itemID: item?._id,
+    quantity: item?.quantity,
+  }));
 
-    const formValue = {
-      ...parsedData,
-      ...formValues,
-    };
-    console.log("formValue", formValue);
-    try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}address/add-address`,
-        formValue,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (data?.success) {
-        setFormValues({
-          cardNumber: "",
-          holderName: "",
-          cvv: "",
-          expiryDate: "",
-        });
-        navigate("/orders");
-        toast.success("Order Placed");
-      }
-    } catch (error) {
-      //no code
+  async function handleSubmitForm() {
+    const d1 = localStorage.getItem("cartData");
+    const parseData = JSON.parse(d1);
+
+    const checkValues = Object.values(formValues).some(
+      (value) => value === "" || value == null
+    );
+
+    if (checkValues) {
+      toast.error("Please fill all fields");
+      return;
     }
+
+    const formDatas = {
+      deliveryAddress: parseData?.address,
+      cartData: value,
+      totalAmount: parseData?.total,
+    };
+    createOrder(formDatas);
   }
 
   return (
@@ -86,7 +97,7 @@ const Payment = () => {
             onChange={handleForm}
           />
           <input
-            type="date"
+            type="text"
             className="w-full ring-1 ring-primary rounded focus-visible:ring-2 outline-none px-4 py-2"
             placeholder="Enter expiry date"
             name="expiryDate"
