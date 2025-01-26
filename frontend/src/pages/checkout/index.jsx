@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { paths } from "../../utils/paths";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Checkout = () => {
   const [addressModal, setAddressModal] = useState(false);
@@ -24,9 +25,7 @@ const Checkout = () => {
 
   useEffect(() => {
     async function getData() {
-      const reducer = localStorage.getItem("persist:login");
-      const extractToken = JSON.parse(reducer)?.user;
-      const token = JSON.parse(extractToken)?.token;
+      const token = localStorage.getItem("token");
       try {
         const { data } = await axios.get(
           `${process.env.REACT_APP_BACKEND_URL}address/get-address`,
@@ -49,10 +48,9 @@ const Checkout = () => {
       getData();
     }
   }, [loading]);
+
   async function handleSubmitForm() {
-    const reducer = localStorage.getItem("persist:login");
-    const extractToken = JSON.parse(reducer)?.user;
-    const token = JSON.parse(extractToken)?.token;
+    const token = localStorage.getItem("token");
     try {
       const { data } = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}address/add-address`,
@@ -74,6 +72,7 @@ const Checkout = () => {
           postalCode: "",
           state: "",
         });
+        toast.success("Address added");
       }
     } catch (error) {
       //no code
@@ -83,9 +82,18 @@ const Checkout = () => {
   const bill = cartData?.reduce((accumulator, currentItem) => {
     return accumulator + currentItem.price * currentItem.quantity;
   }, 0);
-  const charges = Math.floor((18 * bill) / 100);
+  const charges = Math.floor((12 * bill) / 100);
   const total = bill + charges;
 
+  function handleCartData() {
+    const cartData = {
+      bill,
+      deliveryCharges: charges,
+      grandtotal: total,
+      address: selectedAddress,
+    };
+    localStorage.setItem("cartData", JSON.stringify(cartData));
+  }
   return (
     <>
       <div className="main-container py-[50px]">
@@ -104,15 +112,18 @@ const Checkout = () => {
             <p className="font-semibold">Grand total: {total}</p>
           </div>
           <div className="w-[40%]">
-            <div className="flex justify-between">
-              <h3 className="font-semibold text-xl mb-1">Delivery address</h3>
+            <div className="flex justify-between mb-1">
+              <h3 className="font-semibold text-xl">Delivery address</h3>
               <button
-                className="bg-primary px-6 py-2 text-white rounded text-sm"
+                className="text-primary font-semibold underline"
                 onClick={() => setAddressModal(true)}
               >
-                Add
+                Add Address
               </button>
             </div>
+            {userAddress.length === 0 ? (
+              <p className="font-normal">Please add your address</p>
+            ) : null}
             {userAddress.map((value, i) => (
               <div
                 key={i}
@@ -134,12 +145,19 @@ const Checkout = () => {
           </div>
         </div>
         <div className="flex justify-center mt-16">
-          <Link
-            className="bg-primary px-16 py-3 text-white rounded inline-block"
-            to={paths.payment}
-          >
-            Payment
-          </Link>
+          {userAddress.length !== 0 ? (
+            <Link
+              to={paths.payment}
+              className="transition font-medium px-[38px] py-[12px] border rounded rounded-tl-2xl rounded-br-2xl text-primary bg-white hover:text-white hover:bg-primary"
+              onClick={handleCartData}
+            >
+              Payment
+            </Link>
+          ) : (
+            <span className="bg-[#cccccc] px-16 py-3 text-secondary rounded inline-block font-medium">
+              Payment
+            </span>
+          )}
         </div>
       </div>
 
@@ -149,7 +167,7 @@ const Checkout = () => {
             <div class="flex min-h-full justify-center p-4 items-center">
               <div class="w-[600px] rounded-lg bg-white transition-all overflow-hidden">
                 <div class="bg-white p-8">
-                  <div class="mt-3 text-center  sm:text-left">
+                  <div class="mt-3 text-center sm:text-left">
                     <h3 class="font-semibold text-xl text-center">
                       Add Address
                     </h3>

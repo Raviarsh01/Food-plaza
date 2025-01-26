@@ -41,7 +41,7 @@ const Cart = () => {
 
   return (
     <div className="pt-[50px] py-[90px] main-container">
-      <h2 className="text-3xl font-bold text-center text-secondary leading-tight mb-6">
+      <h2 className="text-3xl font-semibold text-center text-secondary leading-tight mb-6">
         Your Cart
       </h2>
       {cartData?.length === 0 ? (
