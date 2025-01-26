@@ -21,7 +21,6 @@ const CreateOrder = async (req, res) => {
 };
 const GetOrders = async (req, res) => {
   const { customerId } = req.params;
-  console.log("api hit");
   if (!customerId) {
     return res.status(400).json({ errors: "Field is required" });
   }
@@ -38,17 +37,12 @@ const GetOrders = async (req, res) => {
         path: "deliveryAddress",
         select: "-_id -customerID -createdAt -updatedAt -__v",
       });
-    // .populate(
-    //   "customerID",
-    //   "firstName lastName email"
-    // );
     res.status(200).json({
       success: "Get successfully",
       page: null,
       response: data,
     });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

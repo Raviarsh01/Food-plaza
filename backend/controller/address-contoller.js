@@ -20,7 +20,6 @@ const AddAddress = async (req, res) => {
     await address.save();
     res.status(201).json({ success: true, message: "Address added" });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ success: "false", error: "Internal Server Error" });
   }
 };
@@ -28,7 +27,6 @@ const AddAddress = async (req, res) => {
 const GetAddress = async (req, res) => {
   const userId = req.user.userId;
 
-  console.log("userId", userId);
   try {
     const data = await Address.find({ customerID: userId }).populate(
       "customerID",
@@ -40,7 +38,6 @@ const GetAddress = async (req, res) => {
       response: data.reverse(),
     });
   } catch (error) {
-    console.log("error", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
