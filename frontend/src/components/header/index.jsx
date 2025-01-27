@@ -9,8 +9,8 @@ import Button from "../../components/button";
 import { IoIosRestaurant } from "react-icons/io";
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
-import { FaUser } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
+import { useGetUserProfileQuery } from "../../redux/redux-toolkit-query/auth";
 
 const Header = () => {
   const location = useLocation();
@@ -20,6 +20,8 @@ const Header = () => {
   const [login, setlogin] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [onHover, setOnHover] = useState(false);
+
+  const { data } = useGetUserProfileQuery();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -101,9 +103,17 @@ const Header = () => {
             <div className="relative">
               <div
                 onClick={() => setOnHover((prev) => !prev)}
-                className="cursor-pointer p-[8px] mr-[4px] transition font-medium border border-2 rounded-full text-primary bg-white"
+                className="cursor-pointer mr-[4px] transition font-medium rounded-full"
               >
-                <FaUser />
+                <img
+                  className="w-[52px] h-[52px] rounded-full cursor-pointer shadow"
+                  src={
+                    data?.UserData?.profileImage
+                      ? `${process.env.REACT_APP_BACKEND_URL}${data?.UserData?.profileImage}`
+                      : "/Images/user.png"
+                  }
+                  alt="profile-pic"
+                />
               </div>
               {onHover ? (
                 <div
@@ -137,7 +147,7 @@ const Header = () => {
             </div>
           ) : (
             <>
-              <Link className=" md:hidden" to={paths.login}>
+              <Link className="md:hidden" to={paths.login}>
                 <FaArrowRight className="text-primary text-2xl" />
               </Link>
               <div className="hidden md:flex">

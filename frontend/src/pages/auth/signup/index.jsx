@@ -138,7 +138,7 @@ const Signup = () => {
                 type="text"
                 id="phonenumber"
                 className="w-full p-[10px] rounded-lg  border-[#DBDFD0] border-[1px] text-secondary focus:outline-primary mt-[6px]"
-                placeholder="Enter email"
+                placeholder="Enter phone number"
                 value={phone}
                 onChange={(e) => setphone(e.target.value)}
               />
