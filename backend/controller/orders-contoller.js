@@ -28,7 +28,7 @@ const GetOrders = async (req, res) => {
   }
 
   try {
-    const data = await Orders.find({ customerID })
+    const OrdersData = await Orders.find({ customerID })
       .populate({
         path: "cartData.itemID",
         select: "category image name price -_id",
@@ -37,6 +37,8 @@ const GetOrders = async (req, res) => {
         path: "deliveryAddress",
         select: "addressLine1 addressLine2 city postalCode state -_id",
       });
+
+    const data = OrdersData.reverse();
     res.status(200).json({
       success: true,
       page: null,

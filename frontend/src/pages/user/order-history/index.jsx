@@ -26,7 +26,7 @@ const Orders = () => {
         ) : null}
         {data?.data?.map((item) => {
           return (
-            <div className="shadow rounded p-6">
+            <div className="shadow hover:shadow-md border border-[#ebebebe6] rounded-md p-6">
               <div className="flex justify-between">
                 <div>
                   <p className="font-semibold ">
