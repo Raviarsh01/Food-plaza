@@ -13,6 +13,10 @@ const userRegister = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  profileImage: {
+    type: String,
+    default: null,
+  },
   email: {
     type: String,
     required: true,
