@@ -70,7 +70,7 @@ const UserProfile = async (req, res) => {
   try {
     const UserData = await userRegister
       .findById(req.user.userId)
-      .select("-password -_id -__v");
+      .select("-password -_id -__v -otp");
 
     const data = {
       UserData,
@@ -194,6 +194,10 @@ const RestPassword = async (req, res) => {
 
 const UserProfileUpdate = async (req, res) => {
   const { firstName, lastName, phoneNumber, email } = req.body;
+  if (!firstName || !lastName || !phoneNumber || !email) {
+    return res.status(400).json({ errors: "Please fill all fields" });
+  }
+
   const userImage = req?.file?.path;
   const userId = req.user.userId;
 
@@ -204,15 +208,18 @@ const UserProfileUpdate = async (req, res) => {
       phoneNumber,
       email,
     };
-
-    updateFields.profileImage = !userImage ? null : userImage?.slice(7);
-    const updatedUser = await userRegister
-      .findByIdAndUpdate(userId, { $set: updateFields }, { new: true })
-      .select("-password -_id -__v -otp");
+    if (userImage) {
+      updateFields.profileImage = userImage?.slice(7);
+    }
+    await userRegister.findByIdAndUpdate(
+      userId,
+      { $set: updateFields },
+      { new: true }
+    );
 
     return res
       .status(200)
-      .json({ success: "true", message: "Profile updated", user: updatedUser });
+      .json({ success: "true", message: "Profile updated" });
   } catch (error) {
     return res
       .status(500)

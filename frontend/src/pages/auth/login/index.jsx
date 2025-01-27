@@ -26,7 +26,7 @@ const Login = () => {
       navigate(url);
     }
     if (error) {
-      toast.error(error?.data?.errors);
+      toast.error(error?.data?.message);
     }
   }, [data, error, navigate, redirectUrl]);
 

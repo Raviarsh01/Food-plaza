@@ -31,7 +31,7 @@ const addressSchema = new mongoose.Schema({
   },
   orderDelivered: {
     type: String,
-    default: "No",
+    default: "Yes",
   },
   payment: {
     type: String,

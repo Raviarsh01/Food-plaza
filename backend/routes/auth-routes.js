@@ -25,6 +25,11 @@ const upload = multer({ storage: storage });
 
 router.post("/signup", UserSignup);
 router.post("/login", UserLogin);
+
+router.post("/send-mail", SendMail);
+router.post("/verify-otp", VerifyMail);
+router.post("/reset-password", RestPassword);
+
 router.get("/user-profile", verifyToken, UserProfile);
 router.post(
   "/user-profile",
@@ -33,8 +38,5 @@ router.post(
   UserProfileUpdate
 );
 router.post("/change-password", verifyToken, ChangePassword);
-router.post("/send-mail", SendMail);
-router.post("/verify-otp", VerifyMail);
-router.post("/reset-password", RestPassword);
 
 module.exports = router;

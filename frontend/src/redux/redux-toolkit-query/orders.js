@@ -4,9 +4,11 @@ import { fetchQuery } from "./config-rtk";
 export const OrdersQuery = createApi({
   reducerPath: "orders",
   baseQuery: fetchQuery,
+  tagTypes: ["Orders"],
   endpoints: (builder) => ({
     getOrdersData: builder.query({
       query: () => `orders/get-orders`,
+      providesTags: ["Orders"],
     }),
     createOrder: builder.mutation({
       query: (formValues) => ({
@@ -14,6 +16,7 @@ export const OrdersQuery = createApi({
         url: `orders/create`,
         body: formValues,
       }),
+      invalidatesTags: ["Orders"],
     }),
   }),
 });
